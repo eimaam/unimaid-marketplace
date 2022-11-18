@@ -1,0 +1,17 @@
+section{
+    @include desk-width;
+    @include flex-col;
+    align-items: flex-start;
+    margin-block: $m-margin;
+
+    .section--title{
+        width: 100%;
+        padding: $xs-pad;
+        background-color: $secondary;
+    }
+
+    .products{
+        @include flex-row;
+        flex-wrap: wrap;
+    }
+}

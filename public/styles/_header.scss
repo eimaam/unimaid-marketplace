@@ -1,0 +1,16 @@
+header{
+    background-color: $primary;
+    margin: auto;
+    width: 100%;
+    height: 60vh;
+    @include flex-col;
+
+    *{
+        color: $default;
+        text-align: center;
+    }
+
+    .categories{
+        @include flex-row;
+    }
+}

@@ -1,0 +1,356 @@
+.flex-row, .icon--text {
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  justify-content: flex-start;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+h1 {
+  font-size: 2rem;
+  color: rgb(7, 136, 191);
+}
+
+h2 {
+  font-size: 1.25rem;
+  color: rgb(37, 20, 111);
+}
+@media only screen and (max-width: 1000px) {
+  h2 {
+    font-size: 1.05rem;
+  }
+}
+
+h3 {
+  font-size: 1.15rem;
+}
+@media only screen and (max-width: 1000px) {
+  h3 {
+    font-size: 0.9rem;
+  }
+}
+
+h4 {
+  font-size: 1.01rem;
+}
+
+p {
+  font-size: 1rem;
+  font-weight: lighter;
+}
+@media only screen and (max-width: 1000px) {
+  p {
+    font-size: 0.9rem;
+  }
+}
+
+button, .btn--secondary, input[type=submit] {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  color: #fff;
+  text-transform: capitalize;
+  background-color: rgb(37, 20, 111);
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+button:hover, .btn--secondary:hover, input[type=submit]:hover {
+  background-color: rgb(224, 170, 21);
+  color: #15191c;
+}
+@media only screen and (max-width: 1000px) {
+  button, .btn--secondary, input[type=submit] {
+    padding: 0.5rem;
+    font-size: 0.8rem;
+  }
+}
+
+.btn--secondary {
+  background-color: rgb(7, 136, 191);
+}
+
+.btn--small {
+  font-size: 0.8rem;
+  padding: 0.3rem;
+  font-weight: bold;
+}
+
+.btn--white {
+  background-color: #fff;
+  color: #15191c;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+  -o-object-fit: cover;
+     object-fit: cover; /*{ Read thissssssssssssssss} */
+}
+
+ul {
+  list-style-type: none;
+}
+ul li {
+  font-size: 1rem;
+}
+@media only screen and (max-width: 1000px) {
+  ul li {
+    font-size: 1rem;
+  }
+}
+
+hr {
+  margin: 2rem auto;
+  color: rgb(37, 20, 111);
+  border: 1px solid rgb(37, 20, 111);
+  width: 80%;
+}
+@media only screen and (max-width: 1000px) {
+  hr {
+    margin-block: 1rem;
+  }
+}
+
+.error {
+  color: red;
+}
+
+.error--background {
+  background-color: red;
+}
+
+.success {
+  color: rgb(37, 20, 111);
+}
+
+.loader {
+  width: 100%;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+  justify-content: center;
+  align-items: center;
+}
+@media only screen and (max-width: 1000px) {
+  .container {
+    padding-block: 1.5rem;
+  }
+}
+
+nav {
+  background-color: rgb(37, 20, 111);
+  padding: 1rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+nav ul {
+  width: 70%;
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  justify-content: space-around;
+}
+nav ul li {
+  font-size: 1.5rem;
+  color: #fff;
+}
+nav ul li:first-child {
+  margin-right: auto;
+}
+nav ul li:last-child {
+  background-color: rgb(7, 136, 191);
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+}
+
+header {
+  background-color: rgb(37, 20, 111);
+  margin: auto;
+  width: 100%;
+  height: 60vh;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  justify-content: center;
+  align-items: center;
+}
+header * {
+  color: #fff;
+  text-align: center;
+}
+header .categories {
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.category--card {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  justify-content: center;
+  align-items: center;
+  border: solid rgb(7, 136, 191);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  width: 180px;
+  height: 250px;
+  background-color: rgb(7, 136, 191);
+  transition: all 300ms;
+}
+.category--card:hover {
+  transform: scale(1.03);
+}
+.category--card img {
+  width: 80%;
+}
+
+.product--card {
+  border: solid rgb(37, 20, 111);
+  border-radius: 0.5rem;
+  width: 200px;
+}
+.product--card img {
+  width: 100%;
+}
+.product--card .product--detail {
+  padding: 0.5rem;
+  background-color: rgb(37, 20, 111);
+  color: #fff;
+}
+.product--card .product--detail h5 {
+  color: rgb(7, 136, 191);
+}
+.product--card .product--detail p {
+  color: rgb(224, 170, 21);
+}
+
+section {
+  width: 70%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  justify-content: center;
+  align-items: center;
+  align-items: flex-start;
+  margin-block: 1rem;
+}
+section .section--title {
+  width: 100%;
+  padding: 0.5rem;
+  background-color: rgb(7, 136, 191);
+}
+section .products {
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border: none;
+}
+
+html, body {
+  border: none;
+  line-height: 1.3;
+  width: 100%;
+  height: 100%;
+  text-align: justify;
+  background-color: #f8f8f8;
+  font-family: "Space Grotesk", "sans-serif";
+}
+html ::-webkit-scrollbar, body ::-webkit-scrollbar {
+  width: 0.5rem;
+}
+html ::-webkit-scrollbar-thumb, body ::-webkit-scrollbar-thumb {
+  border: 1px solid rgb(7, 136, 191);
+  border-radius: 0.5rem;
+  background-color: #fff;
+}
+html ::-webkit-scrollbar-track, body ::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgb(7, 136, 191);
+}
+
+form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  padding: 2rem 1rem;
+  text-align: center;
+  border-radius: 0.5rem;
+}
+@media only screen and (max-width: 1000px) {
+  form {
+    width: 100%;
+  }
+}
+
+input,
+select,
+textarea {
+  width: 90%;
+  font-family: inherit;
+  font-size: 1.2rem;
+  padding: 0.8rem 0.5rem;
+  border: 1px solid rgb(37, 20, 111);
+  border-radius: 0.3rem;
+  color: #fff;
+  background-color: #f8f8f8;
+  caret-color: rgb(37, 20, 111);
+  resize: none;
+}
+input:hover,
+select:hover,
+textarea:hover {
+  border: 1px solid rgb(37, 20, 111);
+}
+@media only screen and (max-width: 1000px) {
+  input,
+select,
+textarea {
+    width: 100%;
+    font-size: 16px;
+  }
+}/*# sourceMappingURL=style.css.map */

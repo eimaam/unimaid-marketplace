@@ -1,0 +1,23 @@
+.product--card{
+    border: solid $primary;
+    border-radius: $m-border-radius;
+    width: 200px;
+
+    img{
+        width: 100%;
+    }
+
+    .product--detail{
+        padding: $xs-pad;
+        background-color: $primary;
+        color: $default;
+
+        h5{
+            color: $secondary;
+        }
+
+        p{
+            color: $extras;
+        }
+    }
+}

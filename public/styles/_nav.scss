@@ -1,0 +1,29 @@
+nav{
+    background-color: $primary;
+    padding: $s-pad;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+    ul{
+        width: 70%;
+        @include flex-row;
+        margin: auto;
+        justify-content: space-around;
+
+
+        li{
+            font-size: 1.5rem;
+            color: $default;
+
+            &:first-child{
+                margin-right: auto;
+            }
+
+            &:last-child{
+                background-color: $secondary;
+                border-radius: $m-border-radius;
+                padding: $xs-pad;
+            }
+        }
+    }
+
+}
