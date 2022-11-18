@@ -1,6 +1,9 @@
 nav{
-    position: fixed;
     width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
     background-color: $primary;
     padding: $xs-pad;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);

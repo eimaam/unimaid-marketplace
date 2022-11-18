@@ -7,7 +7,7 @@ export const ProductCard = () => {
         <div className='product--image'>
             <img src={smartphone} alt="" />
         </div>
-        <div className='product--detail'>
+        <div className='card--detail'>
             <h5>Smartphones</h5>
             <h3>Motorola Z3</h3>
             <p>N14,000</p>

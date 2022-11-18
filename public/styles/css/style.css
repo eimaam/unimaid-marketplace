@@ -163,8 +163,11 @@ hr {
 }
 
 nav {
-  position: fixed;
   width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
   background-color: rgb(37, 20, 111);
   padding: 0.5rem;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
@@ -203,6 +206,7 @@ header {
   gap: 1.5rem;
   justify-content: center;
   align-items: center;
+  margin-top: 3.5rem;
 }
 header * {
   color: #fff;
@@ -245,15 +249,15 @@ header .categories {
 .product--card img {
   width: 100%;
 }
-.product--card .product--detail {
+.product--card .card--detail {
   padding: 0.5rem;
   background-color: rgb(37, 20, 111);
   color: #fff;
 }
-.product--card .product--detail h5 {
+.product--card .card--detail h5 {
   color: rgb(7, 136, 191);
 }
-.product--card .product--detail p {
+.product--card .card--detail p {
   color: rgb(224, 170, 21);
 }
 
@@ -311,6 +315,146 @@ footer .footer--items ul li:first-child {
 }
 footer p {
   text-align: center;
+}
+
+.product--page {
+  width: 70%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  justify-content: center;
+  align-items: center;
+  margin-top: 4rem;
+}
+.product--page img {
+  margin: auto;
+}
+.product--page .product--images {
+  border: solid rgb(37, 20, 111);
+  border-radius: 0.5rem;
+  width: 75%;
+}
+.product--page .product--images * {
+  margin: auto;
+}
+.product--page .product--images .main--image--container .main {
+  min-width: 50%;
+  max-width: 50%;
+}
+.product--page .product--images .more--images--container {
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(37, 20, 111);
+  padding: 1rem;
+}
+.product--page .product--images .more--images--container img {
+  width: 100px;
+  transform: all 300ms;
+}
+.product--page .product--images .more--images--container img:hover {
+  transform: scale(1.05);
+}
+.product--page .product--info, .product--page .product--stat {
+  width: 75%;
+  background-color: rgb(7, 136, 191);
+  padding: 1rem 2rem;
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+  justify-content: center;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 0.5rem;
+}
+.product--page .product--info h2, .product--page .product--stat h2 {
+  color: #fff;
+}
+.product--page .product--info h2:last-child, .product--page .product--stat h2:last-child {
+  text-decoration: underline;
+}
+.product--page .product--stat {
+  padding: 0.5rem 2rem;
+  align-items: flex-start;
+  border-radius: 0.5rem;
+}
+.product--page .product--stat b {
+  color: #fff;
+}
+.product--page .seller--profile {
+  width: 75%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(37, 20, 111);
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+}
+.product--page .seller--profile * {
+  text-align: center;
+  color: #fff;
+}
+.product--page .seller--profile .seller--info {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+  justify-content: center;
+  align-items: center;
+  justify-content: space-between;
+}
+.product--page .seller--profile .seller--info img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-block: 0.5rem;
+}
+.product--page .seller--profile .seller--info .info--button {
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  background-color: rgb(7, 136, 191);
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.5rem 1rem;
+  color: #fff;
+  cursor: cursor;
+}
+.product--page .seller--profile .seller--info .info--button:hover {
+  background-color: rgb(37, 20, 111);
+  border: 1px double rgb(7, 136, 191);
+}
+.product--page .product--detail, .product--page .more--from--category, .product--page .more--from--seller {
+  background-color: rgb(7, 136, 191);
+  width: 75%;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+}
+.product--page .product--detail p, .product--page .more--from--category p, .product--page .more--from--seller p {
+  color: #fff;
+  text-align: left;
+  margin-left: auto;
+}
+.product--page .product--detail h3, .product--page .more--from--category h3, .product--page .more--from--seller h3 {
+  text-align: center;
+}
+.product--page .more--from--category {
+  background-color: #fff;
+}
+.product--page .more--from--category h3 {
+  text-align: left;
+}
+.product--page .more--from--category h2 {
+  margin: 1rem;
 }
 
 * {
