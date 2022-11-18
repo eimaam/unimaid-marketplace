@@ -7,6 +7,9 @@ export const Homepage = () => {
     <div className='homepage'>
         <HeroSection />
         <ProductsSection />
+        <div className='flex-row'>
+          <button>see more</button>
+        </div>
     </div>
   )
 }

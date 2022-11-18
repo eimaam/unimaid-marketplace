@@ -43,8 +43,6 @@ export const ProductsSection = () => {
         <ProductCard />
         <ProductCard />
       </div>
-        
-        
     </section>
   )
 }

@@ -1,7 +1,10 @@
 nav{
+    position: fixed;
+    width: 100%;
     background-color: $primary;
-    padding: $s-pad;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    padding: $xs-pad;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+    z-index: 999999;
 
     ul{
         width: 70%;
@@ -11,7 +14,7 @@ nav{
 
 
         li{
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             color: $default;
 
             &:first-child{

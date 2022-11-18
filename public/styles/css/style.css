@@ -5,7 +5,6 @@
   justify-content: center;
   align-items: center;
   gap: 0.5rem;
-  justify-content: flex-start;
 }
 
 .flex-col {
@@ -62,7 +61,7 @@ p {
 }
 
 button, .btn--secondary, input[type=submit] {
-  padding: 0.5rem 1rem;
+  padding: 1rem 1.5rem;
   font-size: 1rem;
   color: #fff;
   text-transform: capitalize;
@@ -71,8 +70,7 @@ button, .btn--secondary, input[type=submit] {
   cursor: pointer;
 }
 button:hover, .btn--secondary:hover, input[type=submit]:hover {
-  background-color: rgb(224, 170, 21);
-  color: #15191c;
+  background-color: rgb(7, 136, 191);
 }
 @media only screen and (max-width: 1000px) {
   button, .btn--secondary, input[type=submit] {
@@ -165,9 +163,12 @@ hr {
 }
 
 nav {
+  position: fixed;
+  width: 100%;
   background-color: rgb(37, 20, 111);
-  padding: 1rem;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  padding: 0.5rem;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+  z-index: 999999;
 }
 nav ul {
   width: 70%;
@@ -180,7 +181,7 @@ nav ul {
   justify-content: space-around;
 }
 nav ul li {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   color: #fff;
 }
 nav ul li:first-child {
@@ -271,6 +272,7 @@ section .section--title {
   width: 100%;
   padding: 0.5rem;
   background-color: rgb(7, 136, 191);
+  border-radius: 0.5rem;
 }
 section .products {
   display: flex;
@@ -279,6 +281,36 @@ section .products {
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+}
+
+footer {
+  background-color: rgb(37, 20, 111);
+  padding-top: 1.5rem;
+  margin-top: 5rem;
+}
+footer * {
+  color: #fff;
+}
+footer .footer--items {
+  width: 70%;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+  justify-content: center;
+  align-items: center;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+footer .footer--items ul li {
+  line-height: 1.6;
+}
+footer .footer--items ul li:first-child {
+  font-size: 1.25rem;
+  text-decoration: underline;
+}
+footer p {
+  text-align: center;
 }
 
 * {

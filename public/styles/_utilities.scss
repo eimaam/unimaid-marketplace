@@ -4,7 +4,6 @@
 .flex-row{
     @include flex-row;
     gap: 0.5rem;
-    justify-content: flex-start;
 }
 
 .flex-col{
@@ -61,7 +60,7 @@ p{
 
 // Button & submit input
 button, input[type="submit"]{
-    padding: $xs-pad $s-pad; 
+    padding: $s-pad $m-pad; 
     font-size: 1rem;
     color: $default;
     text-transform: capitalize;
@@ -70,8 +69,7 @@ button, input[type="submit"]{
     cursor: pointer;
 
     &:hover{
-        background-color: $extras;
-        color: $dark;
+        background-color: $secondary;
     }
 
     @include mobile{
