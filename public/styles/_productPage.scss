@@ -8,9 +8,10 @@
     }
     
     .product--images{
-        border: solid $primary;
+        border: double $primary;
         border-radius: $m-border-radius;
         width: 75%;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.5);
 
         *{
             margin: auto;

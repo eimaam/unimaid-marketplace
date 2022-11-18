@@ -26,6 +26,11 @@ h1 {
   font-size: 2rem;
   color: rgb(7, 136, 191);
 }
+@media only screen and (max-width: 1000px) {
+  h1 {
+    font-size: 1.35rem;
+  }
+}
 
 h2 {
   font-size: 1.25rem;
@@ -183,6 +188,12 @@ nav ul {
   margin: auto;
   justify-content: space-around;
 }
+@media only screen and (max-width: 1000px) {
+  nav ul {
+    width: 100%;
+    margin: auto;
+  }
+}
 nav ul li {
   font-size: 1.3rem;
   color: #fff;
@@ -195,18 +206,24 @@ nav ul li:last-child {
   border-radius: 0.5rem;
   padding: 0.5rem;
 }
+@media only screen and (max-width: 1000px) {
+  nav ul li {
+    font-size: 1rem;
+  }
+}
 
 header {
   background-color: rgb(37, 20, 111);
   margin: auto;
   width: 100%;
-  height: 60vh;
+  min-height: 60vh;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
   justify-content: center;
   align-items: center;
   margin-top: 3.5rem;
+  padding: 1.5rem;
 }
 header * {
   color: #fff;
@@ -218,6 +235,7 @@ header .categories {
   gap: 1.5rem;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .category--card {
@@ -234,6 +252,12 @@ header .categories {
   background-color: rgb(7, 136, 191);
   transition: all 300ms;
 }
+@media only screen and (max-width: 1000px) {
+  .category--card {
+    width: 130px;
+    height: 180px;
+  }
+}
 .category--card:hover {
   transform: scale(1.03);
 }
@@ -245,9 +269,21 @@ header .categories {
   border: solid rgb(37, 20, 111);
   border-radius: 0.5rem;
   width: 200px;
+  height: 280px;
+}
+@media only screen and (max-width: 1000px) {
+  .product--card {
+    height: auto;
+  }
 }
 .product--card img {
   width: 100%;
+  height: 200px;
+}
+@media only screen and (max-width: 1000px) {
+  .product--card img {
+    height: 100%;
+  }
 }
 .product--card .card--detail {
   padding: 0.5rem;
@@ -270,7 +306,13 @@ section {
   justify-content: center;
   align-items: center;
   align-items: flex-start;
-  margin-block: 1rem;
+  margin-block: 2rem;
+}
+@media only screen and (max-width: 1000px) {
+  section {
+    width: 100%;
+    margin: auto;
+  }
 }
 section .section--title {
   width: 100%;
@@ -331,9 +373,10 @@ footer p {
   margin: auto;
 }
 .product--page .product--images {
-  border: solid rgb(37, 20, 111);
+  border: double rgb(37, 20, 111);
   border-radius: 0.5rem;
   width: 75%;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.5);
 }
 .product--page .product--images * {
   margin: auto;

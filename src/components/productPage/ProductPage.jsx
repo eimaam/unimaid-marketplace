@@ -3,7 +3,7 @@ import { ProductCard } from "../ProductCard"
 import { InfoButton } from './InfoButton'
 import phone1 from "../../assets/smartphone1.png"
 import phone2 from "../../assets/smartphone2.jpg"
-import { FaArrowAltCircleRight, FaLongArrowAltRight, FaPhone } from 'react-icons/fa'
+import { FaArrowAltCircleRight, FaLandmark, FaLocationArrow, FaLongArrowAltRight, FaPhone, FaSearchLocation } from 'react-icons/fa'
 import avatar from "../../assets/avatar.jpg"
 
 
@@ -83,12 +83,16 @@ export const ProductPage = () => {
             </div>
           </div>
         </div>
+
         <div className='seller--profile'>
           <h2>SELLER INFO:</h2>
           <div className='seller--info'>
             <div>
               <img src={avatar} alt="" />
               <h2>Dave Chapel</h2>
+              <div>
+                <p><FaLocationArrow /> Campus: New Male 'A'</p>
+              </div>
             </div>
             <div className='flex-col'>
               <InfoButton 
@@ -103,6 +107,7 @@ export const ProductPage = () => {
             </div>
           </div>
         </div>
+
         <div className='product--detail'>
             <h3>Product Specification:</h3>
             <div>
@@ -112,6 +117,7 @@ export const ProductPage = () => {
               <p>32MP Camera</p>
             </div>
         </div>
+
         <div>
           <h2>Reviews <FaArrowAltCircleRight /></h2>
         </div>

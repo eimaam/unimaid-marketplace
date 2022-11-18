@@ -26,6 +26,10 @@ a{
 h1{
     font-size: 2rem;
     color: $secondary;
+
+    @include mobile{
+        font-size: 1.35rem;
+    }
 }
 
 h2{

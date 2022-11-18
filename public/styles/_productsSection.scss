@@ -2,7 +2,11 @@ section{
     @include desk-width;
     @include flex-col;
     align-items: flex-start;
-    margin-block: $m-margin;
+    margin-block: $l-margin;
+    
+    @include mobile{
+        @include mobile-width;
+    }
 
     .section--title{
         width: 100%;

@@ -15,6 +15,10 @@ nav{
         margin: auto;
         justify-content: space-around;
 
+        @include mobile{
+            @include mobile-width;
+        }
+
 
         li{
             font-size: 1.3rem;
@@ -28,6 +32,10 @@ nav{
                 background-color: $secondary;
                 border-radius: $m-border-radius;
                 padding: $xs-pad;
+            }
+
+            @include mobile{
+                font-size: 1rem;
             }
         }
     }

@@ -2,6 +2,7 @@ import React from 'react'
 import smartphone from "../assets/smartphone1.png"
 
 export const ProductCard = () => {
+  const random = Math.floor(Math.random() * (10-1) - 1) + 1
   return (
     <div className='product--card'>
         <div className='product--image'>
@@ -10,7 +11,7 @@ export const ProductCard = () => {
         <div className='card--detail'>
             <h5>Smartphones</h5>
             <h3>Motorola Z3</h3>
-            <p>N14,000</p>
+            <p>N{56000*random}</p>
         </div> 
     </div>
   )
