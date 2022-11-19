@@ -1,0 +1,17 @@
+#signup{
+    
+    form{
+        background-color: $default;
+        
+        div{
+            width: 100%;
+
+            input{
+
+                &:hover{
+                    border: 1px solid $extras;
+                }
+            }
+        }
+    }
+}

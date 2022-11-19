@@ -18,5 +18,6 @@ section{
     .products{
         @include flex-row;
         flex-wrap: wrap;
+        padding: $xs-pad;
     }
 }

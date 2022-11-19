@@ -1,10 +1,12 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import smartphone from "../assets/smartphone1.png"
 
 export const ProductCard = () => {
   const random = Math.floor(Math.random() * (10-1) - 1) + 1
   return (
     <div className='product--card'>
+      <Link to="/product">
         <div className='product--image'>
             <img src={smartphone} alt="" />
         </div>
@@ -13,6 +15,7 @@ export const ProductCard = () => {
             <h3>Motorola Z3</h3>
             <p>N{56000*random}</p>
         </div> 
+      </Link>
     </div>
   )
 }

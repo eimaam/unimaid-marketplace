@@ -155,15 +155,36 @@ hr {
 .container {
   width: 100%;
   min-height: 100vh;
-  display: flex;
-  flex-direction: row;
-  gap: 1.5rem;
-  justify-content: center;
-  align-items: center;
+  display: grid;
+  place-items: center;
+  border: solid red;
 }
 @media only screen and (max-width: 1000px) {
   .container {
     padding-block: 1.5rem;
+  }
+}
+.container .container--item {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  width: 70%;
+  margin: auto;
+  flex-wrap: wrap;
+}
+@media only screen and (max-width: 1000px) {
+  .container .container--item {
+    width: 100%;
+    margin: auto;
+  }
+}
+@media only screen and (min-width: 1000px) and (max-width: 1400px) {
+  .container .container--item {
+    width: 80%;
+    margin: auto;
   }
 }
 
@@ -223,6 +244,7 @@ header {
   justify-content: center;
   align-items: center;
   margin-top: 3.5rem;
+  margin-bottom: 1rem;
   padding: 1.5rem;
 }
 header * {
@@ -235,6 +257,7 @@ header .categories {
   gap: 1.5rem;
   justify-content: center;
   align-items: center;
+  padding: 1rem;
   flex-wrap: wrap;
 }
 
@@ -247,15 +270,15 @@ header .categories {
   border: solid rgb(7, 136, 191);
   border-radius: 0.5rem;
   padding: 1rem;
-  width: 180px;
-  height: 250px;
+  width: 150px;
+  height: 200px;
   background-color: rgb(7, 136, 191);
   transition: all 300ms;
 }
 @media only screen and (max-width: 1000px) {
   .category--card {
-    width: 130px;
-    height: 180px;
+    width: 95px;
+    height: 130px;
   }
 }
 .category--card:hover {
@@ -271,8 +294,12 @@ header .categories {
   width: 200px;
   height: 280px;
 }
+.product--card:hover {
+  transform: scale(1.05);
+}
 @media only screen and (max-width: 1000px) {
   .product--card {
+    width: 180px;
     height: auto;
   }
 }
@@ -327,6 +354,7 @@ section .products {
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+  padding: 0.5rem;
 }
 
 footer {
@@ -347,6 +375,13 @@ footer .footer--items {
   align-items: center;
   justify-content: space-between;
   align-items: flex-start;
+  flex-wrap: wrap;
+}
+@media only screen and (max-width: 1000px) {
+  footer .footer--items {
+    width: 100%;
+    margin: auto;
+  }
 }
 footer .footer--items ul li {
   line-height: 1.6;
@@ -500,11 +535,31 @@ footer p {
   margin: 1rem;
 }
 
+#signup form, #login form {
+  background-color: #fff;
+}
+#signup form div, #login form div {
+  width: 100%;
+}
+#signup form div input:hover, #login form div input:hover {
+  border: 1px solid rgb(224, 170, 21);
+}
+
+#login form {
+  padding-block: 3rem;
+}
+
+#resetPass {
+  position: absolute;
+  background: transparent;
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   border: none;
+  transition: all 300ms;
 }
 
 html, body {
@@ -529,7 +584,7 @@ html ::-webkit-scrollbar-track, body ::-webkit-scrollbar-track {
 }
 
 form {
-  width: 100%;
+  width: 35%;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
@@ -537,6 +592,7 @@ form {
   align-items: center;
   gap: 1rem;
   padding: 2rem 1rem;
+  box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.2);
   text-align: center;
   border-radius: 0.5rem;
 }
@@ -554,10 +610,10 @@ textarea {
   font-size: 1.2rem;
   padding: 0.8rem 0.5rem;
   border: 1px solid rgb(37, 20, 111);
-  border-radius: 0.3rem;
-  color: #fff;
+  border-radius: 0.5rem;
+  color: #15191c;
   background-color: #f8f8f8;
-  caret-color: rgb(37, 20, 111);
+  caret-color: rgb(224, 170, 21);
   resize: none;
 }
 input:hover,

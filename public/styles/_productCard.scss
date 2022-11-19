@@ -4,7 +4,12 @@
     width: 200px;
     height: 280px;
 
+    &:hover{
+        transform: scale(1.05)
+    }
+
     @include mobile{
+        width: 180px;
         height: auto;
     }
 

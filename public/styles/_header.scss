@@ -5,6 +5,7 @@ header{
     min-height: 60vh;
     @include flex-col;
     margin-top: 3.5rem;
+    margin-bottom: $m-margin;
     padding: $m-pad;
 
     *{
@@ -14,6 +15,7 @@ header{
 
     .categories{
         @include flex-row;
+        padding: $s-pad;
         flex-wrap: wrap;
     }
 }

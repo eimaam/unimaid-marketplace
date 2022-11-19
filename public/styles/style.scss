@@ -8,6 +8,9 @@
 @import './productsSection';
 @import './footer';
 @import './productPage';
+@import './container';
+@import './login';
+@import './resetPass';
 
 // reset all to 0
 *{
@@ -15,6 +18,7 @@
     padding: 0;
     box-sizing: border-box;
     border: none;
+    transition: all 300ms
 }
 
 html, body{
@@ -44,11 +48,11 @@ html, body{
 }
 
 form{
-    width: 100%;
+    width: 35%;
     @include flex-col;
     gap: 1rem;
     padding: $l-pad $s-pad;
-    // box-shadow: 0 5px 5px 0 rgba(0 0 0 / 0.2);
+    box-shadow: 0 5px 5px 0 rgba(0 0 0 / 0.2);
     text-align: center;
     border-radius: $m-border-radius;
 
@@ -65,10 +69,10 @@ textarea{
     font-size: 1.2rem;
     padding: 0.8rem 0.5rem;
     border: 1px solid $primary;
-    border-radius: 0.3rem;
-    color: $default;
+    border-radius: $m-border-radius;
+    color: $dark;
     background-color: $bgColor;
-    caret-color: $primary;
+    caret-color: $extras;
     resize: none;
     
     &:hover{

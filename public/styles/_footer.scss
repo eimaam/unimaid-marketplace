@@ -12,6 +12,11 @@ footer{
         @include flex-row;
         justify-content: space-between;
         align-items: flex-start;
+        flex-wrap: wrap;
+
+        @include mobile{
+            @include mobile-width;
+        }
 
         ul{
             li{

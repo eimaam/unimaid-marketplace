@@ -149,25 +149,27 @@ hr{
 .container{
     width: 100%;
     min-height: 100vh;
-    @include flex-row;
+    display: grid;
+    place-items: center;
+    border: solid red;
 
     @include mobile{
         padding-block: 1.5rem;
     }
     
-    // .container--item{
-    //     @include flex-col;
-    //     margin: auto;
-    //     @include desk-width;
-    //     flex-wrap: wrap;
+    .container--item{
+        @include flex-col;
+        margin: auto;
+        @include desk-width;
+        flex-wrap: wrap;
         
-    //     @include mobile{
-    //         @include m-width;
-    //     }
+        @include mobile{
+            @include mobile-width;
+        }
 
-    //     @include tablet{
-    //         @include tablet-width;
-    //     }
-    // }
+        @include tablet{
+            @include tablet-width;
+        }
+    }
 
 }
