@@ -1,0 +1,9 @@
+#createAds{
+    @include desk-width;
+    margin-top: $xl-margin;
+
+    form{
+        box-shadow: none;
+        border: double $secondary;
+    }
+}

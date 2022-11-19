@@ -151,7 +151,7 @@ hr{
     min-height: 100vh;
     display: grid;
     place-items: center;
-    border: solid red;
+    margin: auto;
 
     @include mobile{
         padding-block: 1.5rem;

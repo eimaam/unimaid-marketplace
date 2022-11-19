@@ -1,6 +1,6 @@
 import React from 'react'
 import { ProductCard } from "../ProductCard"
-import { InfoButton } from './InfoButton'
+import { IconButton, InfoButton } from './IconButton'
 import phone1 from "../../assets/smartphone1.png"
 import phone2 from "../../assets/smartphone2.jpg"
 import { FaArrowAltCircleRight, FaLandmark, FaLocationArrow, FaLongArrowAltRight, FaPhone, FaSearchLocation } from 'react-icons/fa'
@@ -95,13 +95,15 @@ export const ProductPage = () => {
               </div>
             </div>
             <div className='flex-col'>
-              <InfoButton 
+              <IconButton
+              link="sms:+23480123456789" 
               icon={<FaPhone />}
               title="Message Seller"
               />
-              <InfoButton 
+              <IconButton 
+              link="+23480123456789"
               icon={<FaPhone />}
-              title="Message Seller"
+              title="Call Seller"
               />
               <p>Active Ads: 2</p>
             </div>

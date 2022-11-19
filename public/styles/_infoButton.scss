@@ -1,0 +1,20 @@
+.info--button{
+    a{
+        width: 12rem;
+        background-color: $secondary;
+        @include flex-row;
+        gap: $s-pad;
+        justify-content: flex-start;
+        padding: $xs-pad $s-pad;
+        margin-block: $s-margin;
+        color: $default;
+        cursor: cursor;
+        
+        
+        &:hover{
+            background-color: $primary;
+            border: 1px double $secondary;
+        }
+    }
+        
+}
