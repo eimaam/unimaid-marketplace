@@ -10,6 +10,11 @@
         color: $default;
         cursor: cursor;
         border-radius: $m-border-radius;
+
+        @include mobile{
+            width: max-content;
+            padding: $xs-pad;
+        }
         
         
         &:hover{

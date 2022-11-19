@@ -13,12 +13,17 @@ section{
         padding: $xs-pad;
         background-color: $secondary;
         border-radius: $m-border-radius;
+
+        @include mobile{
+            border-radius: 0;
+        }
     }
 
     .products{
         @include flex-row;
         flex-wrap: wrap;
         padding: $xs-pad;
+        gap: 0.5rem;
 
         @include custom-screen(395px){
             @include grid(2, 1fr)

@@ -5,7 +5,7 @@ import phone1 from "../../assets/smartphone1.png"
 import phone2 from "../../assets/smartphone2.jpg"
 import { FaArrowAltCircleRight, FaLandmark, FaLocationArrow, FaLongArrowAltRight, FaPhone, FaSearchLocation } from 'react-icons/fa'
 import avatar from "../../assets/avatar.jpg"
-
+import { fakeData } from '../FakeData'
 
 export const ProductPage = () => {
   return (
@@ -84,14 +84,26 @@ export const ProductPage = () => {
           </div>
         </div>
 
+        <div className='safety--measures'>
+          <h3>Safety Measures</h3>
+          <p>Few safety tips for a favourable Trade</p>
+          <ul>
+            <li>Make sure to meet Seller in a public place, if seller stays Off campus, request he comes to it if possible. </li>
+            <li>Make sure to check the item thoroughly before purchase</li>
+            <li>If payment is via Mobile transfer, Seller should confirm receipt of payment to his account via his/her Bank's Mobile App or USSD before releasing item. </li>
+            <li>If item is a Smartphone, Laptop, Gadget or Electronics, Buyer should test charging port, camera (if item is a mobile device), before purchase. </li>
+            
+          </ul>
+        </div>
+
         <div className='seller--profile'>
           <h2>SELLER INFO:</h2>
           <div className='seller--info'>
             <div>
               <img src={avatar} alt="" />
-              <h2>Dave Chapel</h2>
+              <h2>Dave Chapel Enterprise</h2>
               <div>
-                <p><FaLocationArrow /> Campus: New Male 'A'</p>
+                <p><FaLocationArrow /> Hostel: New Male 'A'</p>
               </div>
             </div>
             <div className='flex-col'>
@@ -110,7 +122,7 @@ export const ProductPage = () => {
           </div>
         </div>
 
-        <div className='product--detail'>
+        <div className='product--spec'>
             <h3>Product Specification:</h3>
             <div>
               <p>Brand NEW:</p>
@@ -130,18 +142,14 @@ export const ProductPage = () => {
         <div className='more--from--category'>
           <h2>More from Smartphones Category:</h2>
           <div className='flex-row' style={{flexWrap: "wrap"}}>
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
+            {fakeData.map((item, index) => {
+              return <ProductCard 
+                      image={item.image}
+                      price={item.price}
+                      name={item.name}
+                      category={item.category}
+                      />
+            })}
           </div>
 
         </div>
