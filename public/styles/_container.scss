@@ -1,8 +1,17 @@
-#signup{
+#signup, .container{
     
     form{
         background-color: $default;
-        
+
+        @include mobile{
+            width: 90%;
+        }
+
+        p{
+            width: 90%;
+            margin: auto;
+        }
+
         div{
             width: 100%;
 

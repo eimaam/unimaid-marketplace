@@ -10,7 +10,6 @@
 @import './productPage';
 @import './container';
 @import './login';
-@import './resetPass';
 @import './createAds';
 @import './infoButton';
 @import './profilePage';
@@ -69,7 +68,7 @@ select,
 textarea{
     width: 90%;
     font-family: inherit;
-    font-size: 1.2rem;
+    font-size: 1rem;
     padding: 0.8rem 0.5rem;
     border: 1px solid $primary;
     border-radius: $m-border-radius;

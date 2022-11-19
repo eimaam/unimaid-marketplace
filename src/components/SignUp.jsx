@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { CgGoogle } from "react-icons/cg"
 
 export const SignUp = () => {
   return (
@@ -26,14 +27,14 @@ export const SignUp = () => {
                 />
             </div>
             <div>
-                <select name="" id="" value={"Do you stay in Hostel?"}>
-                    <option defaultValue={"Do you stay in Hostel?"} value="" disabled>Do you stay in Hostel?</option>
+                <select name="" id="" value="Do you stay in Hostel?">
+                    <option defaultValue="" value="Do you stay in Hostel?" disabled>Do you stay in Hostel?</option>
                     <option value="yes" disabled>YES</option>
                     <option value="no" disabled>NO</option>
                 </select>
             </div>
             <p>If your answer to the above question is YES, enter your Hostel name 
-                <br /> else enter the name of your area of residence here in Maiduguri.
+                else enter the name of your area of residence here in Maiduguri.
             </p>
             <div>
                 <input 
@@ -49,6 +50,12 @@ export const SignUp = () => {
             </div>
             <div>
                 <input type='submit' />
+            </div>
+            <p>or</p>
+            <div>
+                <button className='flex-row' style={{margin: "auto"}}>
+                    <CgGoogle /> Sign up with Google 
+                </button>
             </div>
             <div>
                 <p>Have an account already? <button className='btn--small'><Link to="/login">Login</Link></button></p>

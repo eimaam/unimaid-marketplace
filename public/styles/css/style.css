@@ -654,23 +654,27 @@ footer p {
   }
 }
 
-#signup form, #login form {
+#signup form, #login form, .container form {
   background-color: #fff;
 }
-#signup form div, #login form div {
+@media only screen and (max-width: 800px) {
+  #signup form, #login form, .container form {
+    width: 90%;
+  }
+}
+#signup form p, #login form p, .container form p {
+  width: 90%;
+  margin: auto;
+}
+#signup form div, #login form div, .container form div {
   width: 100%;
 }
-#signup form div input:hover, #login form div input:hover {
+#signup form div input:hover, #login form div input:hover, .container form div input:hover {
   border: 1px solid rgb(224, 170, 21);
 }
 
 #login form {
   padding-block: 3rem;
-}
-
-#resetPass {
-  position: absolute;
-  background: transparent;
 }
 
 #createAds {
@@ -681,6 +685,13 @@ footer p {
 #createAds form {
   box-shadow: none;
   border: double rgb(7, 136, 191);
+}
+@media only screen and (max-width: 800px) {
+  #createAds {
+    width: 100%;
+    margin: auto;
+    padding: 1.5rem;
+  }
 }
 
 .info--button a {
@@ -832,7 +843,7 @@ select,
 textarea {
   width: 90%;
   font-family: inherit;
-  font-size: 1.2rem;
+  font-size: 1rem;
   padding: 0.8rem 0.5rem;
   border: 1px solid rgb(37, 20, 111);
   border-radius: 0.5rem;
