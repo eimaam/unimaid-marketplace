@@ -33,7 +33,7 @@
 }
 
 // custom screen sizes
-@mixin sm-mobile($screenSize){
+@mixin custom-screen($screenSize){
     @media only screen and (max-width: $screenSize) {
         @content;
     }

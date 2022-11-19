@@ -1,38 +1,77 @@
 .product--card{
-    border: solid $primary;
-    border-radius: $m-border-radius;
-    width: 200px;
-    height: 280px;
-
+    border: 1px double $primary;
+    width: 210px;
+    height: 300px;
+    margin-inline: 0;
+    padding: 0;
+    z-index: 99999;
+    position: relative;
+    
+    
     &:hover{
-        transform: scale(1.05)
+        transform: scale(1.03)
     }
 
     @include mobile{
-        width: 180px;
-        height: auto;
+        width: 170px;
+        height: 280px;
     }
 
-    img{
+    @include custom-screen(390px){
         width: 100%;
-        height: 200px;
+        height: 250px;
+    }
+    
+    .product--image{
+        position: absolute;
+        top: 0;
+        
+        img{
+            width: 100%;
+            min-height: 200px;
+            max-height: 215px;
+            margin: auto;
+            
+            @include mobile{
+                height: auto;
+            }
+
+            @include custom-screen(390px){
+                width: 100%;
+                margin: auto;
+                height: 80%;
+            }
+        }
 
         @include mobile{
-            height: 100%;
+            position: relative;
         }
-    }
+    }    
 
     .card--detail{
+        width: 100%;
         padding: $xs-pad;
         background-color: $primary;
         color: $default;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        position: absolute;
+        bottom: 0px;
+        left: 0;
+        right: 0;
 
         h5{
             color: $secondary;
+            text-transform: capitalize;
         }
 
         p{
             color: $extras;
+        }
+
+        h4{
+            text-overflow: ellipsis;
         }
     }
 }

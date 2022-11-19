@@ -13,7 +13,7 @@ import { SignUp } from './components/SignUp';
 function App() {
   return (
     <>
-      {/* <Nav /> */}
+      <Nav />
       <Routes>
         <Route path='/' element={<Homepage />} />
         <Route path='/product' element={<ProductPage />} />

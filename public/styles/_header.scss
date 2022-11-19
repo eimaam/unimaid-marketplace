@@ -13,9 +13,21 @@ header{
         text-align: center;
     }
 
+    @include mobile{
+        margin-top: 3.45rem;
+    }
+
     .categories{
         @include flex-row;
         padding: $s-pad;
         flex-wrap: wrap;
+
+        @include mobile{
+            @include grid(3, 1fr);
+            align-items: center;
+            flex-wrap: nowrap;
+            justify-content: center;
+            margin: auto;
+        }
     }
 }

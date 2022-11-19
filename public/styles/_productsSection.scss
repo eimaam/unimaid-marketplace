@@ -19,5 +19,9 @@ section{
         @include flex-row;
         flex-wrap: wrap;
         padding: $xs-pad;
+
+        @include custom-screen(395px){
+            @include grid(2, 1fr)
+        }
     }
 }

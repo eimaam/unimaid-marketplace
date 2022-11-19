@@ -16,6 +16,7 @@ footer{
 
         @include mobile{
             @include mobile-width;
+            padding: $s-pad;
         }
 
         ul{
