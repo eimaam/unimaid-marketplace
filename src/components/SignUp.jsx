@@ -18,6 +18,7 @@ export const SignUp = () => {
                 <input 
                 type="tel" 
                 placeholder='Phone Number - preferrably WA number'
+                pattern='+2348012345678'
                 />
             </div>
             <div>
@@ -49,7 +50,7 @@ export const SignUp = () => {
                 />
             </div>
             <div>
-                <input type='submit' />
+                <input type='submit' value="Sign up"/>
             </div>
             <p>or</p>
             <div>

@@ -1,5 +1,6 @@
 import React from 'react';
 import {Routes, Route} from "react-router-dom"
+import { AccountSettings, Settings } from './components/AccountSettings/Settings';
 import { Footer } from './components/Footer';
 import { Homepage } from './components/LandingPage/Homepage';
 import { Login } from './components/Login';
@@ -22,6 +23,7 @@ function App() {
         <Route path='/reset' element={<ResetPass />} />
         <Route path='/createAds' element={<PostAds />} />
         <Route path='/profile' element={<SellerProfile />} />
+        <Route path='/settings' element={<Settings />} />
       </Routes>
       <Footer /> 
     </>

@@ -23,7 +23,7 @@ export const Login = () => {
                 />
             </div>
             <div>
-                <input type='submit' />
+                <input type='submit' value="Log in"/>
             </div>
             <div>
                 <p>Forgot Password? <button className="btn--small error--background"><Link to="/reset">RESET</Link></button></p>

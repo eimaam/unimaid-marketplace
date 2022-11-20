@@ -1,0 +1,108 @@
+#settings{
+
+    .toggler{
+        display: none;
+        
+        @include mobile{
+            display: block;
+            margin: $s-margin;
+            z-index: 999999;
+        }
+    }
+
+    .options{
+        width: 20%;
+        float: left;
+        background-color: $secondary;
+        height: 100vh;
+        padding: $m-pad;
+
+        @include mobile{
+            position: fixed;
+            width: 70%;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            float: none;
+            display: none;
+            z-index: 1;
+        }
+
+
+        li{
+            @include flex-row;
+            justify-content: flex-start;
+            font-size: 1.25rem;
+            padding-block: $s-pad;
+            color: $default;
+            cursor: pointer;
+
+            &:hover{
+                background-color: $primary;
+                padding: $xs-pad;
+                border-radius: $m-border-radius;
+
+            }
+
+            @include mobile{
+                font-size: 1rem;
+            }
+        }
+    }
+
+    aside{
+        width: 80%;
+        padding-inline: 10rem;
+        margin-inline: $m-margin;
+        box-shadow: none;
+        @include flex-col;
+        height: 100vh;
+
+        @include mobile{
+            width: 100%;
+            float: none;
+            padding: $l-pad $xs-pad;
+            margin: 0;
+        }
+
+        .info{
+            border: 1px solid $secondary;
+            width: 100%;
+            @include flex-col;
+            justify-content: space-evenly;
+            padding-block: $xs-pad;
+
+            .info--item{
+                @extend .info;
+                flex-direction: row;
+                justify-content: space-between;
+                border: none;
+                width: 50%;
+
+                @include mobile{
+                    width: 95%;
+                }
+
+                h3{
+                    // padding: $xs-pad;
+                    border-radius: $m-border-radius;
+                    color: $secondary;
+                    margin-block: $s-margin;
+                    text-decoration: underline;
+                }
+            }
+
+            input{
+                width: 50%;
+
+                @include mobile{
+                    width: 95%;
+                }
+            }
+
+            
+        }
+
+    }
+
+}

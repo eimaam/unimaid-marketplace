@@ -1,10 +1,13 @@
 import React from 'react'
-import { FaAt, FaLocationArrow, FaLongArrowAltRight, FaPhone, FaUser } from 'react-icons/fa'
+import { FaLocationArrow, FaLongArrowAltRight, FaPhone, FaUser } from 'react-icons/fa'
 import { CgMail } from 'react-icons/cg'
+import { BsFillChatLeftTextFill } from 'react-icons/bs'
+import { MdLocationOn, MdMarkEmailUnread } from 'react-icons/md'
 
 import avatar from "../assets/avatar.jpg"
 import { ProductCard } from './ProductCard'
 import { IconButton} from './productPage/IconButton'
+import { fakeData } from './FakeData'
 
 export const SellerProfile = () => {
   return (
@@ -22,7 +25,7 @@ export const SellerProfile = () => {
                 <div>
                     <IconButton
                         link="sms:+23480123456789" 
-                        icon={<FaPhone />}
+                        icon={<BsFillChatLeftTextFill />}
                         title="Message Seller"
                     />
                     <IconButton 
@@ -39,9 +42,9 @@ export const SellerProfile = () => {
             </div>
 
             <div className='address'>
-                <h3 className='flex-row'><FaLocationArrow /> New Male 'A'</h3>
+                <h3 className='flex-row'><MdLocationOn /> New Male 'A'</h3>
                 <br />
-                <h3 className='flex-row'><CgMail /> imamddahir@gmail.com</h3>
+                <h3 className='flex-row'><MdMarkEmailUnread /> imamddahir@gmail.com</h3>
             </div>
 
             <div className='about'>
@@ -56,13 +59,14 @@ export const SellerProfile = () => {
             <div className='active'>
                 <h2>Active Ads:</h2>
                 <div className='flex-row'>
-                    <ProductCard />
-                    <ProductCard />
-                    <ProductCard />
-                    <ProductCard />
-                    <ProductCard />
-                    <ProductCard />
-                    <ProductCard />
+                    {fakeData.slice(3,8).map((item, index) => {
+                        return <ProductCard 
+                                image={item.image}
+                                name={item.name}
+                                price={item.price}
+                                category={item.category}
+                                />
+                    })}
                 </div>
             </div>
         </div>

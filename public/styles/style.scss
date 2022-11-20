@@ -13,6 +13,7 @@
 @import './createAds';
 @import './infoButton';
 @import './profilePage';
+@import './settings';
 
 // reset all to 0
 *{
@@ -71,7 +72,7 @@ textarea{
     font-size: 1rem;
     padding: 0.8rem 0.5rem;
     border: 1px solid $primary;
-    border-radius: $m-border-radius;
+    border-radius: $s-border-radius;
     color: $dark;
     background-color: $bgColor;
     caret-color: $extras;
@@ -84,5 +85,10 @@ textarea{
     @include mobile(){
         width: 100%;
         font-size: 16px;
+        padding: 0.5rem;
+
+        &::placeholder{
+            font-size: 14px;
+        }
     }
 }

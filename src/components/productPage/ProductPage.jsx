@@ -4,6 +4,8 @@ import { IconButton, InfoButton } from './IconButton'
 import phone1 from "../../assets/smartphone1.png"
 import phone2 from "../../assets/smartphone2.jpg"
 import { FaArrowAltCircleRight, FaLandmark, FaLocationArrow, FaLongArrowAltRight, FaPhone, FaSearchLocation } from 'react-icons/fa'
+import { BsFillChatLeftTextFill } from 'react-icons/bs'
+import { MdLocationOn } from 'react-icons/md'
 import avatar from "../../assets/avatar.jpg"
 import { fakeData } from '../FakeData'
 
@@ -103,13 +105,13 @@ export const ProductPage = () => {
               <img src={avatar} alt="" />
               <h2>Dave Chapel Enterprise</h2>
               <div>
-                <p><FaLocationArrow /> Hostel: New Male 'A'</p>
+                <p><MdLocationOn /> Hostel: New Male 'A'</p>
               </div>
             </div>
             <div className='flex-col'>
               <IconButton
               link="sms:+23480123456789" 
-              icon={<FaPhone />}
+              icon={<BsFillChatLeftTextFill />}
               title="Message Seller"
               />
               <IconButton 
