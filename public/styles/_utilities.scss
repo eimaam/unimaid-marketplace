@@ -68,6 +68,16 @@ p{
     }
 }
 
+i{
+    font-size: 0.9rem;
+    font-weight: lighter;
+
+    @include mobile{
+        font-size: 0.8rem;
+    }
+}
+
+
 // Button & submit input
 button, input[type=submit]{
     padding: $xs-pad $m-pad; 

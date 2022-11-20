@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { ProductCard } from "../ProductCard"
 import { IconButton, InfoButton } from './IconButton'
 import phone1 from "../../assets/smartphone1.png"
@@ -8,8 +8,10 @@ import { BsFillChatLeftTextFill } from 'react-icons/bs'
 import { MdLocationOn } from 'react-icons/md'
 import avatar from "../../assets/avatar.jpg"
 import { fakeData } from '../FakeData'
+import { ConfirmationModal } from '../ConfirmationModal'
 
 export const ProductPage = () => {
+  const [showModal, setShowModal] = useState(false)
   return (
     <div className='product--page'>
       <div className='product--images'>
@@ -29,6 +31,10 @@ export const ProductPage = () => {
         <div className='product--info'>
           <h2>Motorola Z3</h2>
           <h2>N55,0000</h2>
+        </div>
+
+        <div>
+          <button className='error--background' onClick={() => setShowModal(prev => !prev)}>Close Ad</button>
         </div>
 
         <div className='product--stat'>
@@ -155,6 +161,7 @@ export const ProductPage = () => {
           </div>
 
         </div>
+        {showModal && <ConfirmationModal /> }
     </div>
   )
 }

@@ -72,6 +72,16 @@ p {
   }
 }
 
+i {
+  font-size: 0.9rem;
+  font-weight: lighter;
+}
+@media only screen and (max-width: 800px) {
+  i {
+    font-size: 0.8rem;
+  }
+}
+
 button, .btn--secondary, input[type=submit] {
   padding: 0.5rem 1.5rem;
   font-size: 1rem;
@@ -662,7 +672,7 @@ footer p {
     width: 90%;
   }
 }
-#signup form p, #login form p, .container form p {
+#signup form i, #login form i, .container form i {
   width: 90%;
   margin: auto;
 }
@@ -934,6 +944,39 @@ footer p {
   #settings aside .info input, #settings aside .info .info--item input {
     width: 95%;
   }
+}
+
+.confirmation--modal {
+  position: absolute;
+  width: 20%;
+  padding-block: 1rem;
+  background-color: rgb(7, 136, 191);
+  top: 35%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.5rem;
+}
+.confirmation--modal * {
+  color: #fff;
+}
+.confirmation--modal div {
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+  justify-content: center;
+  align-items: center;
+}
+.confirmation--modal div h3 {
+  background-color: red;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+.confirmation--modal div h3:last-child {
+  background-color: rgb(37, 20, 111);
 }
 
 * {

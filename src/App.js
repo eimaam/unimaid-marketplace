@@ -10,11 +10,16 @@ import { ProductPage } from './components/productPage/ProductPage';
 import { ResetPass } from './components/ResetPass';
 import { SellerProfile } from './components/SellerProfile';
 import { SignUp } from './components/SignUp';
+// toastify
+import { ToastContainer } from "react-toastify"
+import 'react-toastify/dist/ReactToastify.css';
+import { AuthProvider } from './Context/AuthContext';
+
 
 function App() {
   return (
     <>
-      {/* <Nav /> */}
+      <AuthProvider>
       <Routes>
         <Route path='/' element={<Homepage />} />
         <Route path='/product' element={<ProductPage />} />
@@ -25,7 +30,19 @@ function App() {
         <Route path='/profile' element={<SellerProfile />} />
         <Route path='/settings' element={<Settings />} />
       </Routes>
-      <Footer /> 
+      </AuthProvider>
+      <ToastContainer 
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </>
   );
 }
