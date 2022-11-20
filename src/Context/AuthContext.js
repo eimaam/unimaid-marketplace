@@ -31,11 +31,11 @@ export const AuthProvider = ({children}) => {
                     try{
                         const document = await getDoc(doc(userRef, data.email))
                         if(!document.exists()){
-                            await setDoc(doc(userRef, {
+                            await setDoc(doc(userRef, data.email), {
                                 email: data.email,
                                 displayPhoto: data.photoURL,
                                 name: data.displayName
-                            }))
+                            })
                         }
                         setUser(data)
                         setLoading(false)
@@ -79,11 +79,12 @@ export const AuthProvider = ({children}) => {
             localStorage.clear();
             toast.info('Logged Out Successfully...')
         })
-        navigate('/login')
+        return navigate('/login')
     }
 
     const value = {
         user,
+        setUser,
         loading, 
         setLoading, 
         isLogged,
@@ -92,8 +93,7 @@ export const AuthProvider = ({children}) => {
         error,
         setError,
         userRef,
-        
-
+        logOut
     }
 
 

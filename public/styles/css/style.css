@@ -301,25 +301,26 @@ header .categories {
   gap: 1.5rem;
   justify-content: center;
   align-items: center;
+  gap: 0.7rem;
   border: solid rgb(7, 136, 191);
   border-radius: 0.5rem;
   padding: 1rem;
-  width: 150px;
-  height: 200px;
+  width: 130px;
+  height: 180px;
   background-color: rgb(7, 136, 191);
   transition: all 300ms;
 }
 @media only screen and (max-width: 800px) {
   .category--card {
     width: 95px;
-    height: 130px;
+    height: 120px;
   }
 }
 .category--card:hover {
   transform: scale(1.03);
 }
 .category--card img {
-  width: 80%;
+  width: 60%;
 }
 
 .product--card {
@@ -474,7 +475,7 @@ footer .footer--items ul li {
   line-height: 1.6;
 }
 footer .footer--items ul li:first-child {
-  font-size: 1.25rem;
+  font-size: 1.2rem;
   text-decoration: underline;
 }
 footer p {
@@ -695,6 +696,7 @@ footer p {
 #createAds form {
   box-shadow: none;
   border: double rgb(7, 136, 191);
+  box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.2);
 }
 @media only screen and (max-width: 800px) {
   #createAds {

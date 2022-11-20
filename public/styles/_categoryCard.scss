@@ -1,16 +1,17 @@
 .category--card{
     @include flex-col;
+    gap: 0.7rem;
     border: solid $secondary;
     border-radius: $m-border-radius;
     padding: $s-pad;
-    width: 150px;
-    height: 200px;
+    width: 130px;
+    height: 180px;
     background-color: $secondary;
     transition: all 300ms;
 
     @include mobile{
         width: 95px;
-        height: 130px;
+        height: 120px;
     }
 
     &:hover{
@@ -18,7 +19,7 @@
     }
 
     img{
-        width: 80%;
+        width: 60%;
     }
 
 

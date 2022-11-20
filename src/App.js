@@ -14,14 +14,17 @@ import { SignUp } from './components/SignUp';
 import { ToastContainer } from "react-toastify"
 import 'react-toastify/dist/ReactToastify.css';
 import { AuthProvider } from './Context/AuthContext';
+import { AddData } from './components/AddData';
 
 
 function App() {
   return (
     <>
       <AuthProvider>
+        {/* <Nav /> */}
       <Routes>
         <Route path='/' element={<Homepage />} />
+        <Route path='/complete-profile' element={<AddData />} />
         <Route path='/product' element={<ProductPage />} />
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<SignUp />} />
@@ -31,6 +34,7 @@ function App() {
         <Route path='/settings' element={<Settings />} />
       </Routes>
       </AuthProvider>
+      <Footer />
       <ToastContainer 
         position="top-center"
         autoClose={5000}

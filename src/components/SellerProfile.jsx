@@ -8,8 +8,13 @@ import avatar from "../assets/avatar.jpg"
 import { ProductCard } from './ProductCard'
 import { IconButton} from './productPage/IconButton'
 import { fakeData } from './FakeData'
+import { useAuth } from '../Context/AuthContext'
 
 export const SellerProfile = () => {
+    const {user} = useAuth()
+
+console.log(user)
+
   return (
     <div className='container' id='profile'>
         <div className='container--item'>

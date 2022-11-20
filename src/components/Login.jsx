@@ -9,7 +9,7 @@ import { auth } from '../firebaseConfig'
 
 
 export const Login = () => {
-    const { user, loading, setLoading, navigate, setIsLogged, setError } = useAuth()
+    const { user, loading, setLoading, navigate, setIsLogged, error, setError } = useAuth()
 
     const [data, setData] = useState({
         email: "",
@@ -20,7 +20,6 @@ export const Login = () => {
     const handleChange = (e) => {
         e.preventDefault()
         const {name, value} = e.target
-
         setData(prevData => ({
             ...prevData,
             [name]:value
@@ -28,9 +27,9 @@ export const Login = () => {
     }
 
     const [showModal, setShowModal] = useState(false)
-
     // login function
-    const login = async () => {
+    const login = async (e) => {
+        e.preventDefault()
         try{
             await setPersistence(auth, browserLocalPersistence)
             await signInWithEmailAndPassword(auth, data.email, data.password)
@@ -51,8 +50,11 @@ export const Login = () => {
               }else if(err.code === 'auth/user-not-found'){
                 toast.error('User not found!')
                 setError('User not found!')
-              }else if(err.code === 'auth/network-request-failed'){
+            }else if(err.code === 'auth/network-request-failed'){
                 setError('Sorry...! Something went wrong. Check your internet connection')
+            }else if(err.code === 'auth/invalid-email'){
+                toast.error('Email or Password incorrect')
+                setError('Email or Password incorrect')
               }
               else{
                 console.log(err.message)
@@ -64,21 +66,31 @@ export const Login = () => {
     
   return (
     <div className='container' id='login'>
-        <form >
-            <h2>Hi there! Welcome!</h2>
+        <form onSubmit={login}>
+            <h2>Hi there! 👋 Welcome!</h2>
             <h3>Enter your login details:</h3>
             <div>
                 <input 
                 type="email" 
+                name="email"
+                value={data.email}
                 placeholder='Email Address'
+                onChange={handleChange}
+                required
                 />
             </div>
             <div>
                 <input 
                 type="password" 
+                name="password"
+                value={data.password}
                 placeholder='Password'
+                onChange={handleChange}
+                required
                 />
             </div>
+            {/* error message */}
+            <i className="error">{error}</i>
             <div>
                 <input type='submit' value="Log in"/>
             </div>

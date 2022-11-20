@@ -1,14 +1,21 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { CgGoogle } from "react-icons/cg"
 import { useAuth } from '../Context/AuthContext'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
-import { doc, setDoc } from 'firebase/firestore'
+import { doc, serverTimestamp, setDoc, Timestamp } from 'firebase/firestore'
 import { toast } from "react-toastify"
 import { auth } from '../firebaseConfig'
 
 export const SignUp = () => {
     const { loading, setLoading, user, setUser, isLogged, setIsLogged, navigate, logInWithGoogle, userRef, setError, error } = useAuth()
+
+    useEffect(() => {
+        error !== "" &&
+        setTimeout(() => {
+            setError("")
+        }, 2500);
+    }, [error])
 
     const [data, setData] = useState({
         email: "",
@@ -31,29 +38,30 @@ export const SignUp = () => {
         }))
         console.log(data)
     }
-
     // handle signup
     const signUp = async (e) => {
         e.preventDefault()
         if(password.length < 6){
             setLoading(false)
-            return toast.error('Password must be at least 6 Chars')
+            setError('Password must be at least 6 characters')
+            return toast.error('Password must be at least 6 characters')
         }
         try{
             await createUserWithEmailAndPassword(auth, email, password)
-            .then(() => {
+            .then(res => {
                 setUser({
                     email: email,
                     displayName: displayName,
                 })
-                setDoc(doc(userRef, {
+                setDoc(doc(userRef, email), {
                     email: email,
                     displayName: displayName,
                     location: location,
                     phoneNo: phoneNo,
                     staysHostel: staysHostel,
                     isVerified: false,
-                }))
+                    joinedOn: serverTimestamp()
+                })
                 setLoading(false)
                 toast.success('Signed up successfully...')
                 return navigate('/profile')
@@ -86,7 +94,7 @@ export const SignUp = () => {
   return (
     <div className='container' id='signup'>
         <form onSubmit={signUp}>
-            <h3>Hi there! Welcome!</h3>
+            <h3>Hi there! 👋 Welcome!</h3>
             <h4>Enter your details to register your business/brand:</h4>
             <div>
                 <input 
@@ -106,6 +114,7 @@ export const SignUp = () => {
                 pattern='08012345678 - without country code'
                 value={phoneNo}
                 onChange={handleChange}
+                minLength={11}
                 />
             </div>
             <div>
@@ -133,7 +142,7 @@ export const SignUp = () => {
                 type="text" 
                 name='location'
                 value={location}
-                placeholder='Area/Hostel Name'
+                placeholder='Area/Hostel Name or Store Location'
                 onChange={handleChange}
                 required
                 />
@@ -152,7 +161,7 @@ export const SignUp = () => {
                 <input type='submit' value="Sign up" />
             </div>
             <div>
-                <p>{error}</p>
+                <p className='error'>{error}</p>
             </div>
             <p>or</p>
             <div>
