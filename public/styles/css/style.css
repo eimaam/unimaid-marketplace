@@ -1022,4 +1022,12 @@ select::placeholder,
 textarea::placeholder {
     font-size: 14px;
   }
+}
+
+@media only screen and (max-width: 800px) {
+  input[type=submit] {
+    font-weight: 100;
+    -webkit-border-radius: 0;
+    -webkit-appearance: none;
+  }
 }/*# sourceMappingURL=style.css.map */

@@ -92,3 +92,11 @@ textarea{
         }
     }
 }
+
+input[type=submit]{
+    @include mobile(){
+        font-weight: 100;
+        -webkit-border-radius:0;
+        -webkit-appearance: none; 
+    }
+}
