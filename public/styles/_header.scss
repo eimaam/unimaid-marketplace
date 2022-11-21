@@ -1,4 +1,7 @@
 header{
+    background-image: url('/background.png'), url('/background2.png');
+    background-position: right bottom, left top;
+    background-repeat: no-repeat;
     background-color: $primary;
     margin: auto;
     width: 100%;
@@ -16,6 +19,8 @@ header{
 
     @include mobile{
         margin-top: 3.45rem;
+        background-position: left bottom, right top;
+        background-size: cover;
     }
 
     .categories{

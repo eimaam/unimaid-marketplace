@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { ProductCard } from "../ProductCard"
 import { IconButton, InfoButton } from './IconButton'
 import phone1 from "../../assets/smartphone1.png"
@@ -9,30 +9,85 @@ import { MdLocationOn } from 'react-icons/md'
 import avatar from "../../assets/avatar.jpg"
 import { fakeData } from '../FakeData'
 import { ConfirmationModal } from '../ConfirmationModal'
+import { useAuth } from '../../Context/AuthContext'
+import { onSnapshot, query, where } from 'firebase/firestore'
+import { BarLoader } from 'react-spinners'
 
 export const ProductPage = () => {
+  const { usersRef, adsRef, loading, setLoading } = useAuth()
   const [showModal, setShowModal] = useState(false)
+
+  const [item, setItem] = useState({})
+
+  useEffect(() => {
+    const fetchAd = async () => {
+      setLoading(true)
+      try{
+        const q = query(adsRef, where("id", "==", "electronics/philips%20iron/211122"))
+        await onSnapshot(q, snapShot => {
+          setItem(snapShot.docs.map(data => ({
+            ...data.data()
+          })))
+        })
+        setLoading(false)
+      }
+      catch(err){
+        console.log(err)
+      }
+    }
+
+    fetchAd()
+    
+  }, [])
+
+  // display loading animation if data is not ready
+  if(item[0] == undefined){
+    return <div className='container'>
+              <div className='container--item'>
+                <BarLoader />
+              </div>
+            </div>
+  }
+
+  const data = {
+    poster: item[0].poster,
+    category: item[0].category,
+    itemName: item[0].itemName,
+    itemPrice: item[0].itemPrice,
+    itemBrand: item[0].itemBrand,
+    itemCondition: item[0].itemCondition,
+    itemColour: item[0].itemColour,
+    itemManufacturingYear: item[0].itemManufacturingYear,
+    itemPurchaseYear: item[0].itemPurchaseYear,
+    receipt: item[0].receipt,
+    itemDetails: item[0].itemDetails,
+    itemImages: item[0].itemImage,
+    isSponsored: item[0].isSponsored,
+    id: item[0].id
+  }
+
+  const {poster, category, itemName, itemPrice, itemBrand, itemCondition, itemColour, 
+        itemManufacturingYear, itemPurchaseYear, receipt, itemDetails, itemImages, isSponsored, id} = data
+  
+  
   return (
     <div className='product--page'>
       <div className='product--images'>
         <div className='main--image--container'>
-          <img src={phone1} alt="" className='main'/>
+          <img src={itemImages[0]} alt="" className='main'/>
         </div>
           <div className='more--images--container'>
-            <img src={phone2} alt="" />
-            <img src={phone1} alt="" />
-            <img src={phone2} alt="" />
-            <img src={phone2} alt="" />
-            <img src={phone1} alt="" />
-            <img src={phone2} alt="" />
+            {itemImages.map((item, index) => {
+              return <img key={index} src={item} alt={item.name} />
+            })}
           </div>
         </div>
 
         <div className='product--info'>
-          <h2>Motorola Z3</h2>
-          <h2>N55,0000</h2>
+          <h2>{itemName}</h2>
+          <h2>{`₦ ${itemPrice}`}</h2>
         </div>
-
+            {/* close Ad button */}
         <div>
           <button className='error--background' onClick={() => setShowModal(prev => !prev)}>Close Ad</button>
         </div>
@@ -44,7 +99,7 @@ export const ProductPage = () => {
                 Product Condiiton: 
               </p>
               <b>
-                NEW
+                {itemCondition}
               </b>
             </div>
             <div>
@@ -52,7 +107,7 @@ export const ProductPage = () => {
                 Colour: 
               </p>
               <b>
-                Black
+                {itemColour}
               </b>
             </div>
             <div>
@@ -60,7 +115,7 @@ export const ProductPage = () => {
                 Manufacturing Year: 
               </p>
               <b>
-                2020
+                {itemManufacturingYear}
               </b>
             </div>
           </div>
@@ -70,7 +125,7 @@ export const ProductPage = () => {
                 Brand: 
               </p>
               <b>
-                Motorola
+                {itemBrand}
               </b>
             </div>
             <div>
@@ -78,7 +133,7 @@ export const ProductPage = () => {
                 Receipt: 
               </p>
               <b>
-                Yes
+                {receipt}
               </b>
             </div>
             <div>
@@ -86,7 +141,7 @@ export const ProductPage = () => {
                 Purchase Year: 
               </p>
               <b>
-                2021
+                {itemPurchaseYear}
               </b>
             </div>
           </div>

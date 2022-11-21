@@ -1,6 +1,7 @@
 #profile{
+    margin: 0;
+    padding: 0;
     
-
     .container--item{
         width: 60%;
         padding: $m-pad;
@@ -8,15 +9,22 @@
 
         @include mobile{
             @include mobile-width;
-            padding: 0;
+            padding: 0rem;
+            margin: 0rem;
 
             div{
                 border-radius: 0 !important;
             }
         }
 
-        *{
-            color: $default;
+        @include tablet{
+            @include tablet-width;
+        }
+
+        .header, .info--button, .address, .reviews, .about{
+            *{
+                color: $default ;
+            }
         }
 
         .header{
@@ -70,7 +78,13 @@
             margin-block: 0;
 
             @include mobile{
-                flex-direction: row;
+                align-items: flex-start;
+                justify-content: flex-start;
+                gap: 0;
+                
+                h3{
+                    margin: 0;
+                }
             }
         }
 
@@ -85,6 +99,7 @@
                 border: double $primary;
                 border-radius: $m-border-radius;
                 min-height: 100px;
+                margin-block: $s-margin;
             }
         }
 
@@ -94,22 +109,34 @@
 
         .active{
             width: 100%;
+            @include flex-col;
+            gap: 0.3rem;
 
             h2{
+                width: 100%;
                 padding: $xs-pad;
                 background-color: $primary;
                 border-radius: $m-border-radius;
-                margin-bottom: $s-margin;
+                color: $default;
+
+                @include mobile{
+                    border-radius: 0;
+                }
             }
 
             .flex-row{
                 flex-wrap: wrap;
-                border: double $primary;
                 border-radius: $m-border-radius;
                 padding-block: $s-pad;
+                margin: auto;
                 
+                @include custom-screen(360px){
+                    .product--card{
+                        width: 80%;
+                    }
+                }
+
                 @include mobile{
-                    @include grid(2, 1fr);
                     border: none;
                 }
             }

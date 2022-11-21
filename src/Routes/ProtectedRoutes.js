@@ -1,9 +1,10 @@
 import React from 'react'
-import { Navigate, useNavigate } from 'react-router-dom'
+import { Navigate, Outlet, useNavigate } from 'react-router-dom'
+import { useAuth } from '../Context/AuthContext'
 
 export const ProtectedRoutes = () => {
-    const navigate = useNavigate()
+    const { user, navigate } = useAuth()
   return (
-    user ? <Outlet /> : navigate('/login')
+    user ? <Outlet /> : navigate('login')
   )
 }

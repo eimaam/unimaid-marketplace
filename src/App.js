@@ -15,26 +15,33 @@ import { ToastContainer } from "react-toastify"
 import 'react-toastify/dist/ReactToastify.css';
 import { AuthProvider } from './Context/AuthContext';
 import { AddData } from './components/AddData';
+import { UserProvider } from './Context/UserContext';
+import { ProtectedRoutes } from './Routes/ProtectedRoutes';
+import { ErrorPage } from "./components/ErrorPage"
 
 
 function App() {
   return (
     <>
       <AuthProvider>
+        <UserProvider>
         {/* <Nav /> */}
       <Routes>
+        <Route element={<ProtectedRoutes />} >
+          <Route path='/complete-profile' element={<AddData />} />
+          <Route path='/settings' element={<Settings />} />
+          <Route path='/createAds' element={<PostAds />} />
+        </Route>
+        <Route path='/profile' element={<SellerProfile />} />
         <Route path='/' element={<Homepage />} />
-        <Route path='/complete-profile' element={<AddData />} />
-        <Route path='/product' element={<ProductPage />} />
         <Route path='/login' element={<Login />} />
+        <Route path='/product' element={<ProductPage />} />
         <Route path='/signup' element={<SignUp />} />
         <Route path='/reset' element={<ResetPass />} />
-        <Route path='/createAds' element={<PostAds />} />
-        <Route path='/profile' element={<SellerProfile />} />
-        <Route path='/settings' element={<Settings />} />
+        <Route path='*' element={<ErrorPage />} />
       </Routes>
+        </UserProvider>
       </AuthProvider>
-      <Footer />
       <ToastContainer 
         position="top-center"
         autoClose={5000}

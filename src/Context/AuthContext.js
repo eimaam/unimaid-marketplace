@@ -13,6 +13,7 @@ export const useAuth = () => {
 export const AuthProvider = ({children}) => {
     const navigate = useNavigate()
     const userRef = collection(database, "usersDetails")
+    const adsRef = collection(database, "Ads")
 
 
     const [user, setUser] = useState(null)
@@ -93,7 +94,8 @@ export const AuthProvider = ({children}) => {
         error,
         setError,
         userRef,
-        logOut
+        logOut,
+        adsRef
     }
 
 
