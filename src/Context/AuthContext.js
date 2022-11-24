@@ -16,7 +16,7 @@ export const AuthProvider = ({children}) => {
     const adsRef = collection(database, "Ads")
 
 
-    const [user, setUser] = useState(null)
+    const [user, setUser] = useState({})
     const [isLogged, setIsLogged] = useState(false)
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState("")
@@ -83,6 +83,9 @@ export const AuthProvider = ({children}) => {
         return navigate('/login')
     }
 
+console.log(loading)
+
+    // export values to be used in other components
     const value = {
         user,
         setUser,

@@ -34,7 +34,7 @@ export const UserProvider = ({children}) => {
     fetchUserInfo()
   }, [user])
 
-  console.log(userInfo)
+  console.log(user)
 
 
 

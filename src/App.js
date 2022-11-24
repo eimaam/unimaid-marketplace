@@ -18,6 +18,7 @@ import { AddData } from './components/AddData';
 import { UserProvider } from './Context/UserContext';
 import { ProtectedRoutes } from './Routes/ProtectedRoutes';
 import { ErrorPage } from "./components/ErrorPage"
+import { RoutesWithNavBar } from './Routes/RoutesWithNavBar';
 
 
 function App() {
@@ -25,21 +26,24 @@ function App() {
     <>
       <AuthProvider>
         <UserProvider>
-        {/* <Nav /> */}
-      <Routes>
-        <Route element={<ProtectedRoutes />} >
-          <Route path='/complete-profile' element={<AddData />} />
-          <Route path='/settings' element={<Settings />} />
-          <Route path='/createAds' element={<PostAds />} />
-        </Route>
-        <Route path='/profile' element={<SellerProfile />} />
-        <Route path='/' element={<Homepage />} />
-        <Route path='/login' element={<Login />} />
-        <Route path='/product' element={<ProductPage />} />
-        <Route path='/signup' element={<SignUp />} />
-        <Route path='/reset' element={<ResetPass />} />
-        <Route path='*' element={<ErrorPage />} />
-      </Routes>
+          <Routes>
+            <Route element={<ProtectedRoutes />} >
+              <Route path='/complete-profile' element={<AddData />} />
+              <Route path='/settings' element={<Settings />} />
+              <Route path='/createad' element={<PostAds />} />
+            </Route>
+            {/* routes with nav and footer */}
+            <Route element={<RoutesWithNavBar />}>
+              <Route path='/' element={<Homepage />} />
+              <Route path='/profile' element={<SellerProfile />} />
+              <Route path='/product' element={<ProductPage />} />
+            </Route>
+
+            <Route path='/login' element={<Login />} />
+            <Route path='/signup' element={<SignUp />} />
+            <Route path='/reset' element={<ResetPass />} />
+            <Route path='*' element={<ErrorPage />} />
+          </Routes>
         </UserProvider>
       </AuthProvider>
       <ToastContainer 
