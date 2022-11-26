@@ -1146,7 +1146,7 @@ html, body {
   height: 100%;
   text-align: justify;
   background-color: #f8f8f8;
-  font-family: "CabinetGrotesk-Regular";
+  font-family: "Space Grotesk", "sans-serif";
 }
 html ::-webkit-scrollbar, body ::-webkit-scrollbar {
   width: 0.5rem;
