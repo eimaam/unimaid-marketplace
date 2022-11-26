@@ -2,10 +2,15 @@
     margin: 0;
     margin-top: $xl-pad;
     padding: 0;
+
+    @include mobile{
+        margin-block: 2.5rem;
+        border: solid red;
+    }
     
     .container--item{
         width: 60%;
-        padding: $m-pad;
+        padding: $s-pad;
         gap: $s-margin;
 
         @include mobile{
@@ -33,12 +38,13 @@
             @include flex-row;
             justify-content: space-between;
             background-color: $secondary;
-            padding: $s-pad;
+            padding: $m-pad;
             border-radius: $m-border-radius;
 
             @include mobile{
                 flex-direction: column;
                 justify-content: center;
+                padding: $s-pad;
                 
                 *{
                     text-align: center;
@@ -75,13 +81,14 @@
             width: 100%;
             @extend .header;
             justify-content: flex-start;
-            padding: $xs-pad;
+            padding: $xs-pad $m-pad;
             margin-block: 0;
 
             @include mobile{
                 align-items: flex-start;
                 justify-content: flex-start;
                 gap: 0;
+                padding: $xs-pad;
                 
                 h3{
                     margin: 0;
@@ -94,13 +101,17 @@
             min-height: 100px;
             background-color: $primary;
             border-radius: $m-border-radius;
-            padding: $xs-pad;
+            padding: $m-pad;
 
             p{
                 border: double $primary;
                 border-radius: $m-border-radius;
                 min-height: 100px;
                 margin-block: $s-margin;
+            }
+
+            @include mobile{
+                padding: $xs-pad;
             }
         }
 
@@ -115,13 +126,15 @@
 
             h2{
                 width: 100%;
-                padding: $xs-pad;
+                padding: $xs-pad $m-pad;
                 background-color: $primary;
                 border-radius: $m-border-radius;
                 color: $default;
 
                 @include mobile{
                     border-radius: 0;
+                    padding: $xs-pad;
+                    justify-content: flex-start;
                 }
             }
 

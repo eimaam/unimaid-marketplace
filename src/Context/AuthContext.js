@@ -16,7 +16,7 @@ export const AuthProvider = ({children}) => {
     const adsRef = collection(database, "Ads")
 
 
-    const [user, setUser] = useState({})
+    const [user, setUser] = useState(null)
     const [isLogged, setIsLogged] = useState(false)
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState("")
@@ -25,7 +25,9 @@ export const AuthProvider = ({children}) => {
 
     // fetch user data on every login
     useEffect(() => {
+        setLoading(true)
         const fetchUserData = async () => {
+            setUser(null)
             onAuthStateChanged(auth, async data => {
                 if(data){
                     setIsLogged(true)
@@ -39,7 +41,6 @@ export const AuthProvider = ({children}) => {
                             })
                         }
                         setUser(data)
-                        setLoading(false)
                     }
                     catch(error){
                         console.log(error.message)
@@ -50,7 +51,6 @@ export const AuthProvider = ({children}) => {
         }
         fetchUserData()
     }, [])
-
 
     // log in with gmail
     const loginWithGoogle = async () => {
@@ -83,7 +83,6 @@ export const AuthProvider = ({children}) => {
         return navigate('/login')
     }
 
-console.log(loading)
 
     // export values to be used in other components
     const value = {

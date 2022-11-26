@@ -6,9 +6,11 @@ import { createUserWithEmailAndPassword } from 'firebase/auth'
 import { doc, serverTimestamp, setDoc, Timestamp } from 'firebase/firestore'
 import { toast } from "react-toastify"
 import { auth } from '../firebaseConfig'
+import { useUser } from '../Context/UserContext'
 
 export const SignUp = () => {
     const { loading, setLoading, user, setUser, isLogged, setIsLogged, navigate, logInWithGoogle, userRef, setError, error } = useAuth()
+    const { plainDate, time } = useUser()
 
     useEffect(() => {
         error !== "" &&
@@ -26,7 +28,19 @@ export const SignUp = () => {
         location: "",
     })
 
+    
     const {email, password, displayName, phoneNo, staysHostel, location} = data
+    
+    
+    // creating unique id for users
+    // DATE: creating date format Day/Month
+    // random number between 0 to 4 to use
+    const random = Math.floor(Math.random() * 5-1 + 1)*1
+	
+    // seller unique id
+	const id = displayName.replaceAll(' ','').toLowerCase()+plainDate.slice(0, random+2)+time.toString().slice(0, random)
+
+    console.log(id)
 
     // handle input change
     const handleChange = (e) => {
@@ -60,11 +74,15 @@ export const SignUp = () => {
                     phoneNo: phoneNo,
                     staysHostel: staysHostel,
                     isVerified: false,
-                    joinedOn: serverTimestamp()
+                    joinedOn: serverTimestamp(),
+                    totalAdsCreated: 0,
+                    totalSales: 0,
+                    activeAds: 0,
+                    id: id,
                 })
                 setLoading(false)
                 toast.success('Signed up successfully...')
-                return navigate('/profile')
+                return navigate('/profile/:id')
             })
         }
         catch(err){

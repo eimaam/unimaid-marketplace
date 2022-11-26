@@ -1,0 +1,16 @@
+.ads--banner{
+    background-color: $secondary;
+    @include grid(2, 1fr);
+    justify-content: space-between;
+    align-items: center;
+    border-radius: $m-border-radius;
+    padding: $m-pad;
+
+    h1{
+        color: $default;
+    }
+
+    img{
+        margin: auto;
+    }
+}

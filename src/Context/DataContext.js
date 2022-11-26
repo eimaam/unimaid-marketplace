@@ -1,6 +1,7 @@
-import { collection, onSnapshot, where } from 'firebase/firestore'
-import React, { Children, createContext, useContext } from 'react'
+import { collection, getDocs, onSnapshot, query, where } from 'firebase/firestore'
+import React, { Children, createContext, useContext, useEffect } from 'react'
 import { database } from '../firebaseConfig'
+import { useAuth } from './AuthContext'
 
 const DataContext = createContext()
 
@@ -10,31 +11,31 @@ export const useData = () => {
 
 export const DataProvider = ({ children }) => {
     const adsRef = collection(database, "Ads")
+    const {loading, setLoading} = useAuth()
 
-    const fetchCollection = async () => {
-        setLoading(true)
-        try{
-            const q = query(adsRef, where("poster", "==", "imamddahir@gmail.com"))
-            await onSnapshot(q, snapShot => {
-                console.log(snapShot.docs.map(data => ({
-                    ...data.data()
-                })))
-            })
-            setLoading(false)
+    useEffect(() => {
+        const fetchCollection = async () => {
+            setLoading(true)
+            try{
+                const q = query(adsRef, where("poster", "==", "imamddahir@gmail.com"))
+                const querySnapshot = await getDocs(q)
+                querySnapshot.forEach((doc) => {
+                    console.log(doc.data())
+                })
+                setLoading(false)
+            }
+            catch(err){
+                console.log(err.message)
+            }
         }
-        catch(err){
-            console.log(err.message)
-        }
-    }
+
+        fetchCollection()
+    }, [])
 
 
-
-    const value = {
-        fetchCollection
-    }
 
   return (
-    <DataContext.Provider value={value}>
+    <DataContext.Provider >
         { children }
     </DataContext.Provider>
   )

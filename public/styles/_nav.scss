@@ -7,7 +7,13 @@ nav{
     background-color: $primary;
     padding: $xs-pad;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
-    z-index: 999999;
+    z-index: 9;
+
+    @include mobile{
+        *{
+            font-size: 0.9rem;
+        }
+    }
 
     ul{
         width: 70%;
@@ -18,11 +24,14 @@ nav{
         @include mobile{
             @include mobile-width;
         }
-
-
+        
+        
         li{
-            font-size: 1.3rem;
             color: $default;
+
+            @include mobile{
+                display: none;
+            }
 
             &:first-child{
                 margin-right: auto;
@@ -31,13 +40,47 @@ nav{
             &:last-child{
                 background-color: $secondary;
                 border-radius: $m-border-radius;
-                padding: $xs-pad;
+                padding: 0.4rem;
+
+                @include mobile{
+                    font-size: 0.7rem;
+                    display: block;
+                    margin-left: auto;
+                    padding: 0.3rem $xs-pad;
+                }
             }
 
-            @include mobile{
-                font-size: 1rem;
-            }
         }
     }
 
 }
+
+// mobile nav
+#mNav{
+    display: none;
+    margin: auto;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    margin: auto;
+    z-index: 10;
+
+    @include mobile{
+        display: block;
+    }
+    
+    ul{
+        margin: auto;
+        border-radius: $m-border-radius;
+        background-color: $secondary;
+        width: 70%;
+        @include grid(3, 1fr);
+        padding-block: $xs-pad;
+
+        li{
+            margin: auto;
+            color: $default;
+        }
+    }
+}
+

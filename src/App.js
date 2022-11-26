@@ -19,6 +19,7 @@ import { UserProvider } from './Context/UserContext';
 import { ProtectedRoutes } from './Routes/ProtectedRoutes';
 import { ErrorPage } from "./components/ErrorPage"
 import { RoutesWithNavBar } from './Routes/RoutesWithNavBar';
+import { DataProvider } from './Context/DataContext';
 
 
 function App() {
@@ -35,7 +36,7 @@ function App() {
             {/* routes with nav and footer */}
             <Route element={<RoutesWithNavBar />}>
               <Route path='/' element={<Homepage />} />
-              <Route path='/profile' element={<SellerProfile />} />
+              <Route path='/profile/:id' element={<SellerProfile />} />
               <Route path='/product' element={<ProductPage />} />
             </Route>
 

@@ -30,6 +30,7 @@ export const Login = () => {
     // login function
     const login = async (e) => {
         e.preventDefault()
+        setLoading(true)
         try{
             await setPersistence(auth, browserLocalPersistence)
             await signInWithEmailAndPassword(auth, data.email, data.password)

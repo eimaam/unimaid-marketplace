@@ -5,9 +5,12 @@ import React, { useState } from 'react'
 import { database, storage } from '../firebaseConfig';
 import {toast} from "react-toastify"
 import { useAuth } from '../Context/AuthContext';
+import { useUser } from '../Context/UserContext';
 
 export const PostAds = () => {
     const { loading, user, setLoading, navigate } = useAuth()
+    const { displayName } = useUser()
+    const { datePlain } = useAuth()
     
     const [data, setData] = useState({
         category: "",
@@ -28,27 +31,7 @@ export const PostAds = () => {
     const [imageURLs, setImageURLs] = useState([])
     const [uploadProgress, setUploadProgress] = useState(0)
 
-    // creating date format to create random id for ads
-    // DATE: creating date format Day/Month
-    // get timestamp from Firebase
-    const stamp = Timestamp.now().toDate()
-    
-    let day = stamp.getDate()
-    let monthByIndex = stamp.getMonth();
-    let fullYear = stamp.getFullYear();
-    let month = monthByIndex+1;
-    // add 0 to beginning of Month 1-9
-    if(month <= 9){
-        month = `0${month}`
-    }
-    // convert year to string to easily extract only last two figures eg. 2022 == 22
-    const year = fullYear.toString().slice(2,4)
-
-    // final date format
-    const date = `${day}/${month}/${year}`
-	// creating date format with no / to create a link
-	const datePlain = `${day}${month}${year}`
-    // id value
+    // generating unique ad id from date
     const id = encodeURI(`${category.toLowerCase()}/${itemName.toLowerCase()}/${datePlain}`)
     // end of date formatting
 
@@ -117,9 +100,8 @@ export const PostAds = () => {
         // setLoading(true)
         try{
             await addDoc(adsRef, {
-                posterEmail: "imamddahir@gmail.com",
-                posterDisplayName: "imamddahir@gmail.com",
-                posterDisplayPhoto: "imamddahir@gmail.com",
+                posterEmail: user.email,
+                posterDisplayName: displayName,
                 category: category,
                 itemName: itemName,
                 itemPrice: itemPrice,

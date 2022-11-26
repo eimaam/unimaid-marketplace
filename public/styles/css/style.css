@@ -93,6 +93,7 @@ button, .btn--secondary, input[type=submit] {
 }
 button:hover, .btn--secondary:hover, input[type=submit]:hover {
   background-color: rgb(7, 136, 191);
+  border: 1px solid rgb(37, 20, 111);
 }
 @media only screen and (max-width: 800px) {
   button, .btn--secondary, input[type=submit] {
@@ -131,7 +132,7 @@ ul li {
 }
 @media only screen and (max-width: 800px) {
   ul li {
-    font-size: 1rem;
+    font-size: 0.8rem;
   }
 }
 
@@ -157,6 +158,10 @@ hr {
 
 .success {
   color: rgb(37, 20, 111);
+}
+
+.Toastify__toast-container {
+  z-index: 9999999;
 }
 
 .loader {
@@ -214,7 +219,12 @@ nav {
   background-color: rgb(37, 20, 111);
   padding: 0.5rem;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
-  z-index: 999999;
+  z-index: 9;
+}
+@media only screen and (max-width: 800px) {
+  nav * {
+    font-size: 0.9rem;
+  }
 }
 nav ul {
   width: 70%;
@@ -233,8 +243,12 @@ nav ul {
   }
 }
 nav ul li {
-  font-size: 1.3rem;
   color: #fff;
+}
+@media only screen and (max-width: 800px) {
+  nav ul li {
+    display: none;
+  }
 }
 nav ul li:first-child {
   margin-right: auto;
@@ -242,12 +256,44 @@ nav ul li:first-child {
 nav ul li:last-child {
   background-color: rgb(7, 136, 191);
   border-radius: 0.5rem;
-  padding: 0.5rem;
+  padding: 0.4rem;
 }
 @media only screen and (max-width: 800px) {
-  nav ul li {
-    font-size: 1rem;
+  nav ul li:last-child {
+    font-size: 0.7rem;
+    display: block;
+    margin-left: auto;
+    padding: 0.3rem 0.5rem;
   }
+}
+
+#mNav {
+  display: none;
+  margin: auto;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  margin: auto;
+  z-index: 10;
+}
+@media only screen and (max-width: 800px) {
+  #mNav {
+    display: block;
+  }
+}
+#mNav ul {
+  margin: auto;
+  border-radius: 0.5rem;
+  background-color: rgb(7, 136, 191);
+  width: 70%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+  padding-block: 0.5rem;
+}
+#mNav ul li {
+  margin: auto;
+  color: #fff;
 }
 
 header {
@@ -334,7 +380,7 @@ header .categories {
   height: 300px;
   margin-inline: 0;
   padding: 0;
-  z-index: 99999;
+  z-index: 8;
   position: relative;
   box-shadow: 0 6px 6px 0 rgba(0, 0, 0, 0.2), 0 6px 6px 0 rgba(0, 0, 0, 0.2);
 }
@@ -755,9 +801,15 @@ footer p {
   margin-top: 4rem;
   padding: 0;
 }
+@media only screen and (max-width: 800px) {
+  #profile {
+    margin-block: 2.5rem;
+    border: solid red;
+  }
+}
 #profile .container--item {
   width: 60%;
-  padding: 1.5rem;
+  padding: 1rem;
   gap: 0.5rem;
 }
 @media only screen and (max-width: 800px) {
@@ -789,13 +841,14 @@ footer p {
   align-items: center;
   justify-content: space-between;
   background-color: rgb(7, 136, 191);
-  padding: 1rem;
+  padding: 1.5rem;
   border-radius: 0.5rem;
 }
 @media only screen and (max-width: 800px) {
   #profile .container--item .header, #profile .container--item .address, #profile .container--item .reviews {
     flex-direction: column;
     justify-content: center;
+    padding: 1rem;
   }
   #profile .container--item .header *, #profile .container--item .address *, #profile .container--item .reviews * {
     text-align: center;
@@ -823,7 +876,7 @@ footer p {
 #profile .container--item .address, #profile .container--item .reviews {
   width: 100%;
   justify-content: flex-start;
-  padding: 0.5rem;
+  padding: 0.5rem 1.5rem;
   margin-block: 0;
 }
 @media only screen and (max-width: 800px) {
@@ -831,6 +884,7 @@ footer p {
     align-items: flex-start;
     justify-content: flex-start;
     gap: 0;
+    padding: 0.5rem;
   }
   #profile .container--item .address h3, #profile .container--item .reviews h3 {
     margin: 0;
@@ -841,13 +895,18 @@ footer p {
   min-height: 100px;
   background-color: rgb(37, 20, 111);
   border-radius: 0.5rem;
-  padding: 0.5rem;
+  padding: 1.5rem;
 }
 #profile .container--item .about p {
   border: double rgb(37, 20, 111);
   border-radius: 0.5rem;
   min-height: 100px;
   margin-block: 0.5rem;
+}
+@media only screen and (max-width: 800px) {
+  #profile .container--item .about {
+    padding: 0.5rem;
+  }
 }
 #profile .container--item .active {
   width: 100%;
@@ -860,7 +919,7 @@ footer p {
 }
 #profile .container--item .active h2 {
   width: 100%;
-  padding: 0.5rem;
+  padding: 0.5rem 1.5rem;
   background-color: rgb(37, 20, 111);
   border-radius: 0.5rem;
   color: #fff;
@@ -868,6 +927,8 @@ footer p {
 @media only screen and (max-width: 800px) {
   #profile .container--item .active h2 {
     border-radius: 0;
+    padding: 0.5rem;
+    justify-content: flex-start;
   }
 }
 #profile .container--item .active .flex-row, #profile .container--item .active .icon--text {
@@ -1026,6 +1087,23 @@ footer p {
 }
 .confirmation--modal div h3:last-child {
   background-color: rgb(37, 20, 111);
+}
+
+.ads--banner {
+  background-color: rgb(7, 136, 191);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+}
+.ads--banner h1 {
+  color: #fff;
+}
+.ads--banner img {
+  margin: auto;
 }
 
 * {
