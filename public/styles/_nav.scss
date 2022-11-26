@@ -75,11 +75,13 @@ nav{
         background-color: $secondary;
         width: 70%;
         @include grid(3, 1fr);
-        padding-block: $xs-pad;
+        padding-block: $s-pad;
+        border: 1px solid $dark;
 
         li{
             margin: auto;
             color: $default;
+            font-size: 1rem;
         }
     }
 }

@@ -1,3 +1,4 @@
+@import url("../css/cabinet-grotesk.css");
 .flex-row, .icon--text {
   display: flex;
   flex-direction: row;
@@ -289,11 +290,13 @@ nav ul li:last-child {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 0.5rem;
-  padding-block: 0.5rem;
+  padding-block: 1rem;
+  border: 1px solid #15191c;
 }
 #mNav ul li {
   margin: auto;
   color: #fff;
+  font-size: 1rem;
 }
 
 header {
@@ -383,6 +386,7 @@ header .categories {
   z-index: 8;
   position: relative;
   box-shadow: 0 6px 6px 0 rgba(0, 0, 0, 0.2), 0 6px 6px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 0.5rem;
 }
 .product--card:hover {
   transform: scale(1.02);
@@ -401,7 +405,7 @@ header .categories {
 }
 .product--card .product--image {
   position: absolute;
-  top: 0;
+  top: 5px;
 }
 .product--card .product--image img {
   width: 100%;
@@ -1097,13 +1101,34 @@ footer p {
   justify-content: space-between;
   align-items: center;
   border-radius: 0.5rem;
-  padding: 1.5rem;
+  padding: 2rem 1.5rem;
+  margin-block: 2rem;
+}
+@media only screen and (max-width: 800px) {
+  .ads--banner {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    justify-content: center;
+    align-items: center;
+    justify-content: center;
+    align-items: center;
+  }
 }
 .ads--banner h1 {
   color: #fff;
 }
 .ads--banner img {
   margin: auto;
+}
+@media only screen and (max-width: 800px) {
+  .ads--banner img {
+    display: flex;
+    flex-direction: row;
+    gap: 1.5rem;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 * {
@@ -1121,7 +1146,7 @@ html, body {
   height: 100%;
   text-align: justify;
   background-color: #f8f8f8;
-  font-family: "Space Grotesk", "sans-serif";
+  font-family: "CabinetGrotesk-Regular";
 }
 html ::-webkit-scrollbar, body ::-webkit-scrollbar {
   width: 0.5rem;

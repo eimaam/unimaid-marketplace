@@ -4,7 +4,14 @@
     justify-content: space-between;
     align-items: center;
     border-radius: $m-border-radius;
-    padding: $m-pad;
+    padding: $l-pad $m-pad;
+    margin-block: $l-margin;
+    
+    @include mobile{
+        @include flex-col;
+        justify-content: center;
+        align-items: center;
+    }
 
     h1{
         color: $default;
@@ -12,5 +19,9 @@
 
     img{
         margin: auto;
+
+        @include mobile{
+            @include flex-row;
+        }
     }
 }
