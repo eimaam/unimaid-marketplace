@@ -3,14 +3,12 @@ import { Link } from 'react-router-dom'
 import { CgGoogle } from "react-icons/cg"
 import { useAuth } from '../Context/AuthContext'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
-import { collection, doc, onSnapshot, query, serverTimestamp, setDoc, Timestamp, where } from 'firebase/firestore'
+import { collection, doc, onSnapshot, query, serverTimestamp, setDoc, where } from 'firebase/firestore'
 import { toast } from "react-toastify"
 import { auth, database } from '../firebaseConfig'
-import { useUser } from '../Context/UserContext'
 
 export const SignUp = () => {
-    const { loading, setLoading, user, setUser, isLogged, setIsLogged, navigate, logInWithGoogle, userRef, setError, error } = useAuth()
-    const { plainDate, time } = useUser()
+    const { setLoading, setUser, navigate, logInWithGoogle, userRef, setError, error } = useAuth()
 
     const [showMoreInputs, setShowMoreInputs] = useState(false)
     const [existingUsername, setExistingUsername] = useState([])
@@ -34,17 +32,6 @@ export const SignUp = () => {
 
     
     const {email, password, displayName, phoneNo, username, staysHostel, location} = data
-    
-    
-    // creating unique id for users
-    // DATE: creating date format Day/Month
-    // random number between 0 to 4 to use
-    const random = Math.floor(Math.random() * 5-1 + 1)*1
-	
-    // seller unique id
-	const id = displayName.replaceAll(' ','').toLowerCase()+plainDate.slice(0, random+2)+time.toString().slice(0, random)
-
-    console.log(id)
 
     // handle input change
     const handleChange = (e) => {
@@ -54,7 +41,6 @@ export const SignUp = () => {
             ...prevData,
             [name]:value
         }))
-        console.log(data)
     }
 
     // get list of usernames from database that matches one entered by new user on sign up and save to regUsernames state 
@@ -84,10 +70,6 @@ useEffect(() => {
   // regular expression for USERNAME to use in testing if username corresponds to the expression
   const usernameRegex = /^[A-Za-z][A-Za-z0-9_]{2,16}$/;
 
-  console.log(existingUsername)
-  console.log(usernameRegex.test(username))
-
-
     // handle signup
     const signUp = async (e) => {
         e.preventDefault()
@@ -112,6 +94,7 @@ useEffect(() => {
                     email: email,
                     displayName: displayName,
                 })
+                // take all entered data and save to database except user's password to avoid security breach
                 setDoc(doc(userRef, email), {
                     email: email,
                     displayName: displayName,
@@ -128,6 +111,7 @@ useEffect(() => {
                 })
                 setLoading(false)
                 toast.success('Signed up successfully...')
+                // navigate to homepage after successfull sign up
                 return navigate('/')
             })
         }
@@ -135,23 +119,23 @@ useEffect(() => {
             if(err.code === 'auth/wrong-password'){
                 toast.error('Wrong Password')
                 setError('Wrong Password')
-              }else if(err.code === 'auth/too-many-requests'){
+                }else if(err.code === 'auth/too-many-requests'){
                 toast.error('Too many trials! You will have to reset your password to access this site!')
                 setError('Too many trials! You will have to reset your password to access this site!')
-              }else if(err.code === 'auth/user-not-found'){
-              }else if(err.code === 'auth/email-already-in-use'){
+                }else if(err.code === 'auth/user-not-found'){
+                }else if(err.code === 'auth/email-already-in-use'){
                 toast.error('Email already in use!')
                 setError('Email already in use')
-              }else if(err.code === 'auth/user-not-found'){
+                }else if(err.code === 'auth/user-not-found'){
                 toast.error('User not found!')
                 setError('User not found!')
-              }else if(err.code === 'auth/network-request-failed'){
+                }else if(err.code === 'auth/network-request-failed'){
                 setError('Sorry...! Something went wrong. Check your internet connection')
-              }
-              else{
+                }
+                else{
                 setLoading(false)
                 console.log(err.message)
-              }
+            }
         }
     }
 
@@ -206,7 +190,7 @@ useEffect(() => {
                 required
                 />
             </div>
-            <button type='button' onClick={() => setShowMoreInputs(prevState => !prevState)}>Continue</button>
+            {email == ""|| phoneNo == ""|| displayName == ""|| password == "" ? <button disabled type='button'>Continue</button> : <button type='button' onClick={() => setShowMoreInputs(prevState => !prevState)}>Continue</button>}
             </>
             }
 
@@ -233,7 +217,7 @@ useEffect(() => {
                 </select>
             </div>
             <i>If your answer to the above question is YES, enter your Hostel name 
-                else enter the name of your area of residence here in Maiduguri.
+                else enter area name or Store Location here in Maiduguri.
             </i>
             <div>
                 <input 
