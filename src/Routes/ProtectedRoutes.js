@@ -11,8 +11,6 @@ export const ProtectedRoutes = () => {
 
   if(userInfo.length === 0){
       return <LoaderFullsceen />
-  }else if(loading){
-    return <LoaderFullsceen />
   }
 
   return (
