@@ -38,6 +38,7 @@ export const UserProvider = ({children}) => {
           setAllUsernames(snapShot.docs.map(data => ({
             ...data.data()
           })))
+          setLoading(false)
       })
       }
       catch(err){
@@ -68,7 +69,6 @@ export const UserProvider = ({children}) => {
               ...data.data()
             })))
           })
-          setLoading(false)
       }
       catch(err){
           console.log(err.message)
@@ -80,6 +80,8 @@ export const UserProvider = ({children}) => {
     fetchAllUsernames()
 
   }, [user])
+
+  console.log(userInfo)
 
   // generating personal date format DD/MM/YY
     const stamp = Timestamp.now().toDate()

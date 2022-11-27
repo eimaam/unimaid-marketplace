@@ -12,7 +12,7 @@ import { IconButton} from './productPage/IconButton'
 import { fakeData } from './FakeData'
 import { useAuth } from '../Context/AuthContext'
 import { useUser } from '../Context/UserContext'
-import { LoaderFullsceen } from './LoaderFullscreen'
+import { LoaderFullscreen } from './LoaderFullscreen'
 import { database } from '../firebaseConfig'
 import { useParams } from 'react-router-dom'
 import { getDocs, onSnapshot, query, where } from 'firebase/firestore'
@@ -74,7 +74,7 @@ export const SellerProfile = () => {
     
     
     if(user === null){
-        return <LoaderFullsceen />
+        return <LoaderFullscreen />
     }else if(!checkUsernameAvailabilty){
         return navigate('error')
     }

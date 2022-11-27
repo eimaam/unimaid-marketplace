@@ -5,6 +5,7 @@ import { ResetPass } from './ResetPass'
 import { toast } from "react-toastify"
 import { useAuth } from '../Context/AuthContext'
 import { auth } from '../firebaseConfig'
+import { LoaderFullsceen, LoaderFullscreen } from './LoaderFullscreen'
 
 
 
@@ -42,33 +43,44 @@ export const Login = () => {
             await signInWithEmailAndPassword(auth, data.email, data.password)
             .then(() => {
                 setIsLogged(true)
-                toast.success('Logged in...')
+                toast.success('Welcome...')
                 navigate('/')
             })
             setLoading(false)
         }
         catch(err){
             if(err.code === 'auth/wrong-password'){
+                setLoading(false)
                 toast.error('Wrong Password')
                 setError('Wrong Password')
-              }else if(err.code === 'auth/too-many-requests'){
+            }else if(err.code === 'auth/too-many-requests'){
+                setLoading(false)
                 toast.error('Too many trials! You will have to reset your password to access this site!')
                 setError('Too many trials! You will have to reset your password to access this site!')
-              }else if(err.code === 'auth/user-not-found'){
+            }else if(err.code === 'auth/user-not-found'){
+                setLoading(false)
                 toast.error('User not found!')
                 setError('User not found!')
             }else if(err.code === 'auth/network-request-failed'){
+                setLoading(false)
                 setError('Sorry...! Something went wrong. Check your internet connection')
             }else if(err.code === 'auth/invalid-email'){
+                setLoading(false)
                 toast.error('Email or Password incorrect')
                 setError('Email or Password incorrect')
-              }
-              else{
-                console.log(err.message)
-                toast.error('Retry...')
+            }
+            else{
+            setLoading(false)
+            console.log(err.message)
+            toast.error('Retry...')
             }
         }
         
+    }
+
+
+    if(loading){
+        return <LoaderFullscreen />
     }
     
   return (
