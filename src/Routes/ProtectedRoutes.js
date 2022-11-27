@@ -9,8 +9,10 @@ export const ProtectedRoutes = () => {
     const { user, navigate, loading } = useAuth()
     const { userInfo } = useUser()
 
-  if(userInfo.length === 0 && user === null){
+  if(userInfo.length === 0){
       return <LoaderFullsceen />
+  }else if(loading){
+    return <LoaderFullsceen />
   }
 
   return (

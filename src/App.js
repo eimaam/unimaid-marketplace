@@ -30,20 +30,21 @@ function App() {
           <Routes>
             <Route element={<ProtectedRoutes />} >
               <Route path='/complete-profile' element={<AddData />} />
-              <Route path='/settings' element={<Settings />} />
+              <Route path='settings' element={<Settings />} />
               <Route path='/createad' element={<PostAds />} />
             </Route>
             {/* routes with nav and footer */}
             <Route element={<RoutesWithNavBar />}>
               <Route path='/' element={<Homepage />} />
-              <Route path='/profile/:id' element={<SellerProfile />} />
+              <Route path=':usernameParam' element={<SellerProfile />} />
               <Route path='/product' element={<ProductPage />} />
             </Route>
 
             <Route path='/login' element={<Login />} />
             <Route path='/signup' element={<SignUp />} />
             <Route path='/reset' element={<ResetPass />} />
-            <Route path='*' element={<ErrorPage />} />
+            <Route path="error" element={<ErrorPage />} />
+            <Route path="*" element={<ErrorPage />} />
           </Routes>
         </UserProvider>
       </AuthProvider>

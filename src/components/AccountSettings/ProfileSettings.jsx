@@ -1,6 +1,34 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useUser } from '../../Context/UserContext'
+import { deleteUser } from 'firebase/auth'
+import { doc, updateDoc } from 'firebase/firestore'
+import { auth } from '../../firebaseConfig'
+import { toast } from 'react-toastify'
+import { useAuth } from '../../Context/AuthContext'
 
-export const ProfileSettings = ({option, setOption}) => {
+export const ProfileSettings = ({option, setOption, name}) => {
+    const { user, loading, setLoading, userRef, navigate} = useAuth()
+
+    const [displayName, setDisplayName] = useState("")
+
+    const updateDisplayName = async () => {
+        try{
+            await updateDoc(doc(userRef, user.email), {
+                displayName: displayName
+            })
+            setLoading(true)
+            .then(() => {
+                toast.success('Display Name updated')
+                setLoading(false)
+            })
+        }
+        catch(err){
+            console.log(err.message)
+        }
+    }
+
+
+
   return (
     <aside>
         <h2>Profile Settings:</h2>
@@ -8,18 +36,22 @@ export const ProfileSettings = ({option, setOption}) => {
             <div className='info--item'>
                 <div>
                     <h4>Display Name:</h4>
-                    <h3>Dave Chapel Enterprises</h3>
+                    <h3>{name}</h3>
                 </div>
                 <button className='btn--small' onClick={() => setOption("display name")}>Change</button>
             </div>
-            {option === "display name" &&
-                <form action="">
+            {
+                // display if "option" state above === displayName
+            option === "display name" 
+            &&
+                <>
                     <input 
                     type="text" 
                     placeholder='Enter New Name'
+                    onChange={(e) => setDisplayName(e.target.value)}
                     />
-                    <button>Submit</button>
-                </form>
+                    <button onClick={updateDisplayName}>Submit</button>
+                </>
             }
         </div>
         <div className='info'>

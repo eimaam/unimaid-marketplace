@@ -18,7 +18,7 @@ header{
     }
 
     @include mobile{
-        margin-top: 3.45rem;
+        margin-top: 0;
         background-position: left bottom, right top;
         background-size: cover;
     }

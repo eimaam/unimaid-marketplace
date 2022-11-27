@@ -3,14 +3,17 @@ import { Link } from 'react-router-dom'
 import { CgGoogle } from "react-icons/cg"
 import { useAuth } from '../Context/AuthContext'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
-import { doc, serverTimestamp, setDoc, Timestamp } from 'firebase/firestore'
+import { collection, doc, onSnapshot, query, serverTimestamp, setDoc, Timestamp, where } from 'firebase/firestore'
 import { toast } from "react-toastify"
-import { auth } from '../firebaseConfig'
+import { auth, database } from '../firebaseConfig'
 import { useUser } from '../Context/UserContext'
 
 export const SignUp = () => {
     const { loading, setLoading, user, setUser, isLogged, setIsLogged, navigate, logInWithGoogle, userRef, setError, error } = useAuth()
     const { plainDate, time } = useUser()
+
+    const [showMoreInputs, setShowMoreInputs] = useState(false)
+    const [existingUsername, setExistingUsername] = useState([])
 
     useEffect(() => {
         error !== "" &&
@@ -24,12 +27,13 @@ export const SignUp = () => {
         password: "",
         displayName: "",
         phoneNo: "",
+        username: "",
         staysHostel: "",
         location: "",
     })
 
     
-    const {email, password, displayName, phoneNo, staysHostel, location} = data
+    const {email, password, displayName, phoneNo, username, staysHostel, location} = data
     
     
     // creating unique id for users
@@ -52,17 +56,58 @@ export const SignUp = () => {
         }))
         console.log(data)
     }
+
+    // get list of usernames from database that matches one entered by new user on sign up and save to regUsernames state 
+useEffect(() => {
+    const checkUsername = async () => {
+      try{
+        const q = query(collection(database, "userDetails"), where("username", "==", username))
+        await onSnapshot(q,snapShot => {
+          setExistingUsername(snapShot.docs.map(data => ({
+            ...data.data(),
+            id: data.id
+          })))
+        })
+        
+      }
+      catch(err){
+        console.log(err.message)
+      }
+    }
+    checkUsername()
+  }, [username])
+  
+  // check if the username entered by new user matches another in the database
+  // if regUsernames' length is greater than 0 that means username entered matches one from the database and save the value into taken username
+  const registeredUsername = existingUsername.length > 0 && existingUsername[0].username
+  
+  // regular expression for USERNAME to use in testing if username corresponds to the expression
+  const usernameRegex = /^[A-Za-z][A-Za-z0-9_]{2,16}$/;
+
+  console.log(existingUsername)
+  console.log(usernameRegex.test(username))
+
+
     // handle signup
     const signUp = async (e) => {
         e.preventDefault()
         if(password.length < 6){
             setLoading(false)
-            setError('Password must be at least 6 characters')
-            return toast.error('Password must be at least 6 characters')
+            setError('Password must be at least 6 characters long')
+            return toast.error('Password must be at least 6 characters long')
+        }else if(username.length < 3){
+            // check if entered username is up to 3 characters
+            setError('Username must be at least 3 characters long')
+            return toast.error('Username must be at least 3 characters long')
+            // test for username format using regex above
+        }else if(!usernameRegex.test(data.username)){
+        setError('Incorrect Username format.  Not supporting Username that starts with a number and can\'t end with \'.\'')
+        return toast.error('Username format not supported')
         }
+        
         try{
             await createUserWithEmailAndPassword(auth, email, password)
-            .then(res => {
+            .then(() => {
                 setUser({
                     email: email,
                     displayName: displayName,
@@ -70,19 +115,20 @@ export const SignUp = () => {
                 setDoc(doc(userRef, email), {
                     email: email,
                     displayName: displayName,
+                    username: username,
                     location: location,
                     phoneNo: phoneNo,
                     staysHostel: staysHostel,
                     isVerified: false,
+                    accountStatus: "active", /*{ account status set to active and once user deletes account it gets updated to inactive/delete from settings page in order to keep track of deleted accounts}*/
                     joinedOn: serverTimestamp(),
                     totalAdsCreated: 0,
                     totalSales: 0,
                     activeAds: 0,
-                    id: id,
                 })
                 setLoading(false)
                 toast.success('Signed up successfully...')
-                return navigate('/profile/:id')
+                return navigate('/')
             })
         }
         catch(err){
@@ -109,11 +155,15 @@ export const SignUp = () => {
         }
     }
 
+
   return (
     <div className='container' id='signup'>
         <form onSubmit={signUp}>
             <h3>Hi there! 👋 Welcome!</h3>
             <h4>Enter your details to register your business/brand:</h4>
+            {
+            !showMoreInputs &&
+            <>
             <div>
                 <input 
                 type="email"
@@ -133,6 +183,7 @@ export const SignUp = () => {
                 value={phoneNo}
                 onChange={handleChange}
                 minLength={11}
+                maxLength={11}
                 />
             </div>
             <div>
@@ -141,6 +192,35 @@ export const SignUp = () => {
                 name='displayName' 
                 placeholder='Full Name/Business Name'
                 value={displayName}
+                onChange={handleChange}
+                required
+                />
+            </div>
+            <div>
+                <input 
+                type="password" 
+                placeholder='Password'
+                name='password'
+                value={password}
+                onChange={handleChange}
+                required
+                />
+            </div>
+            <button type='button' onClick={() => setShowMoreInputs(prevState => !prevState)}>Continue</button>
+            </>
+            }
+
+            {showMoreInputs &&
+            <>
+                <label style={{display: "block", marginRight: "auto", marginLeft: "30px", fontStyle: "italic", fontWeight: "bold", padding: "0", marginBlock: "0" }} htmlFor="">
+                    {username ? `www.maidmarketplace/${username}` : "eg: www.maidmarketplace/iphonestore1"}
+                </label>
+            <div>
+                <input 
+                type="text" 
+                name='username'
+                value={username}
+                placeholder='Username'
                 onChange={handleChange}
                 required
                 />
@@ -165,19 +245,19 @@ export const SignUp = () => {
                 required
                 />
             </div>
+            </>
+            }
+            {
+            showMoreInputs &&
+            <>
             <div>
-                <input 
-                type="password" 
-                placeholder='Password'
-                name='password'
-                value={password}
-                onChange={handleChange}
-                required
-                />
+                <button onClick={() => setShowMoreInputs(prevState => !prevState)}>Previous</button>
             </div>
             <div>
                 <input type='submit' value="Sign up" />
             </div>
+            </>
+            }
             <div>
                 <p className='error'>{error}</p>
             </div>

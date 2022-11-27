@@ -6,8 +6,13 @@ import { RiUserSettingsFill } from 'react-icons/ri'
 import { AccountSettings } from './AccountSettings'
 import { ContactSettings } from './ContactSettings'
 import { ProfileSettings } from './ProfileSettings'
+import { useParams } from 'react-router-dom'
+import { useUser } from '../../Context/UserContext'
+import { useAuth } from '../../Context/AuthContext'
 
 export const Settings = () => {
+    const { user } = useAuth()
+    const { displayName, username, phoneNo } = useUser()
     const [nav, setNav] = useState("profile")
     const [selected, setSelected] = useState("")
 
@@ -35,12 +40,17 @@ export const Settings = () => {
         {
             nav === "profile"
             && 
-            <ProfileSettings option={selected} setOption={setSelected}/>
+            <ProfileSettings
+            name={displayName}
+            option={selected} setOption={setSelected}/>
         }
         {
             nav === "contact"
             && 
-            <ContactSettings option={selected} setOption={setSelected}/>
+            <ContactSettings 
+            phoneNo={phoneNo}
+            email={user.email}
+            option={selected} setOption={setSelected}/>
         }
         {
             nav === "account"

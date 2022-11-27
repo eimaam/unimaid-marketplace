@@ -1,4 +1,4 @@
-import { collection, getDocs, onSnapshot, query, Timestamp, where } from 'firebase/firestore'
+import { collection, doc, getDoc, getDocs, onSnapshot, query, Timestamp, where } from 'firebase/firestore'
 import React, { createContext, useContext, useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 import { database } from '../firebaseConfig'
@@ -14,10 +14,12 @@ export const UserProvider = ({children}) => {
   const { user, loading, setLoading, userRef, adsRef } = useAuth()
   const [userInfo, setUserInfo] = useState([])
   const [userAds, setUserAds] = useState([])
+  const [allUsernames, setAllUsernames] = useState([])
 
   const userData = {
     regEmail: userInfo.email,
     displayName: userInfo.displayName,
+    username: userInfo.username,
     isVerified: userInfo.isVerified,
     phoneNo: userInfo.phoneNo,
     location: userInfo.location,
@@ -27,8 +29,21 @@ export const UserProvider = ({children}) => {
     }
 
     
-    const { regEmail, displayName, isVerified, phoneNo, location, staysHostel, joinedOn, totalAds, adsList } = userData
+    const { regEmail, displayName, username, isVerified, phoneNo, location, staysHostel, joinedOn, totalAds, adsList } = userData
     
+    const fetchAllUsernames = async () => {
+      try{
+        const q = query(collection(database, "usersDetails"))
+        await onSnapshot(q, snapShot => {
+          setAllUsernames(snapShot.docs.map(data => ({
+            ...data.data()
+          })))
+      })
+      }
+      catch(err){
+        console.log(err.code)
+      }
+    }
 
   useEffect(() => {
     setLoading(true)
@@ -47,7 +62,7 @@ export const UserProvider = ({children}) => {
 
     const fetchUserAds = async () => {
       try{
-          const q = query(adsRef, where("poster", "==", "imamddahir@gmail.com"))
+          const q = query(adsRef, where("poster", "==", user.email))
           await onSnapshot(q, snapShot => {
             setUserAds(snapShot.docs.map(data => ({
               ...data.data()
@@ -62,6 +77,7 @@ export const UserProvider = ({children}) => {
 
     fetchUserInfo()
     fetchUserAds()
+    fetchAllUsernames()
 
   }, [user])
 
@@ -89,10 +105,11 @@ export const UserProvider = ({children}) => {
 
   const value = {
     userInfo,
-    regEmail, displayName, isVerified, phoneNo, location, staysHostel, joinedOn, totalAds,
+    regEmail, displayName, isVerified, phoneNo, location, staysHostel, joinedOn, totalAds, username,
     userAds,
     plainDate,
     time,
+    allUsernames,
   }
 
   return (

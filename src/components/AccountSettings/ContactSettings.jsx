@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const ContactSettings = ({option, setOption}) => {
+export const ContactSettings = ({option, setOption, phoneNo, email}) => {
   return (
     <aside>
         <h2>Contact Details:</h2>
@@ -8,7 +8,7 @@ export const ContactSettings = ({option, setOption}) => {
             <div className='info--item'>
                 <div>
                     <h4>Phone Number:</h4>
-                    <h3>+23480123456789</h3>
+                    <h3>{phoneNo}</h3>
                 </div>
                 <button className='btn--small' onClick={() => setOption("phoneNo")}>Change</button>
             </div>
@@ -26,7 +26,7 @@ export const ContactSettings = ({option, setOption}) => {
             <div className='info--item'>
                 <div>
                     <h4>Contact Email:</h4>
-                    <h3>davechap@davachapel.com</h3>
+                    <h3>{email}</h3>
                 </div>
                 <button className='btn--small' onClick={() => setOption("email")}>Change</button>
             </div>

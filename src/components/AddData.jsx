@@ -1,4 +1,4 @@
-import { doc, serverTimestamp, setDoc } from 'firebase/firestore'
+import { doc, serverTimestamp, setDoc, updateDoc } from 'firebase/firestore'
 import React, { useState } from 'react'
 import { useAuth } from '../Context/AuthContext'
 import { toast } from 'react-toastify'
@@ -35,7 +35,7 @@ export const AddData = () => {
             return toast.error('Phone number incorect')
         }
         try{
-            await setDoc(doc(userRef, user.email), {
+            await updateDoc(doc(userRef, user.email), {
                 displayName: displayName,
                 location: location,
                 phoneNo: phoneNo,

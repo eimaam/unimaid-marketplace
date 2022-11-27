@@ -223,6 +223,9 @@ nav {
   z-index: 9;
 }
 @media only screen and (max-width: 800px) {
+  nav {
+    position: relative;
+  }
   nav * {
     font-size: 0.9rem;
   }
@@ -323,7 +326,7 @@ header * {
 }
 @media only screen and (max-width: 800px) {
   header {
-    margin-top: 3.45rem;
+    margin-top: 0;
     background-position: left bottom, right top;
     background-size: cover;
   }

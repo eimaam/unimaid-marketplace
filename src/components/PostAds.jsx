@@ -104,7 +104,7 @@ export const PostAds = () => {
                 posterDisplayName: displayName,
                 category: category,
                 itemName: itemName,
-                itemPrice: itemPrice,
+                itemPrice: itemPrice.toLocaleString(),
                 itemBrand: itemBrand,
                 itemCondition: itemCondition,
                 itemColour: itemColour,

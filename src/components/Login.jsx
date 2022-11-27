@@ -1,5 +1,5 @@
-import { browserLocalPersistence, setPersistence, signInWithEmailAndPassword } from 'firebase/auth'
-import React, { useState } from 'react'
+import { browserLocalPersistence, onAuthStateChanged, setPersistence, signInWithEmailAndPassword } from 'firebase/auth'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ResetPass } from './ResetPass'
 import { toast } from "react-toastify"
@@ -10,6 +10,12 @@ import { auth } from '../firebaseConfig'
 
 export const Login = () => {
     const { user, loading, setLoading, navigate, setIsLogged, error, setError } = useAuth()
+
+    useEffect(() => {
+        onAuthStateChanged(auth, data => {
+            data && navigate('/')
+        })
+    }, [])
 
     const [data, setData] = useState({
         email: "",
@@ -37,7 +43,7 @@ export const Login = () => {
             .then(() => {
                 setIsLogged(true)
                 toast.success('Logged in...')
-                navigate('/profile')
+                navigate('/')
             })
             setLoading(false)
         }
