@@ -9,8 +9,7 @@ import { useUser } from '../Context/UserContext';
 
 export const PostAds = () => {
     const { user,  navigate } = useAuth()
-    const { displayName } = useUser()
-    const { datePlain } = useAuth()
+    const { displayName, username } = useUser()
     
     const [data, setData] = useState({
         category: "",
@@ -32,9 +31,30 @@ export const PostAds = () => {
     const [uploadProgress, setUploadProgress] = useState(0)
 
     // generating unique ad id from date
-    const id = encodeURI(`${category.toLowerCase()}/${itemName.toLowerCase()}/${datePlain}`)
-    // end of date formatting
+    // generating personal date format DD/MM/YY
+    // const stamp = Timestamp.now().toDate()
+    
+    // let time = stamp.getTime()
+    // let day = stamp.getDate()
+    // let monthByIndex = stamp.getMonth();
+    // let fullYear = stamp.getFullYear();
+    // let month = monthByIndex+1;
+    // add 0 to beginning of Month 1-9
+    // if(month <= 9){
+    //     month = `0${month}`
+    // }
+    // convert year to string to easily extract only last two figures eg. 2022 == 22
+    // const year = fullYear.toString().slice(2,4)
 
+    // final date format DD/MM/YY
+    // const date = `${day}/${month}/${year}`
+    // creating date format with no / to create a link
+    // const plainDate = `${day}${month}${year}`
+
+
+
+    const id = encodeURI(`${username.toLowerCase()}/${itemName.toLowerCase()}`)
+    // end of date formatting
 
     // firebase firestore/cloud database storage references    
     const storageRef = ref(storage, `/ads/${images.name}`)
@@ -57,7 +77,6 @@ export const PostAds = () => {
             const newImage = upload[i]
             setImages(prevState => [...prevState, newImage])
         }
-
     }
     
 
@@ -168,6 +187,7 @@ export const PostAds = () => {
                 <option value="UK-used">UK-Used</option>
                 <option value="US used">US-Used</option>
                 <option value="Nigerian used">Nigerian Used</option>
+                <option value="Others">Others</option>
             </select>
             <input 
             type="text"
@@ -177,20 +197,20 @@ export const PostAds = () => {
             onChange={handleChange} 
             />
             <input 
-            type="text"
+            type="number"
             placeholder='Manufacturing Year'
             name='itemManufacturingYear'
             value={itemManufacturingYear} 
             onChange={handleChange}
             />
             <input 
-            type="text"
+            type="number"
             placeholder='Purchase Year'
             name="itemPurchaseYear"
             value={itemPurchaseYear}
             onChange={handleChange} 
             />
-            <select name="receipt" id="" defaultValue="Receipt Available?" onChange={handleChange}>
+            <select name="receipt" defaultValue="Receipt Available?" onChange={handleChange}>
                 <option defaultValue="" value="Receipt Available?" disabled>Receipt Available?</option>
                 <option value="yes">Yes</option>
                 <option value="no">No</option>
@@ -215,7 +235,7 @@ export const PostAds = () => {
             value="Preview Ad Details" 
             onClick={(e) => uploadImages(e)}
             />
-            <input type="submit" value="Post Ad" onClick={createAd}/>
+            {uploadProgress === 100 && <input type="submit" value="Post Ad" onClick={createAd}/>}
         </form>
         {/* {imageURL !== "" &&<div>
             <img src={imageURL} alt="" />

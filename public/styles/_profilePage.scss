@@ -4,8 +4,8 @@
     padding: 0;
 
     @include mobile{
-        margin-block: 2.5rem;
-        border: solid red;
+        margin-top: 0;
+        margin-bottom: 2.5rem;
     }
     
     .container--item{
