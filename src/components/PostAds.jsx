@@ -8,7 +8,7 @@ import { useAuth } from '../Context/AuthContext';
 import { useUser } from '../Context/UserContext';
 
 export const PostAds = () => {
-    const { loading, user, setLoading, navigate } = useAuth()
+    const { user,  navigate } = useAuth()
     const { displayName } = useUser()
     const { datePlain } = useAuth()
     
