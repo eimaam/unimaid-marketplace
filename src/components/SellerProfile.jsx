@@ -46,8 +46,6 @@ export const SellerProfile = () => {
                 console.log(err.message)
             }
         }
-
-        
         pageData()
     }, [usernameParam])
 
