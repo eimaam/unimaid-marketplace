@@ -15,7 +15,7 @@ export const AddData = () => {
     // if username is available, User is not newly registered so navigate to homepage
     useEffect(() => {
         userInfo.username != "" ? navigate('/') : setLoading(false)
-    }, [user])
+    }, [user, loading])
 
     const [data, setData] = useState({
         displayName: "",
