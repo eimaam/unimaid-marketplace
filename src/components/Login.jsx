@@ -6,11 +6,12 @@ import { toast } from "react-toastify"
 import { useAuth } from '../Context/AuthContext'
 import { auth } from '../firebaseConfig'
 import { LoaderFullsceen, LoaderFullscreen } from './LoaderFullscreen'
+import { CgGoogle } from 'react-icons/cg'
 
 
 
 export const Login = () => {
-    const { user, loading, setLoading, navigate, setIsLogged, error, setError } = useAuth()
+    const { user, loading, setLoading, navigate, setIsLogged, error, setError, logInWithGoogle } = useAuth()
 
     useEffect(() => {
         onAuthStateChanged(auth, data => {
@@ -112,6 +113,12 @@ export const Login = () => {
             <i className="error">{error}</i>
             <div>
                 <input type='submit' value="Log in"/>
+            </div>
+            <p>or</p>
+            <div>
+                <button onClick={logInWithGoogle} type='button' className='flex-row' style={{margin: "auto"}}>
+                    <CgGoogle /> Login with Google 
+                </button>
             </div>
             <div>
                 <p>Forgot Password? <button className="btn--small error--background"><Link to="/reset">RESET</Link></button></p>

@@ -27,6 +27,7 @@ function App() {
     <>
       <AuthProvider>
         <UserProvider>
+          <DataProvider>
           <Routes>
             <Route element={<ProtectedRoutes />} >
               <Route path='/complete-profile' element={<AddData />} />
@@ -46,6 +47,7 @@ function App() {
             <Route path="error" element={<ErrorPage />} />
             <Route path="*" element={<ErrorPage />} />
           </Routes>
+          </DataProvider>
         </UserProvider>
       </AuthProvider>
       <ToastContainer 

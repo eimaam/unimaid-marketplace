@@ -7,7 +7,6 @@ import { useUser } from '../Context/UserContext'
 
 export const ProtectedRoutes = () => {
     const { user, navigate, loading } = useAuth()
-    const { userInfo } = useUser()
 
   if(loading){
       return <LoaderFullscreen />

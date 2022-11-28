@@ -19,6 +19,7 @@ import { getDocs, onSnapshot, query, where } from 'firebase/firestore'
 
 export const SellerProfile = () => {
     let { usernameParam } = useParams()
+    
     // importing values from Contexts
     const { user, navigate, userRef, adsRef } = useAuth()
     const { userInfo, displayName, username, isVerified, phoneNo, location, staysHostel, joinedOn, allUsernames } = useUser()
@@ -67,9 +68,6 @@ export const SellerProfile = () => {
         fetchSellerAds()
 
     }, [pageData])
-    
-    console.log(sellerAds)
-    
     
     if(user === null){
         return <LoaderFullscreen />

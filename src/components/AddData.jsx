@@ -1,19 +1,31 @@
 import { doc, serverTimestamp, setDoc, updateDoc } from 'firebase/firestore'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useAuth } from '../Context/AuthContext'
 import { toast } from 'react-toastify'
+import { useData } from '../Context/DataContext'
+import { useUser } from '../Context/UserContext'
 
 export const AddData = () => {
     const { loading, setLoading, user, setUser, isLogged, setIsLogged, navigate, logInWithGoogle, userRef, setError, error } = useAuth()
+    const { userInfo } = useUser()
+
+    const { checkUsername, existingUsername } = useData()
+
+    // when logged in with google, check if user has a username
+    // if username is available, User is not newly registered so navigate to homepage
+    useEffect(() => {
+        userInfo.username ? navigate('/') : setLoading(false)
+    }, [user])
 
     const [data, setData] = useState({
         displayName: "",
+        username: "",
         phoneNo: "",
         staysHostel: "",
         location: "",
     })
 
-    const {displayName, phoneNo, staysHostel, location} = data
+    const {displayName, username, phoneNo, staysHostel, location} = data
 
     // handle input change
     const handleChange = (e) => {
@@ -23,20 +35,40 @@ export const AddData = () => {
             ...prevData,
             [name]:value
         }))
-        console.log(data)
     }
 
+
+    useEffect(() => {
+        checkUsername(username)
+    }, [username])
+
+    // regular expression for USERNAME to use in testing if username corresponds to the expression
+    const usernameRegex = /^[A-Za-z][A-Za-z0-9_]{2,16}$/;
 
     // handle profile update
     const AddData = async (e) => {
         e.preventDefault()
-        if(phoneNo.length < 11){
-            setError('Phone number incorrect')
-            return toast.error('Phone number incorect')
+        // if existingUsername.length > 0 that means username already exists, return error message
+        if(existingUsername.length > 0){
+            setError('Username already taken')
+            return toast.error('Username already taken')
+        }else if(username.length < 3){
+            // check if entered username is up to 3 characters
+            setError('Username must be at least 3 characters long')
+            return toast.error('Username must be at least 3 characters long')
+            // return error if username entered == "error" as site/error is reserved for error page
+        }else if(username == "error"){
+            setError('Ooops! You can\'t use that Username as it is a reserved word on the here!')
+            return toast.error('Ooops! You can\'t use that Username as it is a reserved word on the here!')
+            // test for username format using regex above
+        }else if(!usernameRegex.test(data.username)){
+            setError('Incorrect Username format.  Not supporting Username that starts with a number and can\'t end with \'.\'')
+            return toast.error('Username format not supported')
         }
         try{
             await updateDoc(doc(userRef, user.email), {
                 displayName: displayName,
+                username: username,
                 location: location,
                 phoneNo: phoneNo,
                 staysHostel: staysHostel,
@@ -44,7 +76,7 @@ export const AddData = () => {
                 joinedOn: serverTimestamp()
             })
             toast.success("Profile Updated")
-            return navigate('/profile')
+            return navigate('/')
         }
         catch(error){
             console.log(error.message)
@@ -73,6 +105,15 @@ export const AddData = () => {
                 placeholder='Phone Number - preferrably WA number'
                 pattern='08012345678 - without country code'
                 value={phoneNo}
+                onChange={handleChange}
+                />
+            </div>
+            <div>
+                <input 
+                type="text" 
+                name='username'
+                placeholder='Username'
+                value={username}
                 onChange={handleChange}
                 />
             </div>

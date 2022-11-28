@@ -20,6 +20,7 @@ export const AuthProvider = ({children}) => {
     const [isLogged, setIsLogged] = useState(false)
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState("")
+    const [message, setMessage] = useState("")
 
 
 
@@ -53,7 +54,7 @@ export const AuthProvider = ({children}) => {
     }, [])
 
     // log in with gmail
-    const loginWithGoogle = async () => {
+    const logInWithGoogle = async () => {
         try{
             await setPersistence(auth, browserLocalPersistence)
             await signInWithPopup(auth, googleProvider)
@@ -63,7 +64,8 @@ export const AuthProvider = ({children}) => {
                     displayPhoto: res.photoURL,
                     displayName: res.displayName
                 })
-            navigate('/profile')
+                setLoading(true)
+            navigate('/complete-profile')
         })
         }
         catch(error){
@@ -86,6 +88,7 @@ export const AuthProvider = ({children}) => {
 
     // export values to be used in other components
     const value = {
+        logInWithGoogle,
         user,
         setUser,
         loading, 
@@ -97,7 +100,8 @@ export const AuthProvider = ({children}) => {
         setError,
         userRef,
         logOut,
-        adsRef
+        adsRef,
+        message, setMessage
     }
 
 

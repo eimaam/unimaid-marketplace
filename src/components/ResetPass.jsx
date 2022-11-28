@@ -20,13 +20,17 @@ export const ResetPass = () => {
       })
     }
     catch(err){
-      console.log(err.message)
+      if(err.code === "auth/user-not-found"){
+        toast.error('User not found')
+      }else{
+        toast.error(err.code)
+      }
     }
   }
 
   return (
     <div className='container' id='resetPass'>
-        <form action="">
+        <form onSubmit={resetPassword}>
               <input 
               type="email" 
               placeholder='Registered Email'
@@ -36,7 +40,6 @@ export const ResetPass = () => {
               <input 
               type="submit" 
               value="RESET"
-              onChange={resetPassword}
               />
               <p>{message}</p>
         </form>
