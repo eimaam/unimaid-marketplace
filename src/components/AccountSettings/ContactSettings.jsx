@@ -1,6 +1,40 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useAuth } from '../../Context/AuthContext'
+import { doc, updateDoc } from 'firebase/firestore'
+import { useUser } from '../../Context/UserContext'
+import { toast } from 'react-toastify'
+import { updateEmail } from 'firebase/auth'
+import { auth } from '../../firebaseConfig'
+
 
 export const ContactSettings = ({option, setOption, phoneNo, email}) => {
+    const { user, userRef, setLoading } = useAuth()
+
+    // state to handle new number
+    const [data, setData] = useState({
+        newEmail: "",
+        newPhoneNumber: ""
+    })
+
+    const { newEmail, newPhoneNumber } = data
+
+    // update phone no in firestore
+    const updatePhone = async () => {
+        try{
+            setLoading(true)
+            await updateDoc(doc(userRef, user.email), {
+                phoneNo: newPhoneNumber,
+            })
+            toast.success('Phone Number changed')
+            setLoading(false)
+        }
+        catch(err){
+            console.log(err.message)
+        }
+    }
+    
+
+
   return (
     <aside>
         <h2>Contact Details:</h2>
@@ -13,10 +47,12 @@ export const ContactSettings = ({option, setOption, phoneNo, email}) => {
                 <button className='btn--small' onClick={() => setOption("phoneNo")}>Change</button>
             </div>
             {option === "phoneNo" &&
-                <form action="">
+                <form onSubmit={updatePhone}>
                     <input 
-                    type="text" 
+                    type="number" 
+                    name='newNumber'
                     placeholder='Enter New Phone Number'
+                    onChange={(e) => setData(prevData => ({...prevData, newPhoneNumber: e.target.value}))}
                     />
                     <button type='submit'>Submit</button>
                 </form>
@@ -30,16 +66,16 @@ export const ContactSettings = ({option, setOption, phoneNo, email}) => {
                 </div>
                 <button className='btn--small' onClick={() => setOption("email")}>Change</button>
             </div>
-            {option === "email" &&
+            {/* {option === "email" &&
                 <form action="">
                     <input 
                     type="email" 
                     placeholder='Enter New Email'
+                    onChange={(e) => setData(prevData => ({...prevData, mewEmail: e.target.value}))}
                     />
-                    <button type='submit'>Submit</button>
+                    <button type='submit' onClick={changeEmail}>Submit</button>
                 </form>
-
-            }
+            } */}
         </div>
     </aside>
   )
