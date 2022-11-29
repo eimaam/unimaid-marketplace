@@ -11,6 +11,7 @@ nav{
 
     @include mobile{
         position: relative;
+        margin-block: 0;
 
         *{
             font-size: 0.9rem;
@@ -66,7 +67,7 @@ nav{
     bottom: 0;
     margin: auto;
     z-index: 10;
-
+    
     @include mobile{
         display: block;
     }
@@ -74,7 +75,7 @@ nav{
     ul{
         margin: auto;
         border-radius: $m-border-radius;
-        background-color: $secondary;
+        background-color: $primary;
         width: 70%;
         @include grid(3, 1fr);
         padding-block: $s-pad;

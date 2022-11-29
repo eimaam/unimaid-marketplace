@@ -7,28 +7,24 @@ import { toast } from 'react-toastify'
 import { useAuth } from '../../Context/AuthContext'
 
 export const ProfileSettings = ({option, setOption, name}) => {
-    const { user, loading, setLoading, userRef, navigate} = useAuth()
+    const { user, loading, setLoading, userRef } = useAuth()
 
     const [displayName, setDisplayName] = useState("")
 
     const updateDisplayName = async () => {
         try{
+            setLoading(true)
             await updateDoc(doc(userRef, user.email), {
                 displayName: displayName
             })
-            setLoading(true)
-            .then(() => {
-                toast.success('Display Name updated')
-                setLoading(false)
-            })
+            toast.success('Display Name updated')
+            setLoading(false)
         }
         catch(err){
             console.log(err.message)
         }
     }
-
-
-
+    
   return (
     <aside>
         <h2>Profile Settings:</h2>

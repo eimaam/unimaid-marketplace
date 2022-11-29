@@ -6,8 +6,9 @@ import { FaRegUser } from "react-icons/fa"
 import { AiOutlinePlusCircle } from "react-icons/ai"
 import { useData } from '../Context/DataContext'
 import { useUser } from '../Context/UserContext'
+import { MobileNav } from './MobileNav'
 
-export const Nav = () => {
+export const DesktopNav = () => {
   const { user, logOut } = useAuth()
   const { username } = useUser()
   return (
@@ -20,13 +21,8 @@ export const Nav = () => {
               <li><Link to="/createad">Post Ad</Link></li>
           </ul>
       </nav>
-      <div id='mNav'>
-        <ul>
-          <li><Link to=""><GoHome /></Link></li>
-          <li><Link to=""><FaRegUser /></Link></li>
-          <li><Link to=""><AiOutlinePlusCircle /></Link></li>
-        </ul>
-      </div>
+      {/* Mobile Nav Bar */}
+      <MobileNav />
   </>
   )
 }

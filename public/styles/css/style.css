@@ -225,6 +225,7 @@ nav {
 @media only screen and (max-width: 800px) {
   nav {
     position: relative;
+    margin-block: 0;
   }
   nav * {
     font-size: 0.9rem;
@@ -288,7 +289,7 @@ nav ul li:last-child {
 #mNav ul {
   margin: auto;
   border-radius: 0.5rem;
-  background-color: rgb(7, 136, 191);
+  background-color: rgb(37, 20, 111);
   width: 70%;
   display: grid;
   grid-template-columns: repeat(3, 1fr);

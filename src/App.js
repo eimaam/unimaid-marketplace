@@ -4,7 +4,6 @@ import { AccountSettings, Settings } from './components/AccountSettings/Settings
 import { Footer } from './components/Footer';
 import { Homepage } from './components/LandingPage/Homepage';
 import { Login } from './components/Login';
-import { Nav } from './components/Nav';
 import { PostAds } from './components/PostAds';
 import { ProductPage } from './components/productPage/ProductPage';
 import { ResetPass } from './components/ResetPass';
