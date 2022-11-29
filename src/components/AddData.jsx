@@ -14,7 +14,7 @@ export const AddData = () => {
     // when logged in with google, check if user has a username
     // if username is available, User is not newly registered so navigate to homepage
     useEffect(() => {
-        userInfo.username != "" ? navigate('/') : setLoading(false)
+        userInfo.username != undefined ? navigate('/') : setLoading(false)
     }, [user, loading])
 
     const [data, setData] = useState({
