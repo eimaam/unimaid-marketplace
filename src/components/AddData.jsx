@@ -66,6 +66,7 @@ export const AddData = () => {
             return toast.error('Username format not supported')
         }
         try{
+            setLoading(true)
             await updateDoc(doc(userRef, user.email), {
                 displayName: displayName,
                 username: username,
@@ -75,6 +76,7 @@ export const AddData = () => {
                 isVerified: false,
                 joinedOn: serverTimestamp()
             })
+            setLoading(false)
             toast.success("Profile Updated")
             return navigate('/')
         }
