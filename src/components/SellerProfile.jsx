@@ -96,7 +96,7 @@ export const SellerProfile = () => {
                         title="Message Seller"
                     />
                     <IconButton 
-                        link="+23480123456789"
+                        link="tel:+23480123456789"
                         icon={<FaPhone />}
                         title="Call Seller"
                     />
