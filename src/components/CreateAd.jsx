@@ -30,10 +30,13 @@ export const CreateAd = () => {
     const [imageURLs, setImageURLs] = useState([])
     const [uploadProgress, setUploadProgress] = useState(0)
 
+    const d = new Date()
+    const time = d.getTime()
 
+    
     // creating date format using encode method to save it in a format recognized by browser link
-    const id = encodeURI(`${username}-${itemName.toLowerCase()}`)
-
+    const id = encodeURI(`${username}-${itemName.toLowerCase()}-${d.toLocaleDateString()}-${time}`)
+    
     // firebase firestore/cloud database storage references    
     const storageRef = ref(storage, `/ads/${images.name}`)
     const adsRef = collection(database, "Ads");

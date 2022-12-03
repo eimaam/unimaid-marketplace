@@ -19,6 +19,7 @@ import { RoutesWithNavBar } from './Routes/RoutesWithNavBar';
 import { DataProvider } from './Context/DataContext';
 import { LoaderFullscreen } from './components/LoaderFullscreen';
 import { CreateAd } from './components/CreateAd';
+import ScrollToTop from './ScrollToTop';
 
 
 function App() {
@@ -34,7 +35,7 @@ function App() {
   }
 
   return (
-    <>
+    <ScrollToTop>
       <AuthProvider>
         <UserProvider>
           <DataProvider>
@@ -72,7 +73,7 @@ function App() {
         pauseOnHover
         theme="light"
       />
-    </>
+    </ScrollToTop>
   );
 }
 
