@@ -14,6 +14,7 @@ import { useUser } from '../../Context/UserContext'
 import { database } from '../../firebaseConfig'
 import { ItemSpec } from './ItemSpec'
 import { MoreCategoryItems } from './MoreCategoryItems'
+import { ItemStats } from './ItemStats'
 
 export const ProductPage = () => {
   const { userRef, adsRef, loading, setLoading } = useAuth()
@@ -86,7 +87,7 @@ export const ProductPage = () => {
     itemColour: item[0].itemColour,
     itemManufacturingYear: item[0].itemManufacturingYear,
     itemPurchaseYear: item[0].itemPurchaseYear,
-    receipt: item[0].receipt,
+    itemReceipt: item[0].receipt,
     itemDetails: item[0].itemDetails,
     itemImages: item[0].itemImages,
     isSponsored: item[0].isSponsored,
@@ -95,7 +96,7 @@ export const ProductPage = () => {
 
   const {posterEmail, sellerDisplayName, sellerPhoneNo,
     sellerLocation, category, itemName, itemPrice, itemBrand, itemCondition, itemColour, 
-        itemManufacturingYear, itemPurchaseYear, receipt, itemDetails, itemImages, isSponsored, id} = data
+        itemManufacturingYear, itemPurchaseYear, itemReceipt, itemDetails, itemImages, isSponsored, id} = data
 
 
       
@@ -124,60 +125,16 @@ export const ProductPage = () => {
           <button className='error--background' onClick={() => setShowModal(prev => !prev)}>Close Ad</button>
         </div>
 
-        <div className='product--stat'>
-          <div>
-            <div className='item'>
-              <p>
-                Product Condiiton: 
-              </p>
-              <b>
-                {itemCondition}
-              </b>
-            </div>
-            <div>
-              <p>
-                Colour: 
-              </p>
-              <b>
-                {itemColour}
-              </b>
-            </div>
-            <div>
-              <p>
-                Manufacturing Year: 
-              </p>
-              <b>
-                {itemManufacturingYear}
-              </b>
-            </div>
-          </div>
-          <div>
-            <div>
-              <p>
-                Brand: 
-              </p>
-              <b>
-                {itemBrand}
-              </b>
-            </div>
-            <div>
-              <p>
-                Receipt: 
-              </p>
-              <b>
-                {receipt}
-              </b>
-            </div>
-            <div>
-              <p>
-                Purchase Year: 
-              </p>
-              <b>
-                {itemPurchaseYear}
-              </b>
-            </div>
-          </div>
-        </div>
+        {/* Item stas */}
+        <ItemStats 
+        condition={itemCondition}
+        colour={itemColour}
+        manufactureYear={itemManufacturingYear}
+        brand={itemBrand}
+        receipt={itemReceipt}
+        purchaseYear={itemPurchaseYear}
+        />
+        
         {/* ---------safety measures--------- */}
         <div className='safety--measures'>
           <h3>Safety Measures</h3>

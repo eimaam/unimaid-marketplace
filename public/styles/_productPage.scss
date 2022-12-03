@@ -34,7 +34,8 @@
                 max-width: 50%;
 
                 @include mobile{
-                    width: 100%;
+                    min-width: 90%;
+                    max-width: 90%;
                     min-height: 300px;
                 }
             }
@@ -133,6 +134,7 @@
             @include mobile{
                 gap: 0.3rem;
                 margin: auto;
+                justify-content: center;
                 justify-content: center;
             }
 
