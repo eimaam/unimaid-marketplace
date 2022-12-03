@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { ProductCard } from "../ProductCard"
-import { IconButton, InfoButton } from './IconButton'
+import { SellerCard, sellerCard } from "./SellerCard"
 import phone1 from "../../assets/smartphone1.png"
 import phone2 from "../../assets/smartphone2.jpg"
-import { FaArrowAltCircleRight, FaLandmark, FaLocationArrow, FaLongArrowAltRight, FaPhone, FaSearchLocation } from 'react-icons/fa'
-import { BsFillChatLeftTextFill } from 'react-icons/bs'
-import { MdLocationOn } from 'react-icons/md'
-import avatar from "../../assets/avatar.jpg"
+import { FaArrowAltCircleRight } from 'react-icons/fa'
 import { fakeData } from '../FakeData'
 import { ConfirmationModal } from '../ConfirmationModal'
 import { useAuth } from '../../Context/AuthContext'
@@ -15,6 +12,8 @@ import { MoonLoader } from 'react-spinners'
 import { useParams } from 'react-router-dom'
 import { useUser } from '../../Context/UserContext'
 import { database } from '../../firebaseConfig'
+import { ItemSpec } from './ItemSpec'
+import { MoreCategoryItems } from './MoreCategoryItems'
 
 export const ProductPage = () => {
   const { userRef, adsRef, loading, setLoading } = useAuth()
@@ -99,13 +98,7 @@ export const ProductPage = () => {
         itemManufacturingYear, itemPurchaseYear, receipt, itemDetails, itemImages, isSponsored, id} = data
 
 
-      // get items from same category
-        const sameCategoryItems = []
-        const moreItems = fakeData.filter(item => item.category === category)
-        sameCategoryItems.push(moreItems)
-
-        console.log(sameCategoryItems)
-
+      
 
   return (
     <div className='product--page'>
@@ -199,61 +192,23 @@ export const ProductPage = () => {
         </div>
 
         {/* ---------seller profile details--------- */}
-        <div className='seller--profile'>
-          <h2>SELLER INFO:</h2>
-          <div className='seller--info'>
-            <div>
-              <img src={avatar} alt="" />
-              <h2>{sellerDisplayName}</h2>
-              <div>
-                <p><MdLocationOn /> {sellerLocation}</p>
-              </div>
-            </div>
-            <div className='flex-col'>
-              <IconButton
-              link="sms:+23480123456789" 
-              icon={<BsFillChatLeftTextFill />}
-              title="Message Seller"
-              />
-              <IconButton 
-              link={`tel:+${sellerPhoneNo}`}
-              icon={<FaPhone />}
-              title="Call Seller"
-              />
-              <p>Active Ads: 2</p>
-            </div>
-          </div>
-        </div>
+        <SellerCard 
+        displayName={sellerDisplayName}
+        phoneNo={sellerPhoneNo}
+        location={sellerLocation}
+        />
 
-        <div className='product--spec'>
-            <h3>Product Specification:</h3>
-            <div>
-              <p>{itemDetails ? itemDetails : "No extra details"}</p>
-            </div>
-        </div>
+        {/* product specifications */}
+        <ItemSpec 
+        itemDetails={itemDetails}
+        />
 
         <div>
           <h2>Reviews <FaArrowAltCircleRight /></h2>
         </div>
-        <div className='more--from--seller flex-row'>
-          <h2>Check out More from Seller</h2>
-          <FaLongArrowAltRight />
-        </div>
-        <div className='more--from--category'>
-          <h2>More from Smartphones Category:</h2>
-          <div className='flex-row' style={{flexWrap: "wrap"}}>
-            {sameCategoryItems[0].map((item, index) => {
-              return <ProductCard
-                      key={index} 
-                      image={item.image}
-                      price={item.price}
-                      name={item.name}
-                      category={item.category}
-                      />
-            })}
-          </div>
 
-        </div>
+        {/* more items from same category */}
+        <MoreCategoryItems category={category}/>
         {showModal && <ConfirmationModal /> }
     </div>
   )

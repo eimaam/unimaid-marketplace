@@ -4,7 +4,7 @@ import { fakeData } from '../FakeData'
 import { useData } from '../../Context/DataContext'
 import { LoaderFullscreen } from '../LoaderFullscreen'
 import { useAuth } from '../../Context/AuthContext'
-import { collection, onSnapshot, query } from 'firebase/firestore'
+import { collection, onSnapshot, query, where } from 'firebase/firestore'
 import { database } from '../../firebaseConfig'
 
 export const ProductsSection = () => {
@@ -18,7 +18,7 @@ export const ProductsSection = () => {
   useEffect(() => {
     const fetchAllAds = async () => {
     try{
-      const q = query(collection(database, "Ads"))
+      const q = query(collection(database, "Ads"), where("isActive", "==", true))
       await onSnapshot(q, snapShot => {
         setAllAds(snapShot.docs.map(data => ({
           ...data.data()
@@ -37,9 +37,6 @@ export const ProductsSection = () => {
 if(allAds.length === undefined){
   return <LoaderFullscreen />
 }
-
-
-
 
 
   return (
@@ -62,6 +59,12 @@ if(allAds.length === undefined){
             }) 
         }
       </div>
+      {/* display see more button if total ads are more than 30 */}
+      {allAds.length > 30 && 
+      <div className='flex-row' style={{width: "100%"}}>
+          <button>see more</button>
+      </div>
+      }
     </section>
   )
 }

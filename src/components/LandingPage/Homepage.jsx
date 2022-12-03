@@ -13,9 +13,7 @@ export const Homepage = () => {
         <HeroSection />
         <AdsBanner />
         <ProductsSection />
-        <div className='flex-row'>
-          <button>see more</button>
-        </div>
+        
         <SponsorAd />
     </div>
   )
