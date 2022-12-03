@@ -1,11 +1,14 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import smartphone from "../assets/smartphone1.png"
 
-export const ProductCard = ({image, category, name, price}) => {
+export const ProductCard = ({image, category, name, price, id}) => {
+
+  // decode the encoded id to a browser url recognized format
+  const url = decodeURI(id)
+
   return (
     <div className='product--card'>
-      <Link to="/product">
+      <Link to={`/product/${url}`}>
         <div className='product--image'>
             <img src={image} alt={category}/>
         </div>

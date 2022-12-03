@@ -638,6 +638,7 @@ footer p {
   padding: 0.5rem 2rem;
   align-items: flex-start;
   border-radius: 0.5rem;
+  text-transform: capitalize;
 }
 @media only screen and (max-width: 800px) {
   .product--page .product--stat {

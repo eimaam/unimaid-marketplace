@@ -83,7 +83,6 @@ export const AddData = () => {
         catch(error){
             console.log(error.message)
         }
-
     }
 
   return (

@@ -53,7 +53,7 @@ export const PostAds = () => {
 
 
 
-    const id = encodeURI(`${username.toLowerCase()}/${itemName.toLowerCase()}`)
+    const id = encodeURI(`${username}/${itemName.toLowerCase()}`)
     // end of date formatting
 
     // firebase firestore/cloud database storage references    

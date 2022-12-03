@@ -81,8 +81,6 @@ export const UserProvider = ({children}) => {
 
   }, [user])
 
-  
-
   const value = {
     userInfo,
     regEmail, displayName, isVerified, phoneNo, location, staysHostel, joinedOn, totalAds, username,

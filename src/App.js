@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {Routes, Route} from "react-router-dom"
 import { AccountSettings, Settings } from './components/AccountSettings/Settings';
 import { Footer } from './components/Footer';
@@ -19,9 +19,22 @@ import { ProtectedRoutes } from './Routes/ProtectedRoutes';
 import { ErrorPage } from "./components/ErrorPage"
 import { RoutesWithNavBar } from './Routes/RoutesWithNavBar';
 import { DataProvider } from './Context/DataContext';
+import { BsFullscreen } from 'react-icons/bs';
+import { LoaderFullscreen } from './components/LoaderFullscreen';
 
 
 function App() {
+  const [ loading, setLoading ] = useState(true)
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false)
+    }, 2500);
+  })
+
+  if(loading){
+    return <LoaderFullscreen />
+  }
+
   return (
     <>
       <AuthProvider>
@@ -37,7 +50,7 @@ function App() {
             <Route element={<RoutesWithNavBar />}>
               <Route path='/' element={<Homepage />} />
               <Route path=':usernameParam' element={<SellerProfile />} />
-              <Route path='/product' element={<ProductPage />} />
+              <Route path='product/:url' element={<ProductPage />} />
             </Route>
 
             <Route path='/login' element={<Login />} />

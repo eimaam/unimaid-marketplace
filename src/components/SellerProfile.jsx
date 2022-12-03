@@ -65,6 +65,7 @@ export const SellerProfile = () => {
                 console.log(err.message)
             }
         }
+        
         fetchSellerAds()
 
     }, [pageData])

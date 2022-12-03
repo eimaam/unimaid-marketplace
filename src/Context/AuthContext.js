@@ -1,5 +1,5 @@
 import { browserLocalPersistence, onAuthStateChanged, setPersistence, signInWithPopup, signOut } from 'firebase/auth'
-import { doc, setDoc, getDoc, collection } from 'firebase/firestore'
+import { doc, setDoc, getDoc, collection, query, onSnapshot } from 'firebase/firestore'
 import React, { createContext, useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { auth, database, googleProvider } from '../firebaseConfig'
@@ -17,6 +17,7 @@ export const AuthProvider = ({children}) => {
 
 
     const [user, setUser] = useState(null)
+    const [allAds, setAllAds] = useState([])
     const [isLogged, setIsLogged] = useState(false)
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState("")
@@ -50,7 +51,23 @@ export const AuthProvider = ({children}) => {
 
             })
         }
+
+        const fetchAllAds = async () => {
+            try{
+              const q = query(collection(database, "Ads"))
+              await onSnapshot(q, snapShot => {
+                setAllAds(snapShot.docs.map(data => ({
+                  ...data.data()
+                })))
+              })
+            }
+            catch(err){
+              console.log(err.message)
+            }
+          }
+
         fetchUserData()
+        fetchAllAds()
     }, [])
 
     // log in with gmail
@@ -65,7 +82,7 @@ export const AuthProvider = ({children}) => {
                     displayName: res.displayName
                 })
                 setLoading(true)
-            navigate('/complete-profile')
+                navigate('/complete-profile')
         })
         }
         catch(error){

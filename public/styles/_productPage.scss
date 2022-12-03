@@ -82,6 +82,7 @@
         padding: $xs-pad $l-pad;
         align-items: flex-start;
         border-radius: $m-border-radius;
+        text-transform: capitalize;
 
         @include mobile{
             padding: $xs-pad;

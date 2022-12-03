@@ -10,6 +10,8 @@ export const useData = () => {
 }
 
 export const DataProvider = ({ children }) => {
+  const { user, setLoading, loading } = useAuth()
+
     const [existingUsername, setExistingUsername] = useState([])
 
     // get list of usernames from database that matches one entered by new user on sign up and save to regUsernames state 
@@ -28,7 +30,8 @@ export const DataProvider = ({ children }) => {
       }
     }
 
-    console.log(existingUsername)
+   
+
 
     const value = {
         checkUsername,

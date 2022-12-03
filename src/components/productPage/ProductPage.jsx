@@ -10,47 +10,75 @@ import avatar from "../../assets/avatar.jpg"
 import { fakeData } from '../FakeData'
 import { ConfirmationModal } from '../ConfirmationModal'
 import { useAuth } from '../../Context/AuthContext'
-import { onSnapshot, query, where } from 'firebase/firestore'
-import { BarLoader } from 'react-spinners'
+import { collection, getDoc, getDocs, onSnapshot, query, where } from 'firebase/firestore'
+import { MoonLoader } from 'react-spinners'
+import { useParams } from 'react-router-dom'
+import { useUser } from '../../Context/UserContext'
+import { database } from '../../firebaseConfig'
 
 export const ProductPage = () => {
-  const { usersRef, adsRef, loading, setLoading } = useAuth()
+  const { userRef, adsRef, loading, setLoading } = useAuth()
+  const { username } = useUser()
   const [showModal, setShowModal] = useState(false)
+  const [item, setItem] = useState([])
+  const [seller, setSeller] = useState({})
 
-  const [item, setItem] = useState({})
+  
+  
+  let { url } = useParams()
+
 
   useEffect(() => {
     const fetchAd = async () => {
-      setLoading(true)
       try{
-        const q = query(adsRef, where("id", "==", "electronics/philips%20iron/211122"))
+        const q = query(adsRef, where("id", "==", encodeURI(url)))
         await onSnapshot(q, snapShot => {
           setItem(snapShot.docs.map(data => ({
             ...data.data()
           })))
         })
-        setLoading(false)
       }
       catch(err){
         console.log(err)
       }
     }
-
     fetchAd()
-    
   }, [])
 
+  
+  useEffect(() => {
+    const fetchSeller = async () => {
+      try{
+        const q = query(collection(database, "usersDetails"), where("email", "==", `${item[0].posterEmail}`))
+        const querySnapshot = await getDocs(q)
+        querySnapshot.forEach(doc => {
+          setSeller(doc.data())
+        })
+      }
+      catch(err){
+        console.log(err)
+      }
+    }
+    fetchSeller()
+  }, [item])
+
+
+
   // display loading animation if data is not ready
-  if(item[0] == undefined){
+  if(item.length === 0 || seller.length === 0 ){
     return <div className='container'>
               <div className='container--item'>
-                <BarLoader />
+                <MoonLoader />
               </div>
             </div>
   }
 
+
   const data = {
-    poster: item[0].poster,
+    poster: item[0].posterEmail,
+    sellerDisplayName: seller.displayName,
+    sellerPhoneNo: seller.phoneNo,
+    sellerLocation: seller.location,
     category: item[0].category,
     itemName: item[0].itemName,
     itemPrice: item[0].itemPrice,
@@ -61,26 +89,37 @@ export const ProductPage = () => {
     itemPurchaseYear: item[0].itemPurchaseYear,
     receipt: item[0].receipt,
     itemDetails: item[0].itemDetails,
-    itemImages: item[0].itemImage,
+    itemImages: item[0].itemImages,
     isSponsored: item[0].isSponsored,
     id: item[0].id
   }
 
-  const {poster, category, itemName, itemPrice, itemBrand, itemCondition, itemColour, 
+  const {posterEmail, sellerDisplayName, sellerPhoneNo,
+    sellerLocation, category, itemName, itemPrice, itemBrand, itemCondition, itemColour, 
         itemManufacturingYear, itemPurchaseYear, receipt, itemDetails, itemImages, isSponsored, id} = data
-  
-  
+
+
+      // get items from same category
+        const sameCategoryItems = []
+        const moreItems = fakeData.filter(item => item.category === category)
+        sameCategoryItems.push(moreItems)
+
+        console.log(sameCategoryItems)
+
+
   return (
     <div className='product--page'>
       <div className='product--images'>
         <div className='main--image--container'>
           <img src={itemImages[0]} alt="" className='main'/>
         </div>
+        {item[0].itemImages.length > 1 &&
           <div className='more--images--container'>
             {itemImages.map((item, index) => {
-              return <img key={index} src={item} alt={item.name} />
+              return <img key={index} src={item} alt={item[0].name} />
             })}
           </div>
+        }
         </div>
 
         <div className='product--info'>
@@ -146,27 +185,28 @@ export const ProductPage = () => {
             </div>
           </div>
         </div>
-
+        {/* ---------safety measures--------- */}
         <div className='safety--measures'>
           <h3>Safety Measures</h3>
           <p>Few safety tips for a favourable Trade</p>
           <ul>
             <li>Make sure to meet Seller in a public place, if seller stays Off campus, request he comes to it if possible. </li>
             <li>Make sure to check the item thoroughly before purchase</li>
-            <li>If payment is via Mobile transfer, Seller should confirm receipt of payment to his account via his/her Bank's Mobile App or USSD before releasing item. </li>
+            <li>If payment is via Mobile transfer, Seller should confirm receipt of payment to his account via his/her Bank's Mobile App or USSD before releasing item[0]. </li>
             <li>If item is a Smartphone, Laptop, Gadget or Electronics, Buyer should test charging port, camera (if item is a mobile device), before purchase. </li>
             
           </ul>
         </div>
 
+        {/* ---------seller profile details--------- */}
         <div className='seller--profile'>
           <h2>SELLER INFO:</h2>
           <div className='seller--info'>
             <div>
               <img src={avatar} alt="" />
-              <h2>Dave Chapel Enterprise</h2>
+              <h2>{sellerDisplayName}</h2>
               <div>
-                <p><MdLocationOn /> Hostel: New Male 'A'</p>
+                <p><MdLocationOn /> {sellerLocation}</p>
               </div>
             </div>
             <div className='flex-col'>
@@ -176,7 +216,7 @@ export const ProductPage = () => {
               title="Message Seller"
               />
               <IconButton 
-              link="+23480123456789"
+              link={`tel:+${sellerPhoneNo}`}
               icon={<FaPhone />}
               title="Call Seller"
               />
@@ -188,10 +228,7 @@ export const ProductPage = () => {
         <div className='product--spec'>
             <h3>Product Specification:</h3>
             <div>
-              <p>Brand NEW:</p>
-              <p>6GB RAM</p>
-              <p>12GB ROM</p>
-              <p>32MP Camera</p>
+              <p>{itemDetails ? itemDetails : "No extra details"}</p>
             </div>
         </div>
 
@@ -205,8 +242,9 @@ export const ProductPage = () => {
         <div className='more--from--category'>
           <h2>More from Smartphones Category:</h2>
           <div className='flex-row' style={{flexWrap: "wrap"}}>
-            {fakeData.map((item, index) => {
-              return <ProductCard 
+            {sameCategoryItems[0].map((item, index) => {
+              return <ProductCard
+                      key={index} 
                       image={item.image}
                       price={item.price}
                       name={item.name}

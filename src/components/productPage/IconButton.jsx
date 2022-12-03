@@ -5,9 +5,9 @@ import { Link } from 'react-router-dom'
 export const IconButton = ({icon, title, link}) => {
   return (
     <div className='info--button'>
-        <Link to={link}>
+        <a hef={link}>
           {icon}{title}
-        </Link>
+        </a>
     </div>
   )
 }
