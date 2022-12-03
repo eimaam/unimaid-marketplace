@@ -184,6 +184,7 @@ export const CreateAd = () => {
             value={itemManufacturingYear} 
             onChange={handleChange}
             />
+            {itemCondition !== "New" &&
             <input 
             type="number"
             placeholder='Purchase Year'
@@ -191,6 +192,7 @@ export const CreateAd = () => {
             value={itemPurchaseYear}
             onChange={handleChange} 
             />
+            }
             <select name="receipt" defaultValue="Receipt Available?" onChange={handleChange}>
                 <option defaultValue="" value="Receipt Available?" disabled>Receipt Available?</option>
                 <option value="yes">Yes</option>
