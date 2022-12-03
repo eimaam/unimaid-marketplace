@@ -7,7 +7,7 @@ import { toast } from 'react-toastify'
 import { useAuth } from '../../Context/AuthContext'
 
 export const ProfileSettings = ({option, setOption, name}) => {
-    const { user, loading, setLoading, userRef } = useAuth()
+    const { user, navigate, setLoading, userRef } = useAuth()
 
     const [displayName, setDisplayName] = useState("")
 
@@ -19,6 +19,8 @@ export const ProfileSettings = ({option, setOption, name}) => {
             })
             toast.success('Display Name updated')
             setLoading(false)
+            return navigate('/profile')
+
         }
         catch(err){
             console.log(err.message)

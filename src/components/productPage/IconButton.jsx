@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 export const IconButton = ({icon, title, link}) => {
   return (
     <div className='info--button'>
-        <a hef={link}>
+        <a href={link}>
           {icon}{title}
         </a>
     </div>

@@ -8,7 +8,7 @@ import { auth } from '../../firebaseConfig'
 
 
 export const ContactSettings = ({option, setOption, phoneNo, email}) => {
-    const { user, userRef, setLoading } = useAuth()
+    const { user, userRef, setLoading, navigate } = useAuth()
 
     // state to handle new number
     const [data, setData] = useState({
@@ -27,6 +27,7 @@ export const ContactSettings = ({option, setOption, phoneNo, email}) => {
             })
             toast.success('Phone Number changed')
             setLoading(false)
+            return navigate('/profile')
         }
         catch(err){
             console.log(err.message)
