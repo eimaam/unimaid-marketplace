@@ -591,7 +591,8 @@ footer p {
 }
 @media only screen and (max-width: 800px) {
   .product--page .product--images .main--image--container .main {
-    width: 100%;
+    min-width: 90%;
+    max-width: 90%;
     min-height: 300px;
   }
 }
@@ -691,6 +692,7 @@ footer p {
     gap: 0.3rem;
     margin: auto;
     justify-content: center;
+    flex-direction: column;
   }
 }
 .product--page .seller--profile .seller--info img {

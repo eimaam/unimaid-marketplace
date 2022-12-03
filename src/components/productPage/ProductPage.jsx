@@ -16,9 +16,10 @@ import { ItemSpec } from './ItemSpec'
 import { MoreCategoryItems } from './MoreCategoryItems'
 import { ItemStats } from './ItemStats'
 import { SafetyMeasures } from './SafetyMeasures'
+import { ItemMainDetails } from './ItemMainDetails'
 
 export const ProductPage = () => {
-  const { userRef, adsRef, loading, setLoading } = useAuth()
+  const { user, userRef, adsRef, loading, setLoading } = useAuth()
   const { username } = useUser()
   const [showModal, setShowModal] = useState(false)
   const [item, setItem] = useState([])
@@ -76,7 +77,7 @@ export const ProductPage = () => {
 
 
   const data = {
-    poster: item[0].posterEmail,
+    posterEmail: item[0].posterEmail,
     sellerDisplayName: seller.displayName,
     sellerPhoneNo: seller.phoneNo,
     sellerLocation: seller.location,
@@ -117,14 +118,13 @@ export const ProductPage = () => {
         }
         </div>
 
-        <div className='product--info'>
-          <h2>{itemName}</h2>
-          <h2>{`₦ ${itemPrice}`}</h2>
-        </div>
-            {/* close Ad button */}
-        <div>
-          <button className='error--background' onClick={() => setShowModal(prev => !prev)}>Close Ad</button>
-        </div>
+        {/* item price, condition, colour and more */}
+        <ItemMainDetails 
+        itemName={itemName}
+        price={itemPrice}
+        posterEmail={posterEmail}
+        handleClick={setShowModal}
+        />
 
         {/* Item stas */}
         <ItemStats 
