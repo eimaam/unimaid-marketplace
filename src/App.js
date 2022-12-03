@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import {Routes, Route} from "react-router-dom"
-import { AccountSettings, Settings } from './components/AccountSettings/Settings';
-import { Footer } from './components/Footer';
+import { Settings } from './components/AccountSettings/Settings';
 import { Homepage } from './components/LandingPage/Homepage';
 import { Login } from './components/Login';
-import { PostAds } from './components/PostAds';
 import { ProductPage } from './components/productPage/ProductPage';
 import { ResetPass } from './components/ResetPass';
 import { SellerProfile } from './components/SellerProfile';
@@ -19,8 +17,8 @@ import { ProtectedRoutes } from './Routes/ProtectedRoutes';
 import { ErrorPage } from "./components/ErrorPage"
 import { RoutesWithNavBar } from './Routes/RoutesWithNavBar';
 import { DataProvider } from './Context/DataContext';
-import { BsFullscreen } from 'react-icons/bs';
 import { LoaderFullscreen } from './components/LoaderFullscreen';
+import { CreateAd } from './components/CreateAd';
 
 
 function App() {
@@ -44,7 +42,7 @@ function App() {
             <Route element={<ProtectedRoutes />} >
               <Route path='/complete-profile' element={<AddData />} />
               <Route path='settings' element={<Settings />} />
-              <Route path='/createad' element={<PostAds />} />
+              <Route path='/createad' element={<CreateAd />} />
             </Route>
             {/* routes with nav and footer */}
             <Route element={<RoutesWithNavBar />}>

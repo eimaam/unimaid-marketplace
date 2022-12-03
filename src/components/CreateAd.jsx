@@ -7,7 +7,7 @@ import {toast} from "react-toastify"
 import { useAuth } from '../Context/AuthContext';
 import { useUser } from '../Context/UserContext';
 
-export const PostAds = () => {
+export const CreateAd = () => {
     const { user,  navigate } = useAuth()
     const { displayName, username } = useUser()
     
@@ -30,31 +30,9 @@ export const PostAds = () => {
     const [imageURLs, setImageURLs] = useState([])
     const [uploadProgress, setUploadProgress] = useState(0)
 
-    // generating unique ad id from date
-    // generating personal date format DD/MM/YY
-    // const stamp = Timestamp.now().toDate()
-    
-    // let time = stamp.getTime()
-    // let day = stamp.getDate()
-    // let monthByIndex = stamp.getMonth();
-    // let fullYear = stamp.getFullYear();
-    // let month = monthByIndex+1;
-    // add 0 to beginning of Month 1-9
-    // if(month <= 9){
-    //     month = `0${month}`
-    // }
-    // convert year to string to easily extract only last two figures eg. 2022 == 22
-    // const year = fullYear.toString().slice(2,4)
 
-    // final date format DD/MM/YY
-    // const date = `${day}/${month}/${year}`
-    // creating date format with no / to create a link
-    // const plainDate = `${day}${month}${year}`
-
-
-
+    // creating date format using encode method to save it in a format recognized by browser link
     const id = encodeURI(`${username}/${itemName.toLowerCase()}`)
-    // end of date formatting
 
     // firebase firestore/cloud database storage references    
     const storageRef = ref(storage, `/ads/${images.name}`)
@@ -83,6 +61,9 @@ export const PostAds = () => {
     // image upload
     const uploadImages = (e) => {
         e.preventDefault()
+        if(images.length === 0){
+            return toast.error('No image added')
+        }
         const promises = []
         images.map((item) => {
             const storageRef = ref(storage, `/ads/${item.name}`)
