@@ -32,7 +32,7 @@ export const CreateAd = () => {
 
 
     // creating date format using encode method to save it in a format recognized by browser link
-    const id = encodeURI(`${username}/${itemName.toLowerCase()}`)
+    const id = encodeURI(`${username}-${itemName.toLowerCase()}`)
 
     // firebase firestore/cloud database storage references    
     const storageRef = ref(storage, `/ads/${images.name}`)
