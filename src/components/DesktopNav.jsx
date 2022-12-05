@@ -17,7 +17,7 @@ export const DesktopNav = () => {
           <ul>
               <li><Link to="/">Home</Link></li>
               <li><Link to={username}>Profile</Link></li>
-              {user && <li onClick={logOut} className="btn--small error--background">Sign Out</li>}
+              {user && <li onClick={logOut} className="btn--small error--background" style={{borderRadius: "0.5rem"}}>Sign Out</li>}
               <li><Link to="/createad">Post Ad</Link></li>
           </ul>
       </nav>
