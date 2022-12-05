@@ -58,16 +58,6 @@ export const Header = () => {
                 })
             }
         </div>
-        
-        {/* <select name="category" id="" >
-            <option defaultValue="Select Category" value="" disabled>Select category</option>
-            <option value="">Electronics</option>
-            <option value="">Smartphones</option>
-            <option value="">Laptops</option>
-            <option value="">Clothings</option>
-            <option value="">Food Stuffs</option>
-            <option value="">Kitchen Items & Others</option>
-        </select> */}
     </header>
   )
 }
