@@ -1,7 +1,7 @@
 import React from 'react'
 import { useUser } from '../../Context/UserContext'
 import { AdsBanner, AdsPlacement } from './AdsBanner'
-import { HeroSection } from './HeroSection'
+import { Header } from './Header'
 import { ProductsSection } from './ProductsSections'
 import { SponsorAd } from './SponsorAdSection'
 
@@ -10,10 +10,9 @@ export const Homepage = () => {
 
   return (
     <div className='homepage'>
-        <HeroSection />
+        <Header />
         <AdsBanner />
         <ProductsSection />
-        
         <SponsorAd />
     </div>
   )
