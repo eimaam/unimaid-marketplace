@@ -20,6 +20,7 @@ import { DataProvider } from './Context/DataContext';
 import { LoaderFullscreen } from './components/LoaderFullscreen';
 import { CreateAd } from './components/CreateAd';
 import ScrollToTop from './ScrollToTop';
+import { PushAd } from './components/PushAd';
 
 
 function App() {
@@ -44,6 +45,7 @@ function App() {
               <Route path='/complete-profile' element={<AddData />} />
               <Route path='settings' element={<Settings />} />
               <Route path='/createad' element={<CreateAd />} />
+              <Route path='/pushad' element={<PushAd />} />
             </Route>
             {/* routes with nav and footer */}
             <Route element={<RoutesWithNavBar />}>
