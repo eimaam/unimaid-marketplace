@@ -11,7 +11,7 @@ export const AdsBanner = () => {
                 <br /> Place your business Ad here to reach more customers/clients
             </h1>
             <br />
-            <button>Click here for guidelines</button>
+            <button><a href="/pushad">Click here for guidelines</a></button>
         </div>
         <div>
 
