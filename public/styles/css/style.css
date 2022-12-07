@@ -1067,36 +1067,50 @@ footer p {
   }
 }
 
-.confirmation--modal {
-  position: absolute;
-  width: 20%;
-  padding-block: 1rem;
+.modal--overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 10000000000;
+}
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 50%);
+  z-index: 10000000000;
   background-color: rgb(7, 136, 191);
-  top: 35%;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
   justify-content: center;
   align-items: center;
-  border-radius: 0.5rem;
 }
-.confirmation--modal * {
+@media only screen and (max-width: 800px) {
+  .modal {
+    width: 90%;
+  }
+}
+.modal * {
   color: #fff;
 }
-.confirmation--modal div {
+.modal div {
   display: flex;
   flex-direction: row;
   gap: 1.5rem;
   justify-content: center;
   align-items: center;
 }
-.confirmation--modal div h3 {
+.modal div h2 {
   background-color: red;
-  padding: 1rem;
+  padding: 0.5rem 1rem;
   border-radius: 0.5rem;
   cursor: pointer;
 }
-.confirmation--modal div h3:last-child {
+.modal div h2:last-child {
   background-color: rgb(37, 20, 111);
 }
 

@@ -4,7 +4,7 @@ import { CgMail } from 'react-icons/cg'
 import { BsFillChatLeftTextFill } from 'react-icons/bs'
 import { MdLocationOn, MdMarkEmailUnread } from 'react-icons/md'
 import { BsFillArrowRightCircleFill } from 'react-icons/bs'
-import {ConfirmationModal} from './ConfirmationModal'
+import {ConfirmationModal, Modal} from './Modal'
 
 import avatar from "../assets/avatar.jpg"
 import { ProductCard } from './ProductCard'
@@ -158,7 +158,14 @@ export const SellerProfile = () => {
             </div>
             }
         </div>
-        {showModal && <ConfirmationModal /> }
+        {showModal 
+        && 
+        <Modal>
+            <h3>You're about to delete an Ad </h3>
+            <h3>We will love to know.., </h3>
+            <h4>Item has been sold?</h4>
+        </Modal> 
+        }
     </div>
   )
 }

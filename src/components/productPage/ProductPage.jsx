@@ -5,7 +5,7 @@ import phone1 from "../../assets/smartphone1.png"
 import phone2 from "../../assets/smartphone2.jpg"
 import { FaArrowAltCircleRight } from 'react-icons/fa'
 import { fakeData } from '../FakeData'
-import { ConfirmationModal } from '../ConfirmationModal'
+import { Modal } from '../Modal'
 import { useAuth } from '../../Context/AuthContext'
 import { collection, getDoc, getDocs, onSnapshot, query, where } from 'firebase/firestore'
 import { MoonLoader } from 'react-spinners'
@@ -100,7 +100,15 @@ export const ProductPage = () => {
     sellerLocation, category, itemName, itemPrice, itemBrand, itemCondition, itemColour, 
         itemManufacturingYear, itemPurchaseYear, itemReceipt, itemDetails, itemImages, isSponsored, id} = data
 
+  const handleClick = () => {
+    try{
 
+
+    }
+    catch(err){
+      console.log(err.message)
+    }
+  }
       
 
   return (
@@ -157,7 +165,13 @@ export const ProductPage = () => {
 
         {/* more items from same category */}
         <MoreCategoryItems category={category}/>
-        {showModal && <ConfirmationModal /> }
+        {showModal 
+        && 
+        <Modal><h3>You're about to Close an Ad. </h3>
+          <h3>Pls respond to this.. </h3>
+          <h4>Item has been sold?</h4>
+        </Modal> 
+        }
     </div>
   )
 }
