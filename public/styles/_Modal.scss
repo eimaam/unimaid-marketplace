@@ -1,0 +1,42 @@
+
+.modal--overlay{
+    position: fixed;
+    inset: 0;
+    background-color: rgba($color: #000000, $alpha: 0.7);
+    z-index: 10000000000;
+}
+
+.modal{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 50%);
+    z-index: 10000000000;
+    background-color: $secondary;
+    padding: $xs-pad;
+    border-radius: $m-border-radius;
+    @include flex-col;
+
+    @include mobile{
+        width: 90%;
+    }
+    
+    *{
+        color: $default;
+    }
+    
+    div{
+        @include flex-row;
+        
+        h2{
+            background-color: red;
+            padding: $xs-pad $s-pad;
+            border-radius: $m-border-radius;
+            cursor: pointer;
+
+            &:last-child{
+                background-color: $primary;
+            }
+        }
+    }
+}
