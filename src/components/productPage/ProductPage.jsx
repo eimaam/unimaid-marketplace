@@ -29,7 +29,6 @@ export const ProductPage = () => {
   
   let { url } = useParams()
   
-  console.log(encodeURI(url))
 
 
   useEffect(() => {
@@ -74,6 +73,8 @@ export const ProductPage = () => {
                 <MoonLoader />
               </div>
             </div>
+      // check if status of item from url is active or not
+      // if inactive go to error page
   }else if(item[0].isActive === false){
     return navigate('error')
   }
@@ -96,12 +97,13 @@ export const ProductPage = () => {
     itemDetails: item[0].itemDetails,
     itemImages: item[0].itemImages,
     isSponsored: item[0].isSponsored,
+    itemStatus: item[0].isActive,
     id: item[0].id
   }
 
   const {posterEmail, sellerDisplayName, sellerPhoneNo,
     sellerLocation, category, itemName, itemPrice, itemBrand, itemCondition, itemColour, 
-        itemManufacturingYear, itemPurchaseYear, itemReceipt, itemDetails, itemImages, isSponsored, id} = data
+        itemManufacturingYear, itemPurchaseYear, itemReceipt, itemDetails, itemImages, itemStatus, isSponsored, id} = data
 
     // function to update Ad status or Ad delete
   const handleClick = async () => {
@@ -109,6 +111,7 @@ export const ProductPage = () => {
       await updateDoc(doc(adsRef, id), {
         isActive: false
       })
+      setShowModal(false)
       toast.success('Ad Status set to Inactive')
     }
     catch(err){
@@ -116,7 +119,6 @@ export const ProductPage = () => {
     }
   }
       
-
   return (
     <div className='product--page'>
       <div className='product--images'>
@@ -138,6 +140,7 @@ export const ProductPage = () => {
         price={itemPrice}
         posterEmail={posterEmail}
         handleClick={setShowModal}
+        status={itemStatus}
         />
 
         {/* Item stas */}

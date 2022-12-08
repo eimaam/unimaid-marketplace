@@ -1,7 +1,7 @@
 import React from 'react'
 import { useAuth } from '../../Context/AuthContext'
 
-export const ItemMainDetails = ({itemName, price, handleClick, posterEmail}) => {
+export const ItemMainDetails = ({itemName, price, handleClick, posterEmail, status}) => {
     const { user } = useAuth()
   return (
     <>
@@ -11,7 +11,7 @@ export const ItemMainDetails = ({itemName, price, handleClick, posterEmail}) => 
         </div>
         {/* close Ad button */}
         {/* only show if the email of the ad creator matches the logged in user to enable only the ad creator close ad */}
-        {user != null && posterEmail === user.email &&
+        {user != null && posterEmail === user.email && status &&
         <div>
           <button className='error--background' onClick={() => handleClick(prev => !prev)}>Close Ad</button>
         </div>
