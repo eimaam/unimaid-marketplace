@@ -93,9 +93,9 @@ export const AuthProvider = ({children}) => {
     // logout function
     const logOut = () => {
         setIsLogged(false)
+        setUser(null)
         signOut(auth)
         .then(() => {
-            setUser(null)
             localStorage.clear();
             toast.info('Logged Out Successfully...')
         })
