@@ -20,15 +20,17 @@ import { ItemMainDetails } from './ItemMainDetails'
 import { toast } from 'react-toastify'
 
 export const ProductPage = () => {
+  // parameter for grabbing url and creating dynamic url from react-router
+  let { url } = useParams()
+
   const { user, userRef, adsRef, loading, setLoading, navigate } = useAuth()
   const { username } = useUser()
+
   const [showModal, setShowModal] = useState(false)
+  // state to hold mainImage setting
+  const [mainItemImage, setMainItemImage] = useState("")
   const [item, setItem] = useState([])
   const [seller, setSeller] = useState({})
-
-  
-  let { url } = useParams()
-  
 
 
   useEffect(() => {
@@ -57,6 +59,8 @@ export const ProductPage = () => {
         querySnapshot.forEach(doc => {
           setSeller(doc.data())
         })
+        // set main Item image or header image here to allow image load complete from fetchAd before settting here to avoid undefined 
+        setMainItemImage(item[0].itemImages[0])
       }
       catch(err){
         console.log(err)
@@ -113,22 +117,28 @@ export const ProductPage = () => {
       })
       setShowModal(false)
       toast.success('Ad Status set to Inactive')
+      return navigate(`${username}`)
     }
     catch(err){
       console.log(err.message)
     }
+  }
+
+  // change head image to display others
+  const changeMainImage = (image) => {
+    setMainItemImage(image)
   }
       
   return (
     <div className='product--page'>
       <div className='product--images'>
         <div className='main--image--container'>
-          <img src={itemImages[0]} alt="" className='main'/>
+          <img src={mainItemImage} alt="" className='main'/>
         </div>
         {item[0].itemImages.length > 1 &&
           <div className='more--images--container'>
             {itemImages.map((item, index) => {
-              return <img key={index} src={item} alt={item[0].name} />
+              return <img key={index} src={item} alt={item[0].name} onClick={() => changeMainImage(itemImages[index])}/>
             })}
           </div>
         }
