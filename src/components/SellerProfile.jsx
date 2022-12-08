@@ -54,7 +54,7 @@ export const SellerProfile = () => {
         // fetch ads related to user
         const fetchSellerAds = async () => {
             try{
-                const q = query(adsRef, where("posterEmail", "==", `${pageData.email}`))
+                const q = query(adsRef, where("posterEmail", "==", `${pageData.email}`), where("isActive", "==", true))
                 await onSnapshot(q, snapShot => {
                   setSellerAds(snapShot.docs.map(data => ({
                     ...data.data()
