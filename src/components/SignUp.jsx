@@ -97,7 +97,7 @@ useEffect(() => {
                     isVerified: false,
                     accountStatus: "active", /*{ account status set to active and once user deletes account it gets updated to inactive/delete from settings page in order to keep track of deleted accounts}*/
                     joinedOn: serverTimestamp(),
-                    totalAdsCreated: 0,
+                    totalAds: 0,
                     totalSales: 0,
                     activeAds: 0,
                 })

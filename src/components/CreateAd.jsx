@@ -7,7 +7,7 @@ import { useAuth } from '../Context/AuthContext';
 import { useUser } from '../Context/UserContext';
 
 export const CreateAd = () => {
-    const { user,  navigate } = useAuth()
+    const { user,  navigate, userRef } = useAuth()
     const { displayName, username } = useUser()
     
     const [data, setData] = useState({
@@ -121,6 +121,10 @@ export const CreateAd = () => {
                 postedOn: serverTimestamp(),
                 id: id
             })
+            // await setDoc(doc(userRef, user.email), {
+            //     totalAds: +1,
+            //     activeAds: 
+            // })
             toast.success("Ad Posted")
             navigate('/')
             

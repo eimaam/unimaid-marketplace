@@ -7,7 +7,7 @@ import avatar from "../../assets/avatar.jpg"
 import { Link } from 'react-router-dom'
 
 
-export const SellerCard = ({displayName, location, phoneNo, profileLink}) => {
+export const SellerCard = ({displayName, location, phoneNo, profileLink, numberOfActiveAds}) => {
   return (
     <div className='seller--profile'>
           <h2>SELLER INFO:</h2>
@@ -32,7 +32,7 @@ export const SellerCard = ({displayName, location, phoneNo, profileLink}) => {
               icon={<FaPhone />}
               title="Call Seller"
               />
-              <p>Active Ads: 2</p>
+              <p>Active Ads: {numberOfActiveAds}</p>
             </div>
           </div>
         </div>

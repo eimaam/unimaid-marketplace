@@ -24,7 +24,7 @@ export const ProductPage = () => {
   let { url } = useParams()
 
   const { user, userRef, adsRef, loading, setLoading, navigate } = useAuth()
-  const { username } = useUser()
+  const { username, totalActiveAds } = useUser()
 
   const [showModal, setShowModal] = useState(false)
   // state to hold mainImage setting
@@ -173,6 +173,7 @@ export const ProductPage = () => {
         phoneNo={sellerPhoneNo}
         location={sellerLocation}
         profileLink={sellerUsername}
+        numberOfActiveAds={totalActiveAds}
         />
 
         {/* product specifications */}
