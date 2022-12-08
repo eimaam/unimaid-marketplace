@@ -70,7 +70,7 @@ export const SellerProfile = () => {
 
     }, [pageData])
     
-    if(user === null){
+    if(pageData === null){
         return <LoaderFullscreen />
     }else if(!checkUsernameAvailabilty){
         return navigate('error')
