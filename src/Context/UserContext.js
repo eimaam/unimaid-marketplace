@@ -14,6 +14,7 @@ export const UserProvider = ({children}) => {
   const { user, loading, setLoading, userRef, adsRef } = useAuth()
   const [userInfo, setUserInfo] = useState([])
   const [userAds, setUserAds] = useState([])
+  const [activeUserAds, setActiveUserAds] = useState([])
   const [allUsernames, setAllUsernames] = useState([])
 
   const userData = {
@@ -26,11 +27,13 @@ export const UserProvider = ({children}) => {
     staysHostel: userInfo.staysHostel,
     joinedOn: userInfo.joinedOn,
     totalAds: userAds.length,
+    activeAds: activeUserAds.length,
+    totalSales: userInfo.totalSales,
     }
-
     
-    const { regEmail, displayName, username, isVerified, phoneNo, location, staysHostel, joinedOn, totalAds, adsList } = userData
+    const { regEmail, displayName, username, isVerified, phoneNo, location, staysHostel, joinedOn, totalAds, activeAds, totalSales, adsList } = userData
     
+    // fetching all usernames to use in signup or registration pages when registering user to check if username entered by user already exists
     const fetchAllUsernames = async () => {
       try{
         const q = query(collection(database, "usersDetails"))
@@ -45,6 +48,7 @@ export const UserProvider = ({children}) => {
         console.log(err.code)
       }
     }
+
 
   useEffect(() => {
     setLoading(true)
@@ -63,7 +67,7 @@ export const UserProvider = ({children}) => {
 
     const fetchUserAds = async () => {
       try{
-          const q = query(adsRef, where("poster", "==", user.email))
+          const q = query(adsRef, where("posterEmail", "==", user.email))
           await onSnapshot(q, snapShot => {
             setUserAds(snapShot.docs.map(data => ({
               ...data.data()
@@ -75,15 +79,30 @@ export const UserProvider = ({children}) => {
       }
   }
 
+    const fetchActiveUserAds = async () => {
+      try{
+          const q = query(adsRef, where("posterEmail", "==", user.email), where("isActive", "==", true))
+          await onSnapshot(q, snapShot => {
+            setActiveUserAds(snapShot.docs.map(data => ({
+              ...data.data()
+            })))
+          })
+      }
+      catch(err){
+          console.log(err.message)
+      }
+  }
+
     fetchUserInfo()
     fetchUserAds()
+    fetchActiveUserAds()
     fetchAllUsernames()
 
   }, [user])
 
   const value = {
     userInfo,
-    regEmail, displayName, isVerified, phoneNo, location, staysHostel, joinedOn, totalAds, username,
+    regEmail, displayName, isVerified, phoneNo, location, staysHostel, joinedOn, totalAds, username, activeAds, totalSales,
     userAds,
     allUsernames,
   }
