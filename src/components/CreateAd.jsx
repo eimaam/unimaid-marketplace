@@ -1,5 +1,4 @@
-import { async } from '@firebase/util';
-import { addDoc, collection, doc, getDoc, limitToLast, serverTimestamp, Timestamp, where } from 'firebase/firestore';
+import { addDoc, collection, doc, getDoc, limitToLast, serverTimestamp, setDoc, Timestamp, where } from 'firebase/firestore';
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 import React, { useState } from 'react'
 import { database, storage } from '../firebaseConfig';
@@ -35,7 +34,8 @@ export const CreateAd = () => {
 
     
     // creating date format using encode method to save it in a format recognized by browser link
-    const id = encodeURI(`${username}-${itemName.toLowerCase()}-${d.toLocaleDateString()}-${time}`)
+    // const id = encodeURI(`${username}-${itemName.toLowerCase()}-${d.toLocaleDateString()}-${time}`)
+    const id = encodeURI(`${username}-${itemName.toLowerCase()}-${d.toLocaleDateString().replaceAll("/", "-")}-${time}`)
     
     // firebase firestore/cloud database storage references    
     const storageRef = ref(storage, `/ads/${images.name}`)
@@ -102,7 +102,7 @@ export const CreateAd = () => {
         e.preventDefault()
         // setLoading(true)
         try{
-            await addDoc(adsRef, {
+            await setDoc(doc(adsRef, id), {
                 posterEmail: user.email,
                 posterDisplayName: displayName,
                 category: category,
