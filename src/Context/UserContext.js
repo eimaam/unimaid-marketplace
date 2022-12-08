@@ -27,11 +27,11 @@ export const UserProvider = ({children}) => {
     staysHostel: userInfo.staysHostel,
     joinedOn: userInfo.joinedOn,
     totalAds: userAds.length,
-    activeAds: activeUserAds.length,
+    totalActiveAds: activeUserAds.length,
     totalSales: userInfo.totalSales,
     }
     
-    const { regEmail, displayName, username, isVerified, phoneNo, location, staysHostel, joinedOn, totalAds, activeAds, totalSales, adsList } = userData
+    const { regEmail, displayName, username, isVerified, phoneNo, location, staysHostel, joinedOn, totalAds, totalActiveAds, totalSales, adsList } = userData
     
     // fetching all usernames to use in signup or registration pages when registering user to check if username entered by user already exists
     const fetchAllUsernames = async () => {
@@ -102,7 +102,7 @@ export const UserProvider = ({children}) => {
 
   const value = {
     userInfo,
-    regEmail, displayName, isVerified, phoneNo, location, staysHostel, joinedOn, totalAds, username, activeAds, totalSales,
+    regEmail, displayName, isVerified, phoneNo, location, staysHostel, joinedOn, totalAds, username, totalActiveAds, totalSales,
     userAds,
     allUsernames,
   }
