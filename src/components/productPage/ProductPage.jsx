@@ -87,6 +87,7 @@ export const ProductPage = () => {
   const data = {
     posterEmail: item[0].posterEmail,
     sellerDisplayName: seller.displayName,
+    sellerUsername: seller.username,
     sellerPhoneNo: seller.phoneNo,
     sellerLocation: seller.location,
     category: item[0].category,
@@ -105,7 +106,7 @@ export const ProductPage = () => {
     id: item[0].id
   }
 
-  const {posterEmail, sellerDisplayName, sellerPhoneNo,
+  const {posterEmail, sellerDisplayName, sellerUsername, sellerPhoneNo,
     sellerLocation, category, itemName, itemPrice, itemBrand, itemCondition, itemColour, 
         itemManufacturingYear, itemPurchaseYear, itemReceipt, itemDetails, itemImages, itemStatus, isSponsored, id} = data
 
@@ -171,6 +172,7 @@ export const ProductPage = () => {
         displayName={sellerDisplayName}
         phoneNo={sellerPhoneNo}
         location={sellerLocation}
+        profileLink={sellerUsername}
         />
 
         {/* product specifications */}
