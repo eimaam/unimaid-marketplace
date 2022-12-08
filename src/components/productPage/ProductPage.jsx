@@ -7,7 +7,7 @@ import { FaArrowAltCircleRight } from 'react-icons/fa'
 import { fakeData } from '../FakeData'
 import { Modal } from '../Modal'
 import { useAuth } from '../../Context/AuthContext'
-import { collection, getDoc, getDocs, onSnapshot, query, where } from 'firebase/firestore'
+import { collection, doc, getDoc, getDocs, onSnapshot, query, updateDoc, where } from 'firebase/firestore'
 import { MoonLoader } from 'react-spinners'
 import { useParams } from 'react-router-dom'
 import { useUser } from '../../Context/UserContext'
@@ -17,17 +17,19 @@ import { MoreCategoryItems } from './MoreCategoryItems'
 import { ItemStats } from './ItemStats'
 import { SafetyMeasures } from './SafetyMeasures'
 import { ItemMainDetails } from './ItemMainDetails'
+import { toast } from 'react-toastify'
 
 export const ProductPage = () => {
-  const { user, userRef, adsRef, loading, setLoading } = useAuth()
+  const { user, userRef, adsRef, loading, setLoading, navigate } = useAuth()
   const { username } = useUser()
   const [showModal, setShowModal] = useState(false)
   const [item, setItem] = useState([])
   const [seller, setSeller] = useState({})
 
   
-  
   let { url } = useParams()
+  
+  console.log(encodeURI(url))
 
 
   useEffect(() => {
@@ -65,7 +67,6 @@ export const ProductPage = () => {
   }, [item])
 
 
-
   // display loading animation if data is not ready
   if(item.length === 0 || seller.length === 0 ){
     return <div className='container'>
@@ -73,6 +74,8 @@ export const ProductPage = () => {
                 <MoonLoader />
               </div>
             </div>
+  }else if(item[0].isActive === false){
+    return navigate('error')
   }
 
 
@@ -100,10 +103,13 @@ export const ProductPage = () => {
     sellerLocation, category, itemName, itemPrice, itemBrand, itemCondition, itemColour, 
         itemManufacturingYear, itemPurchaseYear, itemReceipt, itemDetails, itemImages, isSponsored, id} = data
 
-  const handleClick = () => {
+    // function to update Ad status or Ad delete
+  const handleClick = async () => {
     try{
-
-
+      await updateDoc(doc(adsRef, id), {
+        isActive: false
+      })
+      toast.success('Ad Status set to Inactive')
     }
     catch(err){
       console.log(err.message)
@@ -167,7 +173,8 @@ export const ProductPage = () => {
         <MoreCategoryItems category={category}/>
         {showModal 
         && 
-        <Modal><h3>You're about to Close an Ad. </h3>
+        <Modal handleClick={handleClick}>
+          <h3>You're about to Close an Ad. </h3>
           <h3>Pls respond to this.. </h3>
           <h4>Item has been sold?</h4>
         </Modal> 
