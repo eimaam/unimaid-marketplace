@@ -22,16 +22,16 @@ export const SellerProfile = () => {
     
     // importing values from Contexts
     const { user, navigate, userRef, adsRef } = useAuth()
-    const { userInfo, displayName, username, isVerified, phoneNo, location, staysHostel, joinedOn, allUsernames } = useUser()
+    const { userInfo, displayName, username, allUsernames } = useUser()
     // state manager for show/hiding elements
     const [showModal, setShowModal] = useState(false)
     const [pageData, setPageData] = useState({})
     const [sellerAds, setSellerAds] = useState([])
 
     
-    // check if the param (from page address /param) which is username matchs any username in the database
+    // check if the param (from page address /param) which is username matches any username in the database
     // display details related to that username if checkUsernameAvailability returns true else navigate to error page
-    const checkUsernameAvailabilty = allUsernames.some(element => element.username == usernameParam)
+    const checkUsernameAvailability = allUsernames.some(element => element.username == usernameParam)
 
     // fetch page data using param as username
     useEffect(() => {
@@ -69,10 +69,12 @@ export const SellerProfile = () => {
         fetchSellerAds()
 
     }, [pageData])
-    
-    if(pageData === null){
+
+    if(pageData === {}){
         return <LoaderFullscreen />
-    }else if(!checkUsernameAvailabilty){
+    }else if(allUsernames.length === 0){
+        return <LoaderFullscreen />
+    }else if(!checkUsernameAvailability){
         return navigate('error')
     }
     
@@ -144,7 +146,7 @@ export const SellerProfile = () => {
                                 price={item.itemPrice}
                                 category={item.itemCategory}
                                 />
-                                {user && <button className='btn--small error--background' onClick={() => setShowModal(prevState => !prevState)}>delete</button>}
+                                {user != null && user.email === pageData.email && <button className='btn--small error--background' onClick={() => setShowModal(prevState => !prevState)}>delete</button>}
                                 </div>
                     })}
                 </div>
