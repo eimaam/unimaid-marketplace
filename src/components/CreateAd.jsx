@@ -105,7 +105,7 @@ export const CreateAd = () => {
             await setDoc(doc(adsRef, id), {
                 posterEmail: user.email,
                 posterDisplayName: displayName,
-                category: category,
+                itemCategory: category,
                 itemName: itemName,
                 itemPrice: itemPrice.toLocaleString(),
                 itemBrand: itemBrand,

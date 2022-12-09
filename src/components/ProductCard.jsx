@@ -7,7 +7,7 @@ export const ProductCard = ({image, category, name, price, id}) => {
   const url = decodeURI(id)
 
   return (
-    <div className='product--card'>
+    <div className='product--card' data-aos="fade-up">
       <Link to={`/product/${url}`}>
         <div className='product--image'>
             <img src={image} alt={category}/>

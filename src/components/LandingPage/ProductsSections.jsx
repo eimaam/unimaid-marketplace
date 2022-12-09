@@ -47,7 +47,17 @@ if(allAds.length === undefined){
         </h2>
       </div>
       <div className='products'>
-        {allAds.map((item, index) => {
+        {fakeData.map((item, index) => {
+          return <ProductCard
+                  key={index}
+                  image={item.image}
+                  name={item.name}
+                  price={item.price}
+                  category={item.category}
+                  />
+            }) 
+        }
+        {/* {allAds.map((item, index) => {
           return <ProductCard
                   key={index}
                   image={item.itemImages}
@@ -57,7 +67,7 @@ if(allAds.length === undefined){
                   category={item.category}
                   />
             }) 
-        }
+        } */}
       </div>
       {/* display see more button if total ads are more than 30 */}
       {allAds.length > 30 && 

@@ -32,6 +32,11 @@ h1 {
     font-size: 1.35rem;
   }
 }
+@media only screen and (min-width: 800px) and (max-width: 1400px) {
+  h1 {
+    font-size: 1.4rem;
+  }
+}
 
 h2 {
   font-size: 1.25rem;
@@ -42,6 +47,11 @@ h2 {
     font-size: 1.05rem;
   }
 }
+@media only screen and (min-width: 800px) and (max-width: 1400px) {
+  h2 {
+    font-size: 1.2rem;
+  }
+}
 
 h3 {
   font-size: 1.15rem;
@@ -49,6 +59,11 @@ h3 {
 @media only screen and (max-width: 800px) {
   h3 {
     font-size: 0.9rem;
+  }
+}
+@media only screen and (min-width: 800px) and (max-width: 1400px) {
+  h3 {
+    font-size: 1.12rem;
   }
 }
 
@@ -206,7 +221,7 @@ hr {
 }
 @media only screen and (min-width: 800px) and (max-width: 1400px) {
   .container .container--item {
-    width: 80%;
+    width: 85%;
     margin: auto;
   }
 }
@@ -567,6 +582,13 @@ footer p {
     gap: 0.5rem;
   }
 }
+@media only screen and (min-width: 800px) and (max-width: 1400px) {
+  .product--page {
+    width: 85%;
+    margin: auto;
+    margin-top: 4.5rem;
+  }
+}
 .product--page img {
   margin: auto;
   border-radius: 0.5rem;
@@ -582,8 +604,10 @@ footer p {
     width: 100%;
   }
 }
-.product--page .product--images * {
-  margin: auto;
+@media only screen and (min-width: 800px) and (max-width: 1400px) {
+  .product--page .product--images {
+    width: 100%;
+  }
 }
 .product--page .product--images .main--image--container .main {
   min-width: 50%;
@@ -594,6 +618,11 @@ footer p {
     min-width: 90%;
     max-width: 90%;
     min-height: 300px;
+  }
+}
+@media only screen and (min-width: 800px) and (max-width: 1400px) {
+  .product--page .product--images .main--image--container .main {
+    width: 100%;
   }
 }
 .product--page .product--images .more--images--container {
@@ -629,6 +658,11 @@ footer p {
   justify-content: space-between;
   border-radius: 0.5rem;
 }
+@media only screen and (min-width: 800px) and (max-width: 1400px) {
+  .product--page .product--info, .product--page .product--stat {
+    width: 100%;
+  }
+}
 .product--page .product--info h2, .product--page .product--stat h2 {
   color: #fff;
 }
@@ -653,6 +687,11 @@ footer p {
 .product--page .safety--measures {
   background-color: #fff !important;
 }
+@media only screen and (min-width: 800px) and (max-width: 1400px) {
+  .product--page .safety--measures {
+    width: 100%;
+  }
+}
 .product--page .safety--measures p {
   color: #15191c !important;
 }
@@ -672,6 +711,11 @@ footer p {
   background-color: rgb(37, 20, 111);
   border-radius: 0.5rem;
   padding: 1.5rem;
+}
+@media only screen and (min-width: 800px) and (max-width: 1400px) {
+  .product--page .seller--profile {
+    width: 100%;
+  }
 }
 .product--page .seller--profile * {
   text-align: center;
@@ -743,6 +787,11 @@ footer p {
 @media only screen and (max-width: 800px) {
   #signup form, #login form, .container form {
     width: 90%;
+  }
+}
+@media only screen and (min-width: 800px) and (max-width: 1400px) {
+  #signup form, #login form, .container form {
+    width: 60%;
   }
 }
 #signup form i, #login form i, .container form i {
@@ -836,7 +885,7 @@ footer p {
 }
 @media only screen and (min-width: 800px) and (max-width: 1400px) {
   #profile .container--item {
-    width: 80%;
+    width: 85%;
     margin: auto;
   }
 }

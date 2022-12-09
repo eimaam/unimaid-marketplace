@@ -30,6 +30,10 @@ h1{
     @include mobile{
         font-size: 1.35rem;
     }
+
+    @include tablet{
+        font-size: 1.4rem;
+    }
 }
 
 h2{
@@ -39,6 +43,10 @@ h2{
     @include mobile{
         font-size: 1.05rem;
     }
+
+    @include tablet{
+        font-size: 1.2rem;
+    }
 }
 
 h3{
@@ -46,6 +54,10 @@ h3{
 
     @include mobile{
         font-size: 0.9rem;
+    }
+
+    @include tablet{
+        font-size: 1.12rem;
     }
 }
 

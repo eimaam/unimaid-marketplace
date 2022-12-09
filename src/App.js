@@ -21,15 +21,19 @@ import { LoaderFullscreen } from './components/LoaderFullscreen';
 import { CreateAd } from './components/CreateAd';
 import ScrollToTop from './ScrollToTop';
 import { PushAd } from './components/PushAd';
+import AOS from 'aos';
+import 'aos/dist/aos.css'; 
 
 
 function App() {
   const [ loading, setLoading ] = useState(true)
   useEffect(() => {
+    // set AOS 
+    AOS.init({delay: 500, duration: 700, easing: 'ease-out'})
     setTimeout(() => {
       setLoading(false)
     }, 2500);
-  })
+  },[])
 
   if(loading){
     return <LoaderFullscreen />

@@ -27,7 +27,7 @@ export const fakeData = [
     {
         image: phone1,
         name: "Motorola Z3",
-        price: "55,000",
+        price: "55000",
         category: "smartphones"
     },
     {

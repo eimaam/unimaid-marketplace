@@ -46,7 +46,7 @@ export const Header = () => {
     // const categoryImages = [gadgets, electronics, phones, foodstuffs, clothing, laptop, others]
   return (
     <header>
-        <h1>Get all you'll need in campus in one place!</h1>
+        <h1>Easily get all you'd need in campus in one place!</h1>
         <h2>Select Category:</h2>
         <div className='categories'>
             {categoryData.map((item, index) => {

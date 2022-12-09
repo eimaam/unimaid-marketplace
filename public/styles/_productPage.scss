@@ -8,6 +8,11 @@
         gap: 0.5rem;
     }
 
+    @include tablet{
+        @include tablet-width;
+        margin-top: 4.5rem;
+    }
+
     img{
         margin: auto;
         border-radius: $m-border-radius;
@@ -23,11 +28,14 @@
             width: 100%;
         }
 
-        *{
-            margin: auto;
+        @include tablet{
+            width: 100%;
         }
+
+        
         
         .main--image--container{
+
 
             .main{
                 min-width: 50%;
@@ -38,7 +46,12 @@
                     max-width: 90%;
                     min-height: 300px;
                 }
+
+                @include tablet{
+                    width: 100%;
+                }
             }
+
         }
 
         .more--images--container{
@@ -68,6 +81,10 @@
         @include flex-row;
         justify-content: space-between;
         border-radius: $m-border-radius;
+
+        @include tablet{
+            width: 100%;
+        }
 
         h2{
             color: $default;
@@ -100,6 +117,10 @@
         @extend .product--spec;
         background-color: $default !important;
 
+        @include tablet{
+            width: 100%;
+        }
+
         p{
             color: $dark !important;
         }
@@ -119,6 +140,10 @@
         background-color: $primary;
         border-radius: $m-border-radius;
         padding: $m-pad;
+
+        @include tablet{
+            width: 100%;
+        }
         
         *{
             text-align: center;

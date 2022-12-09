@@ -7,6 +7,10 @@
             width: 90%;
         }
 
+        @include tablet{
+            width: 60%;
+        }
+
         i{
             width: 90%;
             margin: auto;

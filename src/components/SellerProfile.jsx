@@ -89,7 +89,7 @@ export const SellerProfile = () => {
                     <img src={avatar} alt="" />
                     <div className='flex-col'>
                         <h2>{pageData.displayName}</h2>
-                        {/* <p>Active Ads: {pageData.activeAds}</p> */}
+                        <p>Active Ads: {sellerAds.length}</p>
                         <p>Total Sales: {pageData.totalSales}</p>
                     </div>
                 </div>
