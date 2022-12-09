@@ -33,6 +33,8 @@ export const SellerProfile = () => {
     // display details related to that username if checkUsernameAvailability returns true else navigate to error page
     const checkUsernameAvailability = allUsernames.some(element => element.username == usernameParam)
 
+    console.log(pageData)
+
     // fetch page data using param as username
     useEffect(() => {
         const pageData = async () => {
@@ -87,8 +89,8 @@ export const SellerProfile = () => {
                     <img src={avatar} alt="" />
                     <div className='flex-col'>
                         <h2>{pageData.displayName}</h2>
-                        <p>Active Ads: 2</p>
-                        <p>Total Sales: 12</p>
+                        {/* <p>Active Ads: {pageData.activeAds}</p> */}
+                        <p>Total Sales: {pageData.totalSales}</p>
                     </div>
                 </div>
                 <div>
@@ -125,10 +127,7 @@ export const SellerProfile = () => {
 
             <div className='about'>
                 <h2>About Seller:</h2>
-                <p>Dealer of all types of iPhones, iWatches, iPads, MacBooks and all Apple products - Brand New, UK Used, US-used and Nigerian Used. 
-                    <br />
-                    Contact me via the Phone Number or Email above. 
-                </p>
+                <p>{pageData.about ? pageData.about : <i>No Data added!</i>}</p>
             </div>
 
             <div className='reviews'>
