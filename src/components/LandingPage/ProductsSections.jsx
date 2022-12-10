@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { ProductCard } from '../ProductCard'
-import { fakeData } from '../FakeData'
-import { useData } from '../../Context/DataContext'
 import { LoaderFullscreen } from '../LoaderFullscreen'
-import { useAuth } from '../../Context/AuthContext'
 import { collection, onSnapshot, query, where } from 'firebase/firestore'
 import { database } from '../../firebaseConfig'
 

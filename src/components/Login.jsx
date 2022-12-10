@@ -1,17 +1,16 @@
 import { browserLocalPersistence, onAuthStateChanged, setPersistence, signInWithEmailAndPassword } from 'firebase/auth'
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { ResetPass } from './ResetPass'
 import { toast } from "react-toastify"
 import { useAuth } from '../Context/AuthContext'
 import { auth } from '../firebaseConfig'
-import { LoaderFullsceen, LoaderFullscreen } from './LoaderFullscreen'
+import { LoaderFullscreen } from './LoaderFullscreen'
 import { CgGoogle } from 'react-icons/cg'
 
 
 
 export const Login = () => {
-    const { user, loading, setLoading, navigate, setIsLogged, error, setError, logInWithGoogle } = useAuth()
+    const { loading, setLoading, navigate, setIsLogged, error, setError, logInWithGoogle } = useAuth()
 
     useEffect(() => {
         onAuthStateChanged(auth, data => {

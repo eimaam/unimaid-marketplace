@@ -1,13 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { ProductCard } from "../ProductCard"
-import { SellerCard, sellerCard } from "./SellerCard"
-import phone1 from "../../assets/smartphone1.png"
-import phone2 from "../../assets/smartphone2.jpg"
+import { SellerCard } from "./SellerCard"
 import { FaArrowAltCircleRight } from 'react-icons/fa'
-import { fakeData } from '../FakeData'
 import { Modal } from '../Modal'
 import { useAuth } from '../../Context/AuthContext'
-import { collection, doc, getDoc, getDocs, onSnapshot, query, updateDoc, where } from 'firebase/firestore'
+import { collection, doc, getDocs, onSnapshot, query, updateDoc, where } from 'firebase/firestore'
 import { MoonLoader } from 'react-spinners'
 import { useParams } from 'react-router-dom'
 import { useUser } from '../../Context/UserContext'
@@ -23,7 +19,7 @@ export const ProductPage = () => {
   // parameter for grabbing url and creating dynamic url from react-router
   let { url } = useParams()
 
-  const { user, userRef, adsRef, loading, setLoading, navigate } = useAuth()
+  const { adsRef, navigate } = useAuth()
   const { username, totalActiveAds } = useUser()
 
   const [showModal, setShowModal] = useState(false)

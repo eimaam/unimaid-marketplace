@@ -1,11 +1,6 @@
 import React, { useState } from 'react'
 import { useAuth } from '../../Context/AuthContext'
 import { doc, updateDoc } from 'firebase/firestore'
-import { useUser } from '../../Context/UserContext'
-import { toast } from 'react-toastify'
-import { updateEmail } from 'firebase/auth'
-import { auth } from '../../firebaseConfig'
-
 
 export const ContactSettings = ({option, setOption, phoneNo, email}) => {
     const { user, userRef, setLoading, navigate } = useAuth()

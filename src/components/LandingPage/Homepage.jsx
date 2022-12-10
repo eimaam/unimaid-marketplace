@@ -1,6 +1,6 @@
 import React from 'react'
 import { useUser } from '../../Context/UserContext'
-import { AdsBanner, AdsPlacement } from './AdsBanner'
+import { AdsBanner } from './AdsBanner'
 import { Header } from './Header'
 import { ProductsSection } from './ProductsSections'
 import { SponsorAd } from './SponsorAdSection'

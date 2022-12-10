@@ -1,4 +1,4 @@
-import { doc, serverTimestamp, setDoc, updateDoc } from 'firebase/firestore'
+import { doc, serverTimestamp, updateDoc } from 'firebase/firestore'
 import React, { useEffect, useState } from 'react'
 import { useAuth } from '../Context/AuthContext'
 import { toast } from 'react-toastify'

@@ -1,5 +1,5 @@
 import React from 'react'
-import { IconButton, InfoButton } from './IconButton'
+import { IconButton } from './IconButton'
 import { FaPhone } from 'react-icons/fa'
 import { BsFillChatLeftTextFill } from 'react-icons/bs'
 import { MdLocationOn } from 'react-icons/md'

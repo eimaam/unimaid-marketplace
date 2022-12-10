@@ -1,9 +1,8 @@
 import { deleteUser } from 'firebase/auth'
-import { collection, doc, updateDoc } from 'firebase/firestore'
+import { doc, updateDoc } from 'firebase/firestore'
 import { auth } from '../../firebaseConfig'
 import { useAuth } from '../../Context/AuthContext'
-import React, { useState } from 'react'
-import { Navigate } from 'react-router-dom'
+import React from 'react'
 import { toast } from 'react-toastify'
 
 export const AccountSettings = ({option, setOption}) => {

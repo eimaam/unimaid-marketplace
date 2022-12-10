@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { FaLocationArrow, FaLongArrowAltRight, FaPhone, FaUser } from 'react-icons/fa'
-import { CgMail } from 'react-icons/cg'
+import { FaPhone, FaUser } from 'react-icons/fa'
 import { BsFillChatLeftTextFill } from 'react-icons/bs'
 import { MdLocationOn, MdMarkEmailUnread } from 'react-icons/md'
 import { BsFillArrowRightCircleFill } from 'react-icons/bs'
-import {ConfirmationModal, Modal} from './Modal'
+import { Modal } from './Modal'
 
 import avatar from "../assets/avatar.jpg"
 import { ProductCard } from './ProductCard'

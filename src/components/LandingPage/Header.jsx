@@ -3,7 +3,6 @@ import { CategoryCard } from './CategoryCard'
 
 // images for categories
 import gadgets from "../../assets/gadgets.png"
-import electronics from "../../assets/gadgets.png"
 import phones from "../../assets/phone.png"
 import foodstuffs from "../../assets/food.png"
 import clothing from "../../assets/clothing.png"

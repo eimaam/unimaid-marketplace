@@ -1,8 +1,5 @@
 import React, { useState } from 'react'
-import { useUser } from '../../Context/UserContext'
-import { deleteUser } from 'firebase/auth'
 import { doc, updateDoc } from 'firebase/firestore'
-import { auth } from '../../firebaseConfig'
 import { toast } from 'react-toastify'
 import { useAuth } from '../../Context/AuthContext'
 

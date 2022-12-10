@@ -1,4 +1,4 @@
-import { addDoc, collection, doc, getDoc, limitToLast, serverTimestamp, setDoc, Timestamp, where } from 'firebase/firestore';
+import { collection, doc, serverTimestamp, setDoc } from 'firebase/firestore';
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 import React, { useState } from 'react'
 import { database, storage } from '../firebaseConfig';
@@ -7,7 +7,7 @@ import { useAuth } from '../Context/AuthContext';
 import { useUser } from '../Context/UserContext';
 
 export const CreateAd = () => {
-    const { user,  navigate, userRef } = useAuth()
+    const { user,  navigate } = useAuth()
     const { displayName, username } = useUser()
     
     const [data, setData] = useState({
@@ -37,8 +37,7 @@ export const CreateAd = () => {
     // const id = encodeURI(`${username}-${itemName.toLowerCase()}-${d.toLocaleDateString()}-${time}`)
     const id = encodeURI(`${username}-${itemName.toLowerCase()}-${d.toLocaleDateString().replaceAll("/", "-")}-${time}`)
     
-    // firebase firestore/cloud database storage references    
-    const storageRef = ref(storage, `/ads/${images.name}`)
+    // firebase firestore/cloud database references    
     const adsRef = collection(database, "Ads");
 
     // handle form inputs
@@ -227,10 +226,6 @@ export const CreateAd = () => {
             />
             {uploadProgress === 100 && <input type="submit" value="Post Ad" onClick={createAd}/>}
         </form>
-        {/* {imageURL !== "" &&<div>
-            <img src={imageURL} alt="" />
-        </div>
-        } */}
     </div>
   )
 }
