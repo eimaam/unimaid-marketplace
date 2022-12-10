@@ -48,7 +48,7 @@ export const Header = () => {
     <header>
         <h1>Easily get all you'd need in campus in one place!</h1>
         <h2>Select Category:</h2>
-        <div className='categories'>
+        <div className='categories' data-aos="fade-up">
             {categoryData.map((item, index) => {
                 return <CategoryCard 
                 key={index}

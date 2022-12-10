@@ -4,7 +4,7 @@ import { useAuth } from '../Context/AuthContext'
 export const PushAd = () => {
     const { user } = useAuth()
   return (
-    <div className='container'>
+    <div className='container' data-aos="fade-up">
         <div className='container--item'>
             <div>
                 <h2>Lets help you reach more Customers/Visitors and sell faster with as low as N300</h2>

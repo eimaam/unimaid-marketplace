@@ -85,7 +85,7 @@ export const Login = () => {
     }
     
   return (
-    <div className='container' id='login'>
+    <div className='container' id='login' data-aos="fade-up">
         <form onSubmit={login}>
             <h2>Hi there! 👋 Welcome!</h2>
             <h3>Enter your login details:</h3>

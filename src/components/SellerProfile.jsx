@@ -33,7 +33,6 @@ export const SellerProfile = () => {
     // display details related to that username if checkUsernameAvailability returns true else navigate to error page
     const checkUsernameAvailability = allUsernames.some(element => element.username == usernameParam)
 
-    console.log(pageData)
 
     // fetch page data using param as username
     useEffect(() => {

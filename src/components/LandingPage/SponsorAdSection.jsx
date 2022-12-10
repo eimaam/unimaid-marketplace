@@ -5,7 +5,7 @@ import cc from "../../assets/casual-life-3d-young-man-in-headset-using-computer.
 export const SponsorAd = () => {
     
   return (
-    <section className='ads--banner'>
+    <section className='ads--banner' data-aos="fade-up">
         <div>
             <h1>Want to rank your Ads higher? 
                 Want your Ads appearing at the top? 

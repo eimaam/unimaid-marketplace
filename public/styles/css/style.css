@@ -397,7 +397,7 @@ header .categories {
 }
 
 .product--card {
-  border: 1px double rgb(37, 20, 111);
+  border: 1px solid rgb(37, 20, 111);
   width: 210px;
   height: 300px;
   margin-inline: 0;

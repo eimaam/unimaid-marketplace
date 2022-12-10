@@ -21,7 +21,6 @@ export const DataProvider = ({ children }) => {
         await onSnapshot(q,snapShot => {
           setExistingUsername(snapShot.docs.map(data => ({
             ...data.data(),
-            id: data.id
           })))
         })
       }
