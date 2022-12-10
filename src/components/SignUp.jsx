@@ -48,7 +48,9 @@ export const SignUp = () => {
     // run the checkUsername function to get list of usernames from database that matches one entered by new user on sign up and save to existingUsername state 
 useEffect(() => {
     checkUsername(username)
-  }, [username])
+  }, [username, data])
+
+  console.log(existingUsername)
   
   
   // regular expression for USERNAME to use in testing if username corresponds to the expression
@@ -133,7 +135,7 @@ useEffect(() => {
 
 
   return (
-    <div className='container' id='signup'>
+    <div className='container' id='signup' data-aos="fade-up">
         <form onSubmit={signUp}>
             <h3>Hi there! 👋 Welcome!</h3>
             <h4>Enter your details to register your business/brand:</h4>
