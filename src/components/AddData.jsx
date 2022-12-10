@@ -6,7 +6,7 @@ import { useData } from '../Context/DataContext'
 import { useUser } from '../Context/UserContext'
 
 export const AddData = () => {
-    const { loading, setLoading, user, userRef, setError, error } = useAuth()
+    const { loading, setLoading, user, userRef, setError, error, navigate } = useAuth()
     const { userInfo } = useUser()
 
     const { checkUsername, existingUsername } = useData()

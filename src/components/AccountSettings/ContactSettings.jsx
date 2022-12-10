@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { useAuth } from '../../Context/AuthContext'
 import { doc, updateDoc } from 'firebase/firestore'
+import { toast } from 'react-toastify'
+
 
 export const ContactSettings = ({option, setOption, phoneNo, email}) => {
     const { user, userRef, setLoading, navigate } = useAuth()
