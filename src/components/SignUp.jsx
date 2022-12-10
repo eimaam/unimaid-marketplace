@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom'
 import { CgGoogle } from "react-icons/cg"
 import { useAuth } from '../Context/AuthContext'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
-import { collection, doc, onSnapshot, query, serverTimestamp, setDoc, where } from 'firebase/firestore'
+import { doc, serverTimestamp, setDoc } from 'firebase/firestore'
 import { toast } from "react-toastify"
-import { auth, database } from '../firebaseConfig'
+import { auth } from '../firebaseConfig'
 import { useData } from '../Context/DataContext'
 
 export const SignUp = () => {
@@ -50,8 +50,6 @@ useEffect(() => {
     checkUsername(username)
   }, [username, data])
 
-  console.log(existingUsername)
-  
   
   // regular expression for USERNAME to use in testing if username corresponds to the expression
   const usernameRegex = /^[A-Za-z][A-Za-z0-9_]{2,16}$/;
