@@ -6,7 +6,7 @@ import { useData } from '../Context/DataContext'
 import { useUser } from '../Context/UserContext'
 
 export const AddData = () => {
-    const { loading, setLoading, user, setUser, isLogged, setIsLogged, navigate, logInWithGoogle, userRef, setError, error } = useAuth()
+    const { loading, setLoading, user, userRef, setError, error } = useAuth()
     const { userInfo } = useUser()
 
     const { checkUsername, existingUsername } = useData()
@@ -14,7 +14,12 @@ export const AddData = () => {
     // when logged in with google, check if user has a username
     // if username is available, User is not newly registered so navigate to homepage
     useEffect(() => {
-        userInfo.username != undefined ? navigate('/') : setLoading(false)
+        if(userInfo.username !== undefined){
+            // userInfo.username != undefined ? navigate('/') : setLoading(false)
+            return navigate('/')
+        }else{
+            setLoading(false)
+        }
     }, [user, loading])
 
     const [data, setData] = useState({
